@@ -82,7 +82,7 @@ namespace Services.Ability
                   .GetAllItemViews()
                   .FirstOrDefault(item => item.Id == ItemServiceConstants.BowItem);
 
-                bowView.gameObject.transform.SetParent(view.SecondJointHand.transform);
+                //bowView.gameObject.transform.SetParent(view.SecondJointHand.transform);
                 bowView.gameObject.transform.localPosition = Vector3.zero;
                 bowView.gameObject.transform.localRotation = Quaternion.identity;
                 bowView.gameObject.transform.localScale = Vector3.one;

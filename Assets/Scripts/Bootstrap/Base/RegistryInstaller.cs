@@ -20,9 +20,7 @@ namespace Bootstrap
         [SerializeField] protected MovementServiceSettingsRegistry MovementServiceSettingsRegistry;
         [SerializeField] protected AbilitySettingsRegistry AbilitySettingsRegistry;
         [SerializeField] protected PoolServiceSettingsRegistry PoolServiceSettingsRegistry;
-        [SerializeField] protected WolfSettingsRegistry WolfSettingsRegistry;
         [SerializeField] protected ItemServiceSettingsRegistry ItemServiceSettingsRegistry;
-        [SerializeField] protected NetworkServiceSettingsRegistry NetworkServiceSettingsRegistry;
         [SerializeField] protected LogServiceSettingsRegistry LogServiceSettingsRegistry;
 
         //[Header("GameplaySettings")] TODO:
@@ -55,18 +53,13 @@ namespace Bootstrap
             InstallRegistry(AbilitySettingsRegistry);
             InstallRegistry(PoolServiceSettingsRegistry);
 
-            InstallRegistry(WolfSettingsRegistry);
-
             InstallRegistry(ItemServiceSettingsRegistry);
-
-            InstallRegistry(NetworkServiceSettingsRegistry);
 
             InstallRegistry(LogServiceSettingsRegistry);
         }
         private void InstallListSettings()
         {
             InstallRegistryData<ProjectServiceSettings>(ProjectServiceSettingsRegistry); 
-            InstallRegistryData<NetworkServiceSettings>(NetworkServiceSettingsRegistry);
 
             InstallRegistryData<PlayerSettings>(PlayerSettingsRegistry);
             InstallRegistryData<ResourcesServiceSettings>(ResourcesServiceSettingsRegistry);
@@ -99,8 +92,6 @@ namespace Bootstrap
             Container.Bind<PoolServiceSettings[]>()
           .FromInstance(PoolServiceSettingsRegistry.GetItems().ToArray())
           .AsSingle();
-
-            InstallRegistryData<WolfSettings>(WolfSettingsRegistry);
 
             InstallRegistryData<LogServiceSettings>(LogServiceSettingsRegistry);
 

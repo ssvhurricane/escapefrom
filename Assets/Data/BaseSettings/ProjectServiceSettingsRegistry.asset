@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProjectServiceSettingsRegistry
   m_EditorClassIdentifier: 
   RegistryData:
-    ProjectName: 'Phantom Queen : Valhalla'
+    ProjectName: Underground
     GameDataVersion:
       Major: 0
       Minor: 0

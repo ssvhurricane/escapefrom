@@ -34,7 +34,6 @@ namespace Services.Input
 
         private readonly PauseMenuPresenter _pauseMenuPresenter;
         private readonly MainHUDPresenter _mainHUDPresenter;
-        private readonly WolfPresenter _wolfPresenter;
         private IPresenter _playerPresenter;
        
         private TopDownGameInput _topDownGameInput;
@@ -43,8 +42,8 @@ namespace Services.Input
                                 _playerIdleAbility,
                                      _playerMoveAbility,
                                          _playerRotateAbility,
-                                             _playerJumpAbility,
-                                                             _wolfNoneAbility;
+                                             _playerJumpAbility;
+                                                            
                                                                    
         private IEnumerable<IAbility> _playerAttackAbilities;
         private IEnumerable<IAbility> _wolfAbilities;
@@ -59,9 +58,6 @@ namespace Services.Input
         private Dictionary<int, PlayerAbilityItemView> _playerAbilityItems = new Dictionary<int, PlayerAbilityItemView>();
         KeyValuePair<int, PlayerAbilityItemView> _playerAbility;
 
-        private Dictionary<int, WolfAbilityItemView> _wolfAbilityItems = new Dictionary<int, WolfAbilityItemView>();
-        KeyValuePair<int, WolfAbilityItemView> _wolfAbility;
-
         public InputService(SignalBus signalBus,
             InputServiceSettings[] inputServiceSettings,
             AbilityService abilityService,
@@ -69,7 +65,6 @@ namespace Services.Input
             IWindowService windowService,
             PauseMenuPresenter pauseMenuPresenter,
             MainHUDPresenter mainHUDPresenter,
-            WolfPresenter wolfPresenter,
             PoolService poolService,
             ResourcesService resourcesService
             )
@@ -83,8 +78,6 @@ namespace Services.Input
 
             _pauseMenuPresenter = pauseMenuPresenter;
             _mainHUDPresenter = mainHUDPresenter;
-
-            _wolfPresenter = wolfPresenter;
 
             _poolService = poolService;
             _resourcesService = resourcesService;
@@ -155,59 +148,6 @@ namespace Services.Input
                         _mainHudView.PlayerAbilityContainer.GetComponent<Image>().sprite = ((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Icon;
                        
                     }
-                    else if (nameControl == "leftArrow" || nameControl == "left")
-                    {
-                        if (!_mainHudView.HorizontalAbilityPanel.gameObject.activeSelf)
-                            _mainHudView.HorizontalAbilityPanel.gameObject.SetActive(true);
-
-                        // ToDo move logic in View...
-                        if (_wolfAbility.Value != null)
-                            _wolfAbility.Value._image.color = Color.white;
-
-                        if (((ILiveModel)_wolfPresenter.GetModel()).GetCurrentAbility().Id == AbilityServiceConstants.WolfNoneAbility
-                        || _wolfAbility.Key <= 0)
-                        {
-                            _wolfAbility = _wolfAbilityItems.LastOrDefault();
-                        }
-                        else
-                        {
-                            _wolfAbility = _wolfAbilityItems.FirstOrDefault(item => item.Key == _wolfAbility.Key - 1);
-                        }
-                        // ToDo move logic in View...
-                        if (_wolfAbility.Value != null)
-                            _wolfAbility.Value._image.color = Color.red;
-
-                        ((ILiveModel)_wolfPresenter.GetModel())
-                            .SetCurrentAbility(_wolfAbilities.FirstOrDefault(ability => ability.Id == _wolfAbility.Value.Id));
-
-                        _mainHudView.WolfAbilityContainer.GetComponent<Image>().sprite = ((ILiveModel)_wolfPresenter.GetModel()).GetCurrentAbility().Icon;
-                    }
-                    else if (nameControl == "rightArrow" || nameControl == "right")
-                    {
-                        if (!_mainHudView.HorizontalAbilityPanel.gameObject.activeSelf)
-                            _mainHudView.HorizontalAbilityPanel.gameObject.SetActive(true);
-                        // ToDo move logic in View...
-                        if (_wolfAbility.Value != null)
-                            _wolfAbility.Value._image.color = Color.white;
-
-                        if (((ILiveModel)_wolfPresenter.GetModel()).GetCurrentAbility().Id == AbilityServiceConstants.WolfNoneAbility
-                        || _wolfAbility.Key >= _wolfAbilityItems.Count() - 1)
-                        {
-                            _wolfAbility = _wolfAbilityItems.FirstOrDefault();
-                        }
-                        else
-                        {
-                            _wolfAbility = _wolfAbilityItems.FirstOrDefault(item => item.Key == _wolfAbility.Key + 1);
-                        }
-                        // ToDo move logic in View...
-                        if (_wolfAbility.Value != null)
-                            _wolfAbility.Value._image.color = Color.red;
-
-                        ((ILiveModel)_wolfPresenter.GetModel())
-                            .SetCurrentAbility(_wolfAbilities.FirstOrDefault(ability => ability.Id == _wolfAbility.Value.Id));
-
-                        _mainHudView.WolfAbilityContainer.GetComponent<Image>().sprite = ((ILiveModel)_wolfPresenter.GetModel()).GetCurrentAbility().Icon;
-                    }
                 }
             };
 
@@ -219,18 +159,11 @@ namespace Services.Input
                     if (_mainHudView.VerticalAbilityPanel.gameObject.activeSelf)
                         _mainHudView.VerticalAbilityPanel.gameObject.SetActive(false);
 
-                    if (_mainHudView.HorizontalAbilityPanel.gameObject.activeSelf)
-                        _mainHudView.HorizontalAbilityPanel.gameObject.SetActive(false); 
-                    
                     ((ILiveModel)_playerPresenter.GetModel())
                            .SetCurrentAbility(_playerNoneAbility);
                     _mainHudView.PlayerAbilityContainer.GetComponent<Image>().sprite = ((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Icon;
                     _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility(), _playerPresenter, ActionModifier.None);
 
-                    ((ILiveModel)_wolfPresenter.GetModel())
-                          .SetCurrentAbility(_wolfNoneAbility);
-                    _mainHudView.WolfAbilityContainer.GetComponent<Image>().sprite = ((ILiveModel)_wolfPresenter.GetModel()).GetCurrentAbility().Icon;
-                    _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_wolfPresenter.GetModel()).GetCurrentAbility(), _wolfPresenter, ActionModifier.None);
                 }
             };
 
@@ -266,11 +199,7 @@ namespace Services.Input
             {
                 if (_startProc && Time.timeScale == 1.0f)
                 {
-                    if (_mainHudView.HorizontalAbilityPanel.gameObject.activeSelf)
-                        _mainHudView.HorizontalAbilityPanel.gameObject.SetActive(false);
-
-                    if (((ILiveModel)_wolfPresenter.GetModel()).GetCurrentAbility().Id != AbilityServiceConstants.WolfNoneAbility)
-                        _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_wolfPresenter.GetModel()).GetCurrentAbility(), _wolfPresenter, ActionModifier.None);
+                    // TODO:
                 }
             };
 
@@ -367,11 +296,9 @@ namespace Services.Input
         private void InitAbilities() 
         {
             PlayerAbilityItemView playerAbilityItemView;
-            WolfAbilityItemView wolfAbilityItemView;
 
             _mainHudView = (MainHUDView)_mainHUDPresenter.GetView();
             _mainHudView.VerticalAbilityPanel.gameObject.SetActive(false);
-            _mainHudView.HorizontalAbilityPanel.gameObject.SetActive(false);
 
             // Init Player Ability.
             ((ILiveModel)_playerPresenter.GetModel())
@@ -393,35 +320,6 @@ namespace Services.Input
                  playerAbilityItemView.Id =_playerAttackAbilities.ToList()[item].Id;
 
                  _playerAbilityItems.Add(item, playerAbilityItemView);
-            }
-
-            // Init Wolf Ability and Attach them.
-            ((ILiveModel)_wolfPresenter.GetModel())
-                .SetCurrentAbility(_wolfNoneAbility);
-           
-            _mainHudView.WolfAbilityContainer.GetComponent<Image>().sprite = ((ILiveModel)_wolfPresenter.GetModel()).GetCurrentAbility().Icon;
-
-            _poolService.InitPool(PoolServiceConstants.WolfAbilityItemViewPool);
-
-            for (var item = 0; item < _wolfAbilities.Count(); item++)
-            {
-                if (_wolfAbilities.ToList()[item].Id == AbilityServiceConstants.WolfPromptAbility 
-                    || _wolfAbilities.ToList()[item].Id == AbilityServiceConstants.WolfHealingAbility)
-                {
-                    wolfAbilityItemView = (WolfAbilityItemView)_poolService.Spawn<WolfAbilityItemView>(_mainHudView.HorizontalAbilityPanel.transform);
-                    wolfAbilityItemView._image.sprite = _wolfAbilities.ToList()[item].Icon;
-
-                    if (_wolfAbilityItems.Count() != 0)
-                    {
-                        wolfAbilityItemView.Id = _wolfAbilities.ToList()[item].Id;
-                        _wolfAbilityItems.Add(_wolfAbilityItems.LastOrDefault().Key + 1, wolfAbilityItemView);
-                    }
-                    else if (_wolfAbilityItems.Count() == 0)
-                    {
-                        wolfAbilityItemView.Id = _wolfAbilities.ToList()[item].Id;
-                        _wolfAbilityItems.Add(0, wolfAbilityItemView);
-                    }
-                }
             }
         }
 
@@ -449,13 +347,6 @@ namespace Services.Input
 
             _playerAttackAbilities = _abilityService.GetAbilitiesyByAbilityType(_playerPresenter,
                 AbilityType.AttackAbility);
-
-            // Caching Wolf None Ability.
-            _wolfNoneAbility = _abilityService.GetAbilityById(_wolfPresenter,
-                AbilityServiceConstants.WolfNoneAbility);
-
-            // Get All Wolf Ability.
-            _wolfAbilities = _abilityService.GetAllAbility(_wolfPresenter);
         }
     }
 }

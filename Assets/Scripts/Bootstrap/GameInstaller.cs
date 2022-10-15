@@ -39,8 +39,7 @@ namespace Bootstrap
 
             // View Presenters.
             Container.InstallElementAsSingle<PlayerPresenter>();
-            Container.InstallElementAsSingle<WolfPresenter>();
-
+          
             Container.InstallElementAsSingle<CameraPresenter>();
         }
 
@@ -79,17 +78,6 @@ namespace Bootstrap
             Container.InstallElementAsSingle<PlayerHealthAbility>(); 
             Container.InstallElementAsSingle<PlayerStaminaAbility>(); 
             Container.InstallElementAsSingle<PlayerSpeakAbility>();
-
-            // Wolf Abilities.
-            Container.InstallElementAsSingle<WolfIdleAbility>();
-            Container.InstallElementAsSingle<WolfMoveAbility>(); 
-            Container.InstallElementAsSingle<WolfRotateAbility>(); 
-
-            Container.InstallElementAsSingle<WolfHealingAbility>(); 
-            
-            Container.InstallElementAsSingle<WolfPromptAbility>(); 
-            Container.InstallElementAsSingle<WolfSpeakAbility>();
-            Container.InstallElementAsSingle<WolfNoneAbility>();
         }
 
         public void InstallItems() 
@@ -101,7 +89,6 @@ namespace Bootstrap
         private void InstallModels() 
         {
             Container.InstallModel<PlayerModel>();
-            Container.InstallModel<WolfModel>();
         }
 
         private void InstallSignals() 

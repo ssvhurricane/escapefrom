@@ -11,11 +11,7 @@ namespace View.Window
 
         [SerializeField] public RectTransform PlayerAbilityContainer;
 
-        [SerializeField] public RectTransform WolfAbilityContainer;
-
         [SerializeField] public RectTransform VerticalAbilityPanel;
-
-        [SerializeField] public RectTransform HorizontalAbilityPanel;
 
         private SignalBus _signalBus;
 

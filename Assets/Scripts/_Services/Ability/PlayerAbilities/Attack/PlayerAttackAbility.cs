@@ -81,7 +81,7 @@ namespace Services.Ability
                     .GetAllItemViews()
                     .FirstOrDefault(item => item.Id == ItemServiceConstants.AxeItem);
 
-                axeView.gameObject.transform.SetParent(view.FirstJointHand.transform);
+//axeView.gameObject.transform.SetParent(view.FirstJointHand.transform);
                 axeView.gameObject.transform.localPosition = Vector3.zero;
                 axeView.gameObject.transform.localRotation = Quaternion.identity;
                 axeView.gameObject.transform.localScale = Vector3.one;

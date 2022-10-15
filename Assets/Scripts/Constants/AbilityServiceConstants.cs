@@ -19,16 +19,6 @@ namespace Constants
         public static string PlayerHealthAbility = "PlayerHealthAbility";
         public static string PlayerStaminaAbility = "PlayerStaminaAbility";
         public static string PlayerSpeakAbility ="PlayerSpeakAbility";
-
-        // Wolf Abilities.
-        public static string  WolfIdleAbility = "WolfIdleAbility";
-        public static string WolfMoveAbility = "WolfMoveAbility";
-        public static string WolfRotateAbility = "WolfRotateAbility";
-
-        public static string WolfHealingAbility = "WolfHealingAbility";
-
-        public static string WolfPromptAbility = "WolfPromptAbility";
-        public static string WolfSpeakAbility = "WolfSpeakAbility"; 
-        public static string WolfNoneAbility = "WolfNoneAbility";
+       
     }
 }

@@ -7,7 +7,6 @@ using Utils.Helpers;
 using Zenject;
 using Presenters;
 using Services.Essence;
-using Services.Network;
 using Model;
 using Services.Factory;
 using Presenters.Window;
@@ -47,10 +46,6 @@ namespace Bootstrap
             Container.Bind<IInitializable>().To<ProjectPresenter>().AsSingle(); 
 
             Container.InstallElementAsSingle<GameSettingsPresenter>();
-
-            Container.InstallElementAsSingle<NetConnectionPresenter>();
-
-            Container.InstallElementAsSingle<RoomPresenter>();
         }
         void InitExecutionOrder() { }
        
@@ -65,9 +60,7 @@ namespace Bootstrap
             Container.Bind<IWindowService>().To<WindowService>().AsSingle();
 
             Container.InstallElementAsSingle<ResourcesService>();
-
-            Container.InstallElementAsSingle<NetworkService>();
-
+           
             Container.InstallElementAsSingle<HolderService>();
 
             Container.InstallElementAsSingle<AnchorService>(); 
@@ -119,10 +112,6 @@ namespace Bootstrap
             Container.DeclareSignal<AnchorServiceSignals.Add>();
             Container.DeclareSignal<AnchorServiceSignals.Activate>();
             Container.DeclareSignal<AnchorServiceSignals.Deactivate>();
-
-            // Network Service Signals.
-            Container.DeclareSignal<NetworkServiceSignals.Connect>();
-            Container.DeclareSignal<NetworkServiceSignals.Disconnect>();
         }
 
        public void InstallModels()
