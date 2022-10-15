@@ -1,0 +1,1 @@
+Unity architectural template project. Stack Unity, Extenject, UniTask, UniRx, Model-View-Presenter.

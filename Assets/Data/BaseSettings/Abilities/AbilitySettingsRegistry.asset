@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125cfd330d1bace4e89b39c65d52b096, type: 3}
+  m_Name: AbilitySettingsRegistry
+  m_EditorClassIdentifier: 
+  RegistryItems:
+  - Id: PlayerIdleAbility
+    Name: PlayerIdleAbility
+    AbilityDescription: PlayerIdleAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerMoveAbility
+    Name: PlayerMoveAbility
+    AbilityDescription: PlayerMoveAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerRotateAbility
+    Name: PlayerRotateAbility
+    AbilityDescription: PlayerRotateAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerJumpAbility
+    Name: PlayerJumpAbility
+    AbilityDescription: PlayerJumpAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerAttackAbility
+    Name: PlayerAttackAbility
+    AbilityDescription: PlayerAttackAbility
+    AbilityType: 1
+    WeaponType: 5
+    Icon: {fileID: 21300000, guid: 42d77ede3fef8dd4a83cdd25c482101d, type: 3}
+    ActionModifier: 
+  - Id: PlayerRangeAttackAbility
+    Name: PlayerRangeAttackAbility
+    AbilityDescription: PlayerRangeAttackAbility
+    AbilityType: 1
+    WeaponType: 3
+    Icon: {fileID: 21300000, guid: 4e19ad47e633d11499b8a77bc7c21d65, type: 3}
+    ActionModifier: 
+  - Id: PlayerNoneAbility
+    Name: PlayerNoneAbility
+    AbilityDescription: PlayerNoneAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 21300000, guid: bffa58996a3bf4445afc7dc9888e350a, type: 3}
+    ActionModifier: 
+  - Id: PlayerDeathAbility
+    Name: PlayerDeathAbility
+    AbilityDescription: PlayerDeathAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerDetectionAbility
+    Name: PlayerDetectionAbility
+    AbilityDescription: PlayerDetectionAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerHealthAbility
+    Name: PlayerHealthAbility
+    AbilityDescription: PlayerHealthAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerStaminaAbility
+    Name: PlayerStaminaAbility
+    AbilityDescription: PlayerStaminaAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: PlayerSpeakAbility
+    Name: PlayerSpeakAbility
+    AbilityDescription: PlayerSpeakAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: WolfIdleAbility
+    Name: WolfIdleAbility
+    AbilityDescription: WolfIdleAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: WolfMoveAbility
+    Name: WolfMoveAbility
+    AbilityDescription: WolfMoveAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: WolfRotateAbility
+    Name: WolfRotateAbility
+    AbilityDescription: WolfRotateAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: WolfHealingAbility
+    Name: WolfHealingAbility
+    AbilityDescription: WolfHealingAbility
+    AbilityType: 3
+    WeaponType: 0
+    Icon: {fileID: 21300000, guid: 815868e4af2f68446b992a701f64239e, type: 3}
+    ActionModifier: 
+  - Id: WolfPromptAbility
+    Name: WolfPromptAbility
+    AbilityDescription: WolfPromptAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 21300000, guid: 37c6d660bb5a01747bae10df8fd495ee, type: 3}
+    ActionModifier: 
+  - Id: WolfSpeakAbility
+    Name: WolfSpeakAbility
+    AbilityDescription: WolfSpeakAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: WolfNoneAbility
+    Name: WolfNoneAbility
+    AbilityDescription: WolfNoneAbility
+    AbilityType: 4
+    WeaponType: 0
+    Icon: {fileID: 21300000, guid: bffa58996a3bf4445afc7dc9888e350a, type: 3}
+    ActionModifier: 

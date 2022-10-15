@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3765651577437054bb13e37c96e01fad, type: 3}
+  m_Name: ItemServiceSettingsRegistry
+  m_EditorClassIdentifier: 
+  RegistryItems:
+  - Id: AxeItem
+    Name: AxeItem
+    Description: AxeItem
+    Icon: {fileID: 0}
+    Prefab: {fileID: 3374229895721973127, guid: 87156e10ce2aba149bd593f5ae895a9e, type: 3}
+    ItemType: 0
+  - Id: BowItem
+    Name: BowItem
+    Description: BowItem
+    Icon: {fileID: 0}
+    Prefab: {fileID: 919132149155446097, guid: bf2abb5c09af5e042b9100787a416b0d, type: 3}
+    ItemType: 0

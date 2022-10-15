@@ -1,0 +1,230 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15aed5422250d8e45bd66c93ae1b625f, type: 3}
+  m_Name: LogServiceSettingsRegistry
+  m_EditorClassIdentifier: 
+  RegistryData:
+    Id: 0
+    EnableAll: 1
+    LogItemDatas:
+    - Name: WindowService
+      Enable: 1
+      Color: {r: 1, g: 0.032075405, b: 0.032075405, a: 1}
+      LogItemType: 2
+    - Name: VFXService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: TutorialService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: SFXService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: SceneService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: SavePlayerDataService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: ProjectService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: PoolService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: NetworkService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: MowementService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: LogService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: LocalizationService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: ItemService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: InteractionService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: InputService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: HolderService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: GameplayService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: FactoryService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: EssenceService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: DisposableService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: DetectionService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: CSVParseService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: CameraService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: AnimationService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: AnchorService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: AbilityService
+      Enable: 1
+      Color: {r: 1, g: 0, b: 0, a: 1}
+      LogItemType: 2
+    - Name: NetworkModel
+      Enable: 1
+      Color: {r: 0, g: 0.7085581, b: 1, a: 1}
+      LogItemType: 3
+    - Name: PlayerModel
+      Enable: 1
+      Color: {r: 0, g: 0.7085581, b: 1, a: 1}
+      LogItemType: 3
+    - Name: ProjectModel
+      Enable: 1
+      Color: {r: 0, g: 0.7085581, b: 1, a: 1}
+      LogItemType: 3
+    - Name: WolfModel
+      Enable: 1
+      Color: {r: 0, g: 0.7085581, b: 1, a: 1}
+      LogItemType: 3
+    - Name: ProjectPresenter
+      Enable: 1
+      Color: {r: 0.91609067, g: 1, b: 0.11698109, a: 1}
+      LogItemType: 1
+    - Name: PlayerPresenter
+      Enable: 1
+      Color: {r: 0.91609067, g: 1, b: 0.11698109, a: 1}
+      LogItemType: 1
+    - Name: CameraPresenter
+      Enable: 1
+      Color: {r: 0.91609067, g: 1, b: 0.11698109, a: 1}
+      LogItemType: 1
+    - Name: WolfPresenter
+      Enable: 1
+      Color: {r: 0.91609067, g: 1, b: 0.11698109, a: 1}
+      LogItemType: 1
+    - Name: GameSettingsPresenter
+      Enable: 1
+      Color: {r: 0.91609067, g: 1, b: 0.11698109, a: 1}
+      LogItemType: 1
+    - Name: MainHUDPresenter
+      Enable: 1
+      Color: {r: 0.91609067, g: 1, b: 0.11698109, a: 1}
+      LogItemType: 1
+    - Name: MainMenuPresenter
+      Enable: 1
+      Color: {r: 0.91609067, g: 1, b: 0.11698109, a: 1}
+      LogItemType: 1
+    - Name: PauseMenuPresenter
+      Enable: 1
+      Color: {r: 0.91609067, g: 1, b: 0.11698109, a: 1}
+      LogItemType: 1
+    - Name: PlayerView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: WolfView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: WeaponItemView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: FPSCameraView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: SideScrollerCameraView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: TopDownCameraView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: TPSCameraView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: PlayerAbilityItemView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: WolfAbilityItemView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: CheatSettingsView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: DebugSettingsView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: GameSettingsView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: MainHUDView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: MainMenuView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4
+    - Name: PauseMenuView
+      Enable: 1
+      Color: {r: 0, g: 1, b: 0.56661105, a: 1}
+      LogItemType: 4

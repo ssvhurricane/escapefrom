@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207938f5f59c5024c98a8e43bd5f4867, type: 3}
+  m_Name: RegistryInstaller
+  m_EditorClassIdentifier: 
+  ProjectServiceSettingsRegistry: {fileID: 11400000, guid: e628bb02ba1f8e34f9f991219e46a06f, type: 2}
+  SceneSettingsRegistry: {fileID: 11400000, guid: beec8bb5dfd76f64a8ea4720cb16e43a, type: 2}
+  PlayerSettingsRegistry: {fileID: 11400000, guid: 48761119862c147479cb369da4f57274, type: 2}
+  WindowServiceSettingsRegistry: {fileID: 11400000, guid: 50c228ceda9b80e4fb921a4c4683c862, type: 2}
+  ResourcesServiceSettingsRegistry: {fileID: 11400000, guid: 0c85c241269602b4283cec5c58b2b938, type: 2}
+  CameraServiceSettingsRegistry: {fileID: 11400000, guid: 0e58898e97e8b2b46926cfeddaf46745, type: 2}
+  InputServiceSettingsRegistry: {fileID: 11400000, guid: 00ae38e0ea2f29846b5701a65da04079, type: 2}
+  MovementServiceSettingsRegistry: {fileID: 11400000, guid: 824defa5e255baa4ea906653f7289418, type: 2}
+  AbilitySettingsRegistry: {fileID: 11400000, guid: 13e8b5e56151046448eb4d8f61e62585, type: 2}
+  PoolServiceSettingsRegistry: {fileID: 11400000, guid: 982c44394447afb49808a5408f466fee, type: 2}
+  WolfSettingsRegistry: {fileID: 11400000, guid: 9824ec411fa0a874085d13b83dc5af12, type: 2}
+  ItemServiceSettingsRegistry: {fileID: 11400000, guid: dd1398c2ade4c5b41853de89ed782e8b, type: 2}
+  NetworkServiceSettingsRegistry: {fileID: 11400000, guid: 774b27f2dbb1d4734a7c49ea206d1d99, type: 2}
+  LogServiceSettingsRegistry: {fileID: 11400000, guid: c359b8d105152d84b870ccc965627404, type: 2}
