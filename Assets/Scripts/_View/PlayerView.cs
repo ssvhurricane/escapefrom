@@ -1,19 +1,17 @@
-using Constants;
 using Presenters;
 using Presenters.Window;
 using Services.Essence;
 using Services.Input;
 using Signals;
-using TMPro;
 using UnityEngine;
-using View.Camera;
+using UnityEngine.UI;
 using Zenject;
 
 namespace View
 {
     public class PlayerView : NetworkEssence
     {
-        [SerializeField] public TextMeshProUGUI PlayerName;
+        [SerializeField] public Text PlayerName;
 
         [SerializeField] public Animator Animator;
         [SerializeField] protected EssenceType Layer;
