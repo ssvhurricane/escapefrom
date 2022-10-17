@@ -7,7 +7,7 @@
 /[Bb]uilds/
 /[Ll]ibrary/
 Logs/
-ProjectSettings/
+MemoryCaptures/
 sysinfo.txt
 *.stackdump
 /Assets/AssetStoreTools*

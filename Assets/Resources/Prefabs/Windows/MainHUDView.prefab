@@ -1519,4 +1519,3 @@ MonoBehaviour:
   Type: 0
   PlayerAbilityContainer: {fileID: 991767894003365543}
   VerticalAbilityPanel: {fileID: 8850882987182930930}
-  HorizontalAbilityPanel: {fileID: 0}
