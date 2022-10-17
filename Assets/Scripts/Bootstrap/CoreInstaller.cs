@@ -25,8 +25,6 @@ namespace Bootstrap
             BindPresenters();
 
             BindServices();
-            
-            BindControllers();
 
             InstallSignals();
 
@@ -74,11 +72,6 @@ namespace Bootstrap
             Container.InstallElementAsSingle<LocalizationService>(); 
             
             Container.InstallElementAsSingle<SavePlayerDataService>();
-        }
-
-        private void BindControllers() 
-        {
-            // Container.InstallElementAsSingle<CustomSDKController>();
         }
       
         private void InstallAnimations()

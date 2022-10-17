@@ -6,6 +6,6 @@ namespace Services.Scene
     {
         AsyncOperation LoadLevelBase(string id);
 
-        void LoadLevelAdvanced(string id, SceneService.LoadMode loadMode = SceneService.LoadMode.Unirx);
+        void LoadLevelAdvanced(string id, SceneService.LoadMode loadMode = SceneService.LoadMode.Unitask);
     }
 }

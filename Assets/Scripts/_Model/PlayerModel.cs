@@ -3,7 +3,6 @@ using Data.Settings;
 using Model.Inventory;
 using Services.Ability;
 using Services.Item;
-using UniRx;
 
 namespace Model
 {
@@ -14,8 +13,8 @@ namespace Model
         public ModelType ModelType { get; set; }
 
         private readonly PlayerSettings _settings;
-        private ReactiveProperty<PlayerAbilityContainer> _playerAbilityContainer;
-        private ReactiveProperty<PlayerInventoryContainer> _playerInventoryContainer;
+        private PlayerAbilityContainer _playerAbilityContainer;
+        private PlayerInventoryContainer _playerInventoryContainer;
 
         private PlayerIdleAbility _playerIdleAbility;
         private PlayerMoveAbility _playerMoveAbility;
@@ -78,40 +77,38 @@ namespace Model
             _bowItem = bowItem;
 
             //Init Base Ability.
-            _playerAbilityContainer = new ReactiveProperty<PlayerAbilityContainer>();
-            _playerAbilityContainer.Value = new PlayerAbilityContainer();
+            _playerAbilityContainer= new PlayerAbilityContainer();
             
-            _playerAbilityContainer.Value.abilities.Add(_playerIdleAbility);
-            _playerAbilityContainer.Value.abilities.Add(_playerMoveAbility);
-            _playerAbilityContainer.Value.abilities.Add(_playerRotateAbility);
-            _playerAbilityContainer.Value.abilities.Add(_playerJumpAbility);
+            _playerAbilityContainer.abilities.Add(_playerIdleAbility);
+            _playerAbilityContainer.abilities.Add(_playerMoveAbility);
+            _playerAbilityContainer.abilities.Add(_playerRotateAbility);
+            _playerAbilityContainer.abilities.Add(_playerJumpAbility);
             
-            _playerAbilityContainer.Value.abilities.Add(_playerAttackAbility);
-            _playerAbilityContainer.Value.abilities.Add(_playerRangeAttackAbility);
+            _playerAbilityContainer.abilities.Add(_playerAttackAbility);
+            _playerAbilityContainer.abilities.Add(_playerRangeAttackAbility);
             
-            _playerAbilityContainer.Value.abilities.Add(_playerNoneCurrentAbility);
-            _playerAbilityContainer.Value.abilities.Add(_playerDeathAbility);
-            _playerAbilityContainer.Value.abilities.Add(_playerDetectionAbility);
-            _playerAbilityContainer.Value.abilities.Add(_playerHealthAbility);
-            _playerAbilityContainer.Value.abilities.Add(_playerStaminaAbility);
-            _playerAbilityContainer.Value.abilities.Add(_playerSpeakAbility); 
+            _playerAbilityContainer.abilities.Add(_playerNoneCurrentAbility);
+            _playerAbilityContainer.abilities.Add(_playerDeathAbility);
+            _playerAbilityContainer.abilities.Add(_playerDetectionAbility);
+            _playerAbilityContainer.abilities.Add(_playerHealthAbility);
+            _playerAbilityContainer.abilities.Add(_playerStaminaAbility);
+            _playerAbilityContainer.abilities.Add(_playerSpeakAbility); 
             
             // Init Inventory.
-            _playerInventoryContainer = new ReactiveProperty<PlayerInventoryContainer>();
-            _playerInventoryContainer.Value = new PlayerInventoryContainer();
+            _playerInventoryContainer = new PlayerInventoryContainer();
            
-            _playerInventoryContainer.Value.Items.Add(_axeItem);
-            _playerInventoryContainer.Value.Items.Add(_bowItem);
+            _playerInventoryContainer.Items.Add(_axeItem);
+            _playerInventoryContainer.Items.Add(_bowItem);
         }
 
         public IAbilityContainer GetAbilityContainer()
         {
-            return _playerAbilityContainer.Value;
+            return _playerAbilityContainer;
         }
 
         public IInventoryContainer GetInventoryContainer()
         {
-            return _playerInventoryContainer.Value;
+            return _playerInventoryContainer;
         }
 
         public void SetCurrentAbility(IAbility ability) 

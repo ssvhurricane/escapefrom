@@ -1,4 +1,3 @@
-using UniRx;
 using UnityEngine;
 
 namespace Commands.Button
@@ -11,7 +10,7 @@ namespace Commands.Button
 
         protected virtual void Awake() 
         {
-            Button?.OnClickAsObservable().Subscribe(_ => Activate()).AddTo(this);
+            Button?.onClick.AddListener(Activate);
         }
         public abstract void Activate();
     }

@@ -3,16 +3,14 @@ using Services.Anchor;
 using Services.Camera;
 using Services.Essence;
 using Services.Factory;
-using Services.Input;
 using Services.Item;
 using Services.Log;
 using Services.Pool;
 using Services.Scene;
 using Services.Window;
-using System;
 using System.Linq;
-using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 using View.Window;
 using Zenject;
 
@@ -34,11 +32,6 @@ namespace Presenters.Window
         private readonly HolderService _holderService;
 
         private readonly GameSettingsPresenter _gameSettingsPresenter;
-
-        private IDisposable _disposableBackToGameButton,
-                                    _disposableSettingsButton,
-                                        _disposableQuitMainMenuButton,
-                                                    _disposableBackButton;
 
         private PauseMenuView _pauseMenuView;
         private MainHUDView _mainHUDView;
@@ -104,11 +97,9 @@ namespace Presenters.Window
 
             if (_pauseMenuView._backToGameButton != null)
             {
-                OnDispose(_disposableBackToGameButton);
+                OnDispose(_pauseMenuView._backToGameButton);
 
-                _disposableBackToGameButton = _pauseMenuView._backToGameButton
-               .OnClickAsObservable()
-               .Subscribe(_ => OnPauseMenuViewButtonClick(_pauseMenuView._backToGameButton.GetInstanceID()));
+                _pauseMenuView._backToGameButton.onClick.AddListener(() => OnPauseMenuViewButtonClick(_pauseMenuView._backToGameButton.GetInstanceID()));
             }
             else
             {
@@ -120,11 +111,9 @@ namespace Presenters.Window
 
             if (_pauseMenuView._settingsButton != null)
             {
-                OnDispose(_disposableSettingsButton);
+                OnDispose(_pauseMenuView._settingsButton);
 
-                _disposableSettingsButton = _pauseMenuView._settingsButton
-               .OnClickAsObservable()
-               .Subscribe(_ => OnPauseMenuViewButtonClick(_pauseMenuView._settingsButton.GetInstanceID()));
+                _pauseMenuView._settingsButton.onClick.AddListener(()=> OnPauseMenuViewButtonClick(_pauseMenuView._settingsButton.GetInstanceID()));
             }
             else
             {
@@ -136,11 +125,9 @@ namespace Presenters.Window
 
             if (_pauseMenuView._quitMainMenuButton != null)
             {
-                OnDispose(_disposableQuitMainMenuButton);
+                OnDispose(_pauseMenuView._quitMainMenuButton);
 
-                _disposableQuitMainMenuButton = _pauseMenuView._quitMainMenuButton
-               .OnClickAsObservable()
-               .Subscribe(_ => OnPauseMenuViewButtonClick(_pauseMenuView._quitMainMenuButton.GetInstanceID()));
+                _pauseMenuView._quitMainMenuButton.onClick.AddListener(()=> OnPauseMenuViewButtonClick(_pauseMenuView._quitMainMenuButton.GetInstanceID()));
             }
             else
             {
@@ -188,11 +175,9 @@ namespace Presenters.Window
 
                 if (_gameSettingsView._backButton != null)
                 {
-                    OnDispose(_disposableBackButton);
+                    OnDispose(_gameSettingsView._backButton);
 
-                    _disposableBackButton = _gameSettingsView._backButton
-                   .OnClickAsObservable()
-                   .Subscribe(_ => OnGameSettingsViewButtonClick(_gameSettingsView._backButton.GetInstanceID()));
+                    _gameSettingsView._backButton.onClick.AddListener(() => OnGameSettingsViewButtonClick(_gameSettingsView._backButton.GetInstanceID()));
                 }
 
                 _windowService.HideWindow<PauseMenuView>();
@@ -233,15 +218,15 @@ namespace Presenters.Window
         }
         private void OnDisposeAll()
         {
-            _disposableBackToGameButton?.Dispose();
-            _disposableSettingsButton?.Dispose();
-            _disposableQuitMainMenuButton?.Dispose();
-            _disposableBackButton?.Dispose();
+            _pauseMenuView?._backToGameButton?.onClick.RemoveAllListeners();
+            _pauseMenuView?._settingsButton?.onClick.RemoveAllListeners();
+            _pauseMenuView?._quitMainMenuButton?.onClick.RemoveAllListeners();
+            _pauseMenuView?._backToGameButton?.onClick.RemoveAllListeners();
         }
 
-        private void OnDispose(IDisposable disposable)
+        private void OnDispose(Button disposable)
         {
-            disposable?.Dispose();
+            disposable?.onClick.RemoveAllListeners();
         }
     }
 }

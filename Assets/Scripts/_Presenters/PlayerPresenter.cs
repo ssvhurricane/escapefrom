@@ -5,10 +5,8 @@ using UnityEngine;
 using View;
 using Zenject;
 using System.Linq;
-using UniRx;
 using System;
 using Services.Factory;
-using Services.Window;
 using Services.Log;
 
 namespace Presenters
@@ -75,26 +73,23 @@ namespace Presenters
                     _playerView = _factoryService.Spawn<PlayerView>(hTransform, prefab);
             }
 
-            //ToDo...Remove Listener
-            _disposable = _anchorService._anchors.Subscribe(_ =>
+            _logService.ShowLog(GetType().Name,
+            Services.Log.LogType.Message,
+            "_anchorService._anchors.Subscribe.",
+            LogOutputLocationType.Console);
+
+            if (_playerView != null)
             {
-                _logService.ShowLog(GetType().Name,
-                Services.Log.LogType.Message,
-                "_anchorService._anchors.Subscribe.",
-                LogOutputLocationType.Console);
+                var anchorTransform = _anchorService._anchors.FirstOrDefault(anchor => anchor.AnchorType == AnchorType.Player)?.Transform;
 
-                if (_playerView != null)
-                { 
-                   var anchorTransform = _anchorService._anchors.Value.FirstOrDefault(anchor => anchor.AnchorType == AnchorType.Player)?.Transform;
+                if (anchorTransform != null)
+                {
+                    _playerView.transform.position = anchorTransform.position;
+                    _playerView.transform.rotation = anchorTransform.rotation;
 
-                    if (anchorTransform != null)
-                    {
-                        _playerView.transform.position = anchorTransform.position;
-                        _playerView.transform.rotation = anchorTransform.rotation;
-                       
-                    }
                 }
-            });
+            }
+          
         }
 
         public IView GetView()

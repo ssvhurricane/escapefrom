@@ -2,9 +2,6 @@ using Constants;
 using Data.Settings;
 using Services.Log;
 using System;
-using System.Linq;
-using UniRx;
-using UnityEngine;
 using Zenject;
 
 namespace Services.Resources
@@ -34,13 +31,6 @@ namespace Services.Resources
                 obj = default(T);
             }
             return obj;
-        }
-        
-        public IObservable<T> LoadResourceAsync<T>(string resourcePath) where T : UnityEngine.Object
-        {
-            return UnityEngine.Resources.LoadAsync<T>(resourcePath)
-                .AsAsyncOperationObservable()
-                .Select(data => data.asset as T);
         }
 
         public UnityEngine.GameObject GetResource(TypeResource typeResource, Type type) 

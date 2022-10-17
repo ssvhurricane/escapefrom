@@ -1,14 +1,12 @@
-using UniRx;
-
 namespace Signals
 {
     public class SceneServiceSignals
     {
         public class SceneLoadingStarted 
         {
-            public Subject<float> Data { get; private set; }
+            public float Data { get; private set; }
 
-            public SceneLoadingStarted(Subject<float> data)
+            public SceneLoadingStarted(float data)
             {
                 Data = data;
             }
