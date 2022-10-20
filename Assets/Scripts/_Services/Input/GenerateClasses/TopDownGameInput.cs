@@ -107,6 +107,15 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotation"",
+                    ""type"": ""Value"",
+                    ""id"": ""37bd10ad-5a16-40d3-80d8-f122355b3dad"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -398,12 +407,45 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""5f0cce8c-f5d7-4c66-9832-dba4f7511ade"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""RightMouseButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ae2fda55-e089-44c3-bfdc-6e05d8446504"",
                     ""path"": ""<XInputController>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""RightMouseButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15020444-83c5-4b2f-b2e2-a459810fbf88"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7389678e-16b8-4bbf-b936-a8d93e62a875"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -451,6 +493,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
         m_Player_E = m_Player.FindAction("E", throwIfNotFound: true);
         m_Player_C = m_Player.FindAction("C", throwIfNotFound: true);
+        m_Player_Rotation = m_Player.FindAction("Rotation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -519,6 +562,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Esc;
     private readonly InputAction m_Player_E;
     private readonly InputAction m_Player_C;
+    private readonly InputAction m_Player_Rotation;
     public struct PlayerActions
     {
         private @TopDownGameInput m_Wrapper;
@@ -532,6 +576,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         public InputAction @Esc => m_Wrapper.m_Player_Esc;
         public InputAction @E => m_Wrapper.m_Player_E;
         public InputAction @C => m_Wrapper.m_Player_C;
+        public InputAction @Rotation => m_Wrapper.m_Player_Rotation;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -568,6 +613,9 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @C.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnC;
                 @C.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnC;
                 @C.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnC;
+                @Rotation.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
+                @Rotation.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
+                @Rotation.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -599,6 +647,9 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @C.started += instance.OnC;
                 @C.performed += instance.OnC;
                 @C.canceled += instance.OnC;
+                @Rotation.started += instance.OnRotation;
+                @Rotation.performed += instance.OnRotation;
+                @Rotation.canceled += instance.OnRotation;
             }
         }
     }
@@ -632,5 +683,6 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         void OnEsc(InputAction.CallbackContext context);
         void OnE(InputAction.CallbackContext context);
         void OnC(InputAction.CallbackContext context);
+        void OnRotation(InputAction.CallbackContext context);
     }
 }

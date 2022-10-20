@@ -78,6 +78,9 @@ namespace Bootstrap
             Container.InstallElementAsSingle<PlayerHealthAbility>(); 
             Container.InstallElementAsSingle<PlayerStaminaAbility>(); 
             Container.InstallElementAsSingle<PlayerSpeakAbility>();
+
+            // Camera Abilities.
+            Container.InstallElementAsSingle<CameraRotateAbility>();
         }
 
         public void InstallItems() 
@@ -89,6 +92,7 @@ namespace Bootstrap
         private void InstallModels() 
         {
             Container.InstallModel<PlayerModel>();
+            Container.InstallModel<CameraModel>();
         }
 
         private void InstallSignals() 

@@ -36,6 +36,8 @@ namespace Services.Input
 
         private readonly PauseMenuPresenter _pauseMenuPresenter;
         private readonly MainHUDPresenter _mainHUDPresenter;
+        private readonly CameraPresenter _cameraPresenter;
+
         private IPresenter _playerPresenter;
        
         private TopDownGameInput _topDownGameInput;
@@ -44,7 +46,8 @@ namespace Services.Input
                                 _playerIdleAbility,
                                      _playerMoveAbility,
                                          _playerRotateAbility,
-                                             _playerJumpAbility;
+                                            _cameraRotateAbility,
+                                                 _playerJumpAbility;
                                                             
                                                                    
         private IEnumerable<IAbility> _playerAttackAbilities;
@@ -66,6 +69,7 @@ namespace Services.Input
             IWindowService windowService,
             PauseMenuPresenter pauseMenuPresenter,
             MainHUDPresenter mainHUDPresenter,
+            CameraPresenter cameraPresenter,
             PoolService poolService,
             ResourcesService resourcesService,
             LogService logService
@@ -80,6 +84,7 @@ namespace Services.Input
 
             _pauseMenuPresenter = pauseMenuPresenter;
             _mainHUDPresenter = mainHUDPresenter;
+            _cameraPresenter = cameraPresenter;
 
             _poolService = poolService;
             _resourcesService = resourcesService;
@@ -198,10 +203,12 @@ namespace Services.Input
 
             // Bind Player Base Attack Ability.
             _topDownGameInput.Player.LeftMouseButton.performed += value =>
-            {_logService.ShowLog(GetType().Name,
+            {
+                _logService.ShowLog(GetType().Name,
                             Services.Log.LogType.Message,
                             "Press LeftMouseButton(LT).",
                             LogOutputLocationType.Console);
+
                 if (_startProc && Time.timeScale == 1.0f)
                 {
                     
@@ -216,10 +223,12 @@ namespace Services.Input
 
              // Bind Player Aim Down Sights Ability.
             _topDownGameInput.Player.RightMouseButton.performed += value =>
-            { _logService.ShowLog(GetType().Name,
+            { 
+                _logService.ShowLog(GetType().Name,
                             Services.Log.LogType.Message,
                             "Press RightMouseButton(RT).",
                             LogOutputLocationType.Console);
+
                 if (_startProc && Time.timeScale == 1.0f)
                 {
                    
@@ -286,29 +295,29 @@ namespace Services.Input
                         _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
                          , _playerPresenter,
                          _topDownGameInput.Player.WASD.ReadValue<Vector2>(), ActionModifier.None);
-
-                        // Bind Player Rotate Ability.
-                        _abilityService.UseAbility((IAbilityWithVector2Param)_playerRotateAbility
-                            , _playerPresenter,
-                            _topDownGameInput.Player.WASD.ReadValue<Vector2>(), ActionModifier.None);
                     }
                     else
                     {
-                        // Bind Player Move Ability.
                         _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
                          , _playerPresenter,
                          _topDownGameInput.Player.WASD.ReadValue<Vector2>(), ActionModifier.Shift);
-
-                        // Bind Player Rotate Ability.
-                        _abilityService.UseAbility((IAbilityWithVector2Param)_playerRotateAbility
-                            , _playerPresenter,
-                            _topDownGameInput.Player.WASD.ReadValue<Vector2>(), ActionModifier.Shift);
                     }
                 }
                 else 
                 {
                     _abilityService.UseAbility((IAbilityWithOutParam)_playerIdleAbility, _playerPresenter, ActionModifier.None);
                 }
+
+                // TODO:
+                // Bind Player Rotate Ability.
+                //_abilityService.UseAbility((IAbilityWithVector2Param)_playerRotateAbility
+                //    , _playerPresenter,
+                //    _topDownGameInput.Player.Rotation.ReadValue<Vector2>(), ActionModifier.None);
+
+                //// Bind Camera Rotate Ability.
+                //_abilityService.UseAbility((IAbilityWithVector2Param)_cameraRotateAbility
+                //    , _cameraPresenter,
+                //    _topDownGameInput.Player.Rotation.ReadValue<Vector2>(), ActionModifier.None);
             }
         }
 
@@ -369,6 +378,10 @@ namespace Services.Input
             // Caching Player Rotate Ability.
             _playerRotateAbility = _abilityService.GetAbilityById(_playerPresenter, 
                 AbilityServiceConstants.PlayerRotateAbility);
+
+            // Caching Camera Rotate Ability.
+            _cameraRotateAbility = _abilityService.GetAbilityById(_cameraPresenter,
+                AbilityServiceConstants.CameraRotateAbility);
 
             // Caching Player Jump Ability.
             _playerJumpAbility = _abilityService.GetAbilityById(_playerPresenter,

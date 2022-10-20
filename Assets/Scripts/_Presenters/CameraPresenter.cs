@@ -1,3 +1,4 @@
+using Model;
 using Services.Anchor;
 using Services.Camera;
 using Services.Essence;
@@ -9,7 +10,7 @@ using Zenject;
 
 namespace Presenters
 {
-    public class CameraPresenter
+    public class CameraPresenter : IPresenter
     {
         private readonly SignalBus _signalBus;
         private readonly CameraService _cameraService;
@@ -20,12 +21,13 @@ namespace Presenters
 
         private IView _cameraView;
 
+        private readonly CameraModel _cameraModel;
         public CameraPresenter(SignalBus signalBus,
             CameraService cameraService, 
             EssenceService essenceService, 
             FactoryService factoryService,
-            HolderService holderService
-            ) 
+            HolderService holderService,
+            CameraModel cameraModel)
         {
             _signalBus = signalBus;
             _cameraService = cameraService;
@@ -33,6 +35,8 @@ namespace Presenters
 
             _factoryService = factoryService;
             _holderService = holderService;
+
+            _cameraModel = cameraModel;
         }
 
         public void ShowView<TCameraView>(string cameraId, IView baseView) where TCameraView : class, IEssence
@@ -57,6 +61,21 @@ namespace Presenters
         public IView GetView()
         {
             return _cameraView;
+        }
+
+        public void ShowView(GameObject prefab = null, Transform hTransform = null)
+        {
+            // TODO:
+        }
+
+        public void HideView()
+        {
+           // TODO:
+        }
+
+        public IModel GetModel()
+        {
+            return _cameraModel;
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Constants
         public static string PlayerHealthAbility = "PlayerHealthAbility";
         public static string PlayerStaminaAbility = "PlayerStaminaAbility";
         public static string PlayerSpeakAbility ="PlayerSpeakAbility";
-       
+
+        public static string CameraRotateAbility = "CameraRotateAbility";
     }
 }

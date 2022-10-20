@@ -16,6 +16,8 @@ namespace Services.Movement
         private Rigidbody _viewRigidbody;
         private CapsuleCollider _capsuleCollider;
         private LayerMask _groundLayers;
+
+        float _cameraVerticalAngle = 0f;
         public MovementService(SignalBus signalBus, MovementServiceSettings[] movementServiceSettings) 
         {
             _signalBus = signalBus;
@@ -90,12 +92,23 @@ namespace Services.Movement
 		/// </summary>
         public void RotateTowardsMovementDir(IView view, Vector2 direction) 
         {
-            Vector3 movementVector = new Vector3(direction.x, 0, direction.y);
-            if (movementVector.magnitude > 0.01f)
-            {
-                view.GetGameObject().transform.rotation = Quaternion.Slerp(view.GetGameObject().transform.rotation,
-                    Quaternion.LookRotation(movementVector), Time.deltaTime * _settings.Rotate.Speed);
-            }
+            // TODO:
+            Vector3 rotateVector = new Vector3(direction.x, 0, direction.y);
+
+            view.GetGameObject().transform.Rotate(rotateVector, Space.Self);
+        }
+        public void RotateTowardsDir(IView view, Vector2 direction)
+        {
+
+            // TODO:
+
+            Vector3 rotateVector = new Vector3(direction.x, 0, direction.y);
+           
+           // _cameraVerticalAngle += m_InputHandler.GetLookInputsVertical() * _settings.Rotate.Speed * RotationMultiplier;
+            
+          //  _cameraVerticalAngle = Mathf.Clamp(_cameraVerticalAngle, -89f, 89f);
+            
+            view.GetGameObject().transform.localEulerAngles = new Vector3(_cameraVerticalAngle, 0, 0);
         }
 
         public bool IsGrounded() 

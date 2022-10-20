@@ -80,7 +80,7 @@ namespace Presenters
 
                     CreateGame();
                     
-                    Cursor.visible = false;
+                   // Cursor.visible = false;
                 }
             });
 
