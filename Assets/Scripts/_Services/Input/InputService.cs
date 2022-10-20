@@ -5,6 +5,7 @@ using Presenters;
 using Presenters.Window;
 using Services.Ability;
 using Services.Animation;
+using Services.Log;
 using Services.Pool;
 using Services.Resources;
 using Services.Window;
@@ -29,6 +30,7 @@ namespace Services.Input
         private readonly AnimationService _animationService;
         private PoolService _poolService;
         private ResourcesService _resourcesService;
+        private LogService _logService;
 
         private readonly IWindowService _windowService;
 
@@ -46,7 +48,6 @@ namespace Services.Input
                                                             
                                                                    
         private IEnumerable<IAbility> _playerAttackAbilities;
-        private IEnumerable<IAbility> _wolfAbilities;
                                                
 
         private bool _startProc, 
@@ -66,7 +67,8 @@ namespace Services.Input
             PauseMenuPresenter pauseMenuPresenter,
             MainHUDPresenter mainHUDPresenter,
             PoolService poolService,
-            ResourcesService resourcesService
+            ResourcesService resourcesService,
+            LogService logService
             )
         {
             _signalBus = signalBus;
@@ -81,12 +83,13 @@ namespace Services.Input
 
             _poolService = poolService;
             _resourcesService = resourcesService;
+            _logService = logService;
             
             _settings = _inputServiceSettings?.FirstOrDefault(s => s.Id == InputServiceConstants.TopDownGameId);
 
             _topDownGameInput = new TopDownGameInput();
 
-            // Bind Select Ability.
+            // Bind Select Ability(Weapon).
             _topDownGameInput.Player.Arrow.performed += value => 
             {
                 if (_startProc && Time.timeScale == 1.0f)
@@ -95,111 +98,131 @@ namespace Services.Input
 
                     if (nameControl == "upArrow" || nameControl == "up")
                     {
-                        if (!_mainHudView.VerticalAbilityPanel.gameObject.activeSelf)
-                            _mainHudView.VerticalAbilityPanel.gameObject.SetActive(true);
+                        _logService.ShowLog(GetType().Name,
+                            Services.Log.LogType.Message,
+                            "Press Up(d-pad).",
+                            LogOutputLocationType.Console);
 
-                        if (_playerAbility.Value != null)
-                            _playerAbility.Value._image.color = Color.white;
+                        //if (!_mainHudView.VerticalAbilityPanel.gameObject.activeSelf)
+                        //    _mainHudView.VerticalAbilityPanel.gameObject.SetActive(true);
 
-                        if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id == AbilityServiceConstants.PlayerNoneAbility
-                        || _playerAbility.Key <= 0)
-                        {
-                            _playerAbility = _playerAbilityItems.LastOrDefault();
-                        }
-                        else
-                        {
-                             _playerAbility = _playerAbilityItems.FirstOrDefault(item=>item.Key == _playerAbility.Key - 1);
-                        } 
+                        //if (_playerAbility.Value != null)
+                        //    _playerAbility.Value._image.color = Color.white;
+
+                        //if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id == AbilityServiceConstants.PlayerNoneAbility
+                        //|| _playerAbility.Key <= 0)
+                        //{
+                        //    _playerAbility = _playerAbilityItems.LastOrDefault();
+                        //}
+                        //else
+                        //{
+                        //     _playerAbility = _playerAbilityItems.FirstOrDefault(item=>item.Key == _playerAbility.Key - 1);
+                        //} 
                         
-                        if (_playerAbility.Value != null)
-                                _playerAbility.Value._image.color = Color.red;
+                        //if (_playerAbility.Value != null)
+                        //        _playerAbility.Value._image.color = Color.red;
                         
-                         ((ILiveModel)_playerPresenter.GetModel())
-                             .SetCurrentAbility(_playerAttackAbilities.FirstOrDefault(ability => ability.Id == _playerAbility.Value.Id));
+                        // ((ILiveModel)_playerPresenter.GetModel())
+                        //     .SetCurrentAbility(_playerAttackAbilities.FirstOrDefault(ability => ability.Id == _playerAbility.Value.Id));
 
-                         _mainHudView.PlayerAbilityContainer.GetComponent<Image>().sprite = ((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Icon;
+                        // _mainHudView.PlayerAbilityContainer.GetComponent<Image>().sprite = ((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Icon;
                    
                     }
                     else if (nameControl == "downArrow" || nameControl == "down")
                     {
-                        if(!_mainHudView.VerticalAbilityPanel.gameObject.activeSelf)
-                            _mainHudView.VerticalAbilityPanel.gameObject.SetActive(true);
+                        _logService.ShowLog(GetType().Name,
+                           Services.Log.LogType.Message,
+                           "Press Down(d-pad).",
+                           LogOutputLocationType.Console);
 
-                        // ToDo move logic in View...
-                        if (_playerAbility.Value != null)
-                            _playerAbility.Value._image.color = Color.white;
+                        //if (!_mainHudView.VerticalAbilityPanel.gameObject.activeSelf)
+                        //    _mainHudView.VerticalAbilityPanel.gameObject.SetActive(true);
 
-                        if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id == AbilityServiceConstants.PlayerNoneAbility 
-                        || _playerAbility.Key >= _playerAbilityItems.Count() - 1)
-                        {
-                            _playerAbility = _playerAbilityItems.FirstOrDefault();
-                        }
-                        else
-                        {
-                            _playerAbility = _playerAbilityItems.FirstOrDefault(item => item.Key == _playerAbility.Key + 1);
-                        }
-                        // ToDo move logic in View...
-                        if (_playerAbility.Value != null)
-                            _playerAbility.Value._image.color = Color.red;
+                        //// ToDo move logic in View...
+                        //if (_playerAbility.Value != null)
+                        //    _playerAbility.Value._image.color = Color.white;
 
-                        ((ILiveModel)_playerPresenter.GetModel())
-                            .SetCurrentAbility(_playerAttackAbilities.FirstOrDefault(ability => ability.Id == _playerAbility.Value.Id));
+                        //if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id == AbilityServiceConstants.PlayerNoneAbility 
+                        //|| _playerAbility.Key >= _playerAbilityItems.Count() - 1)
+                        //{
+                        //    _playerAbility = _playerAbilityItems.FirstOrDefault();
+                        //}
+                        //else
+                        //{
+                        //    _playerAbility = _playerAbilityItems.FirstOrDefault(item => item.Key == _playerAbility.Key + 1);
+                        //}
+                        //// ToDo move logic in View...
+                        //if (_playerAbility.Value != null)
+                        //    _playerAbility.Value._image.color = Color.red;
 
-                        _mainHudView.PlayerAbilityContainer.GetComponent<Image>().sprite = ((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Icon;
+                        //((ILiveModel)_playerPresenter.GetModel())
+                        //    .SetCurrentAbility(_playerAttackAbilities.FirstOrDefault(ability => ability.Id == _playerAbility.Value.Id));
+
+                        //_mainHudView.PlayerAbilityContainer.GetComponent<Image>().sprite = ((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Icon;
                        
                     }
                 }
             };
 
-            // Hide Show Ability.
-            _topDownGameInput.Player.F.performed += value =>
+            // Interaction Ability.
+            _topDownGameInput.Player.E.performed += value =>
             {
-                if (_startProc && Time.timeScale == 1.0f)
-                {
-                    if (_mainHudView.VerticalAbilityPanel.gameObject.activeSelf)
-                        _mainHudView.VerticalAbilityPanel.gameObject.SetActive(false);
 
-                    ((ILiveModel)_playerPresenter.GetModel())
-                           .SetCurrentAbility(_playerNoneAbility);
-                    _mainHudView.PlayerAbilityContainer.GetComponent<Image>().sprite = ((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Icon;
-                    _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility(), _playerPresenter, ActionModifier.None);
+                _logService.ShowLog(GetType().Name,
+                    Services.Log.LogType.Message,
+                    "Press E(X).",
+                    LogOutputLocationType.Console);
 
-                }
+                //if (_startProc && Time.timeScale == 1.0f)
+                //{
+                //    if (_mainHudView.VerticalAbilityPanel.gameObject.activeSelf)
+                //        _mainHudView.VerticalAbilityPanel.gameObject.SetActive(false);
+
+                //    ((ILiveModel)_playerPresenter.GetModel())
+                //           .SetCurrentAbility(_playerNoneAbility);
+                //    _mainHudView.PlayerAbilityContainer.GetComponent<Image>().sprite = ((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Icon;
+                //    _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility(), _playerPresenter, ActionModifier.None);
+
+                //}
+            };
+
+            // Crouch Ability.
+            _topDownGameInput.Player.C.performed += value =>
+            {
+                _logService.ShowLog(GetType().Name,
+                    Services.Log.LogType.Message,
+                    "Press C(B).",
+                    LogOutputLocationType.Console);
             };
 
 
             // Bind Player Base Attack Ability.
             _topDownGameInput.Player.LeftMouseButton.performed += value =>
-            {
+            {_logService.ShowLog(GetType().Name,
+                            Services.Log.LogType.Message,
+                            "Press LeftMouseButton(LT).",
+                            LogOutputLocationType.Console);
                 if (_startProc && Time.timeScale == 1.0f)
                 {
-                    if (_mainHudView.VerticalAbilityPanel.gameObject.activeSelf)
-                        _mainHudView.VerticalAbilityPanel.gameObject.SetActive(false);
+                    
 
-                    if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id != AbilityServiceConstants.PlayerNoneAbility) 
-                                _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility(), _playerPresenter, ActionModifier.None);
+                    //if (_mainHudView.VerticalAbilityPanel.gameObject.activeSelf)
+                    //    _mainHudView.VerticalAbilityPanel.gameObject.SetActive(false);
+
+                    //if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id != AbilityServiceConstants.PlayerNoneAbility) 
+                    //            _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility(), _playerPresenter, ActionModifier.None);
                 }
             };
 
-            // Bind Player Power Attack Ability.
-            _topDownGameInput.Player.MiddleMouseButton.performed += value =>
-            {
-                if (_startProc && Time.timeScale == 1.0f)
-                {
-                    if (_mainHudView.VerticalAbilityPanel.gameObject.activeSelf)
-                        _mainHudView.VerticalAbilityPanel.gameObject.SetActive(false);
-
-                    if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id != AbilityServiceConstants.PlayerNoneAbility)
-                         _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility(), _playerPresenter, ActionModifier.Power);
-                }
-            };
-
-             // Bind Player Wolf Attack Ability.
+             // Bind Player Aim Down Sights Ability.
             _topDownGameInput.Player.RightMouseButton.performed += value =>
-            {
+            { _logService.ShowLog(GetType().Name,
+                            Services.Log.LogType.Message,
+                            "Press RightMouseButton(RT).",
+                            LogOutputLocationType.Console);
                 if (_startProc && Time.timeScale == 1.0f)
                 {
-                    // TODO:
+                   
                 }
             };
 
@@ -208,6 +231,11 @@ namespace Services.Input
             {
                 if (_startProc && Time.timeScale == 1.0f)
                 {
+                    _logService.ShowLog(GetType().Name,
+                            Services.Log.LogType.Message,
+                            "Press Space(A).",
+                            LogOutputLocationType.Console);
+
                     _abilityService.UseAbility((IAbilityWithOutParam)_playerJumpAbility, _playerPresenter, ActionModifier.None);
                 }
             };
@@ -215,6 +243,11 @@ namespace Services.Input
             // Press Shift Button.
             _topDownGameInput.Player.Shift.started += value => 
             {
+                _logService.ShowLog(GetType().Name,
+                            Services.Log.LogType.Message,
+                            "Press ShiftStart(LeftTrigger).",
+                            LogOutputLocationType.Console);
+
                 _shiftModifier = true;
             };
 

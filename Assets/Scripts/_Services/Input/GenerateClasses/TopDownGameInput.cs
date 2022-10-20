@@ -46,15 +46,6 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Space"",
-                    ""type"": ""Button"",
-                    ""id"": ""6f3fb6c0-83bb-4243-b58f-73047d2c5588"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""RightMouseButton"",
                     ""type"": ""Button"",
                     ""id"": ""4207d5d1-81a2-475c-924a-39065a69af39"",
@@ -64,18 +55,9 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MiddleMouseButton"",
+                    ""name"": ""Space"",
                     ""type"": ""Button"",
-                    ""id"": ""ce3c4fbe-b708-4620-9e94-94be562e6ef2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""CtrlButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""dd8867ee-032b-4b09-8d66-286b71f9a856"",
+                    ""id"": ""6f3fb6c0-83bb-4243-b58f-73047d2c5588"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -85,15 +67,6 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""name"": ""Shift"",
                     ""type"": ""Button"",
                     ""id"": ""835bf1b3-6cb1-43f3-b63b-7ca8bd573f66"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Alt"",
-                    ""type"": ""Button"",
-                    ""id"": ""e6346db7-18b0-4309-b843-7aaf755ce6c4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -118,9 +91,18 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""F"",
+                    ""name"": ""E"",
                     ""type"": ""Button"",
                     ""id"": ""8f0e3df6-6f5b-49a4-b003-6eaf528f0d1f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""C"",
+                    ""type"": ""Button"",
+                    ""id"": ""19a2a098-32a0-41c4-a6fb-98e47eba52e6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -141,8 +123,8 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2a44fa1a-c139-4516-ae7b-bdfd89070abe"",
-                    ""path"": ""<XInputController>/buttonWest"",
+                    ""id"": ""f92727b4-e96d-4975-bcb8-9dd92c9001ad"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -284,72 +266,6 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ae2fda55-e089-44c3-bfdc-6e05d8446504"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""RightMouseButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e50e86ae-796f-4269-a21d-7f0843740290"",
-                    ""path"": ""<XInputController>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""RightMouseButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1a263b7b-67f3-4137-ad78-83e184bcaf08"",
-                    ""path"": ""<Mouse>/middleButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""MiddleMouseButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""df066706-597b-4417-b2d3-7dafd6487a93"",
-                    ""path"": ""<XInputController>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""MiddleMouseButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2e01b102-16c3-48d8-af53-cca6fac20c68"",
-                    ""path"": ""<Keyboard>/leftCtrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""CtrlButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""87048fc0-aca3-4d30-b333-a4cd9994879b"",
-                    ""path"": ""<XInputController>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""CtrlButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""05b14e2e-174b-495e-83fc-978b1dd1005a"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
@@ -367,17 +283,6 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Shift"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""caf5d6e1-e46e-4bd4-87a2-25fe70db8d31"",
-                    ""path"": ""<Keyboard>/leftAlt"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Alt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -427,50 +332,6 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6859440f-beb4-494e-9512-250b7709033f"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Arrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b75808a1-c6d1-47d0-87d0-bb9befa54787"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Arrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c2eb8438-bb5c-4953-a757-107bef7b2ba5"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Arrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""274edd3b-eb16-4a70-80ac-b05d39e8c453"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Arrow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""b214a26b-757a-4a16-a400-328ac917fabe"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -494,22 +355,55 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""105f23d8-d60c-4265-af23-117d70d7fc4b"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""F"",
+                    ""action"": ""E"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""d71e7e91-f821-4155-b557-c3174a512d1a"",
-                    ""path"": ""<XInputController>/rightStickPress"",
+                    ""path"": ""<XInputController>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""F"",
+                    ""action"": ""E"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3140f0c-ffc5-448d-85e6-376f32d504e2"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""C"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a8f2b8c-0c9f-4dee-8244-fb4c9eb447a4"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""C"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae2fda55-e089-44c3-bfdc-6e05d8446504"",
+                    ""path"": ""<XInputController>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RightMouseButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -550,15 +444,13 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_WASD = m_Player.FindAction("WASD", throwIfNotFound: true);
         m_Player_LeftMouseButton = m_Player.FindAction("LeftMouseButton", throwIfNotFound: true);
-        m_Player_Space = m_Player.FindAction("Space", throwIfNotFound: true);
         m_Player_RightMouseButton = m_Player.FindAction("RightMouseButton", throwIfNotFound: true);
-        m_Player_MiddleMouseButton = m_Player.FindAction("MiddleMouseButton", throwIfNotFound: true);
-        m_Player_CtrlButton = m_Player.FindAction("CtrlButton", throwIfNotFound: true);
+        m_Player_Space = m_Player.FindAction("Space", throwIfNotFound: true);
         m_Player_Shift = m_Player.FindAction("Shift", throwIfNotFound: true);
-        m_Player_Alt = m_Player.FindAction("Alt", throwIfNotFound: true);
         m_Player_Arrow = m_Player.FindAction("Arrow", throwIfNotFound: true);
         m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
-        m_Player_F = m_Player.FindAction("F", throwIfNotFound: true);
+        m_Player_E = m_Player.FindAction("E", throwIfNotFound: true);
+        m_Player_C = m_Player.FindAction("C", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -620,30 +512,26 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_WASD;
     private readonly InputAction m_Player_LeftMouseButton;
-    private readonly InputAction m_Player_Space;
     private readonly InputAction m_Player_RightMouseButton;
-    private readonly InputAction m_Player_MiddleMouseButton;
-    private readonly InputAction m_Player_CtrlButton;
+    private readonly InputAction m_Player_Space;
     private readonly InputAction m_Player_Shift;
-    private readonly InputAction m_Player_Alt;
     private readonly InputAction m_Player_Arrow;
     private readonly InputAction m_Player_Esc;
-    private readonly InputAction m_Player_F;
+    private readonly InputAction m_Player_E;
+    private readonly InputAction m_Player_C;
     public struct PlayerActions
     {
         private @TopDownGameInput m_Wrapper;
         public PlayerActions(@TopDownGameInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @WASD => m_Wrapper.m_Player_WASD;
         public InputAction @LeftMouseButton => m_Wrapper.m_Player_LeftMouseButton;
-        public InputAction @Space => m_Wrapper.m_Player_Space;
         public InputAction @RightMouseButton => m_Wrapper.m_Player_RightMouseButton;
-        public InputAction @MiddleMouseButton => m_Wrapper.m_Player_MiddleMouseButton;
-        public InputAction @CtrlButton => m_Wrapper.m_Player_CtrlButton;
+        public InputAction @Space => m_Wrapper.m_Player_Space;
         public InputAction @Shift => m_Wrapper.m_Player_Shift;
-        public InputAction @Alt => m_Wrapper.m_Player_Alt;
         public InputAction @Arrow => m_Wrapper.m_Player_Arrow;
         public InputAction @Esc => m_Wrapper.m_Player_Esc;
-        public InputAction @F => m_Wrapper.m_Player_F;
+        public InputAction @E => m_Wrapper.m_Player_E;
+        public InputAction @C => m_Wrapper.m_Player_C;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -659,33 +547,27 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @LeftMouseButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
                 @LeftMouseButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
                 @LeftMouseButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
-                @Space.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpace;
-                @Space.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpace;
-                @Space.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpace;
                 @RightMouseButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouseButton;
                 @RightMouseButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouseButton;
                 @RightMouseButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouseButton;
-                @MiddleMouseButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMiddleMouseButton;
-                @MiddleMouseButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMiddleMouseButton;
-                @MiddleMouseButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMiddleMouseButton;
-                @CtrlButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCtrlButton;
-                @CtrlButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCtrlButton;
-                @CtrlButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCtrlButton;
+                @Space.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpace;
+                @Space.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpace;
+                @Space.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpace;
                 @Shift.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShift;
                 @Shift.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShift;
                 @Shift.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShift;
-                @Alt.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAlt;
-                @Alt.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAlt;
-                @Alt.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAlt;
                 @Arrow.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnArrow;
                 @Arrow.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnArrow;
                 @Arrow.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnArrow;
                 @Esc.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
                 @Esc.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
                 @Esc.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
-                @F.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnF;
-                @F.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnF;
-                @F.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnF;
+                @E.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnE;
+                @E.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnE;
+                @E.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnE;
+                @C.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnC;
+                @C.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnC;
+                @C.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnC;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -696,33 +578,27 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @LeftMouseButton.started += instance.OnLeftMouseButton;
                 @LeftMouseButton.performed += instance.OnLeftMouseButton;
                 @LeftMouseButton.canceled += instance.OnLeftMouseButton;
-                @Space.started += instance.OnSpace;
-                @Space.performed += instance.OnSpace;
-                @Space.canceled += instance.OnSpace;
                 @RightMouseButton.started += instance.OnRightMouseButton;
                 @RightMouseButton.performed += instance.OnRightMouseButton;
                 @RightMouseButton.canceled += instance.OnRightMouseButton;
-                @MiddleMouseButton.started += instance.OnMiddleMouseButton;
-                @MiddleMouseButton.performed += instance.OnMiddleMouseButton;
-                @MiddleMouseButton.canceled += instance.OnMiddleMouseButton;
-                @CtrlButton.started += instance.OnCtrlButton;
-                @CtrlButton.performed += instance.OnCtrlButton;
-                @CtrlButton.canceled += instance.OnCtrlButton;
+                @Space.started += instance.OnSpace;
+                @Space.performed += instance.OnSpace;
+                @Space.canceled += instance.OnSpace;
                 @Shift.started += instance.OnShift;
                 @Shift.performed += instance.OnShift;
                 @Shift.canceled += instance.OnShift;
-                @Alt.started += instance.OnAlt;
-                @Alt.performed += instance.OnAlt;
-                @Alt.canceled += instance.OnAlt;
                 @Arrow.started += instance.OnArrow;
                 @Arrow.performed += instance.OnArrow;
                 @Arrow.canceled += instance.OnArrow;
                 @Esc.started += instance.OnEsc;
                 @Esc.performed += instance.OnEsc;
                 @Esc.canceled += instance.OnEsc;
-                @F.started += instance.OnF;
-                @F.performed += instance.OnF;
-                @F.canceled += instance.OnF;
+                @E.started += instance.OnE;
+                @E.performed += instance.OnE;
+                @E.canceled += instance.OnE;
+                @C.started += instance.OnC;
+                @C.performed += instance.OnC;
+                @C.canceled += instance.OnC;
             }
         }
     }
@@ -749,14 +625,12 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
     {
         void OnWASD(InputAction.CallbackContext context);
         void OnLeftMouseButton(InputAction.CallbackContext context);
-        void OnSpace(InputAction.CallbackContext context);
         void OnRightMouseButton(InputAction.CallbackContext context);
-        void OnMiddleMouseButton(InputAction.CallbackContext context);
-        void OnCtrlButton(InputAction.CallbackContext context);
+        void OnSpace(InputAction.CallbackContext context);
         void OnShift(InputAction.CallbackContext context);
-        void OnAlt(InputAction.CallbackContext context);
         void OnArrow(InputAction.CallbackContext context);
         void OnEsc(InputAction.CallbackContext context);
-        void OnF(InputAction.CallbackContext context);
+        void OnE(InputAction.CallbackContext context);
+        void OnC(InputAction.CallbackContext context);
     }
 }

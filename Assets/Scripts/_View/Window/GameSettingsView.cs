@@ -11,6 +11,16 @@ namespace View.Window
     {
         [SerializeField] protected WindowType Type;
 
+        [SerializeField] protected Slider LookSensitivitySlider;
+
+        [SerializeField] protected Toggle AudioEnabledToggle;
+
+        [SerializeField] protected Toggle FramerateCounterEnabledToggle;
+
+        [SerializeField] protected Toggle ShadowsEnabledToggle;
+
+        [SerializeField] protected Dropdown LanguageSelectFropDown;
+
         [SerializeField] public Button _backButton;
 
         private SignalBus _signalBus;
