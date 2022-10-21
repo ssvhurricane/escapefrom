@@ -104,3 +104,17 @@ MonoBehaviour:
     WeaponType: 0
     Icon: {fileID: 0}
     ActionModifier: 
+  - Id: CameraFollowAbility
+    Name: CameraFollowAbility
+    AbilityDescription: CameraFollowAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
+  - Id: CameraParentAbility
+    Name: CameraParentAbility
+    AbilityDescription: CameraParentAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 

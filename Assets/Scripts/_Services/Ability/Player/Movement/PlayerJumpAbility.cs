@@ -65,15 +65,13 @@ namespace Services.Ability
 
         public void StartAbility(IPresenter ownerPresenter, ActionModifier actionModifier)
         {
-            var presenter =  ownerPresenter;
-
-            if (presenter != null)
+            if (ownerPresenter != null)
             { 
-                var view = (PlayerView) presenter.GetView(); 
+                 var view = (PlayerView) ownerPresenter.GetView(); 
 
                 _movementService.Jump(view);
                 
-                _animationService.PlayAnimation(view.Animator, "Jump1");
+                //_animationService.PlayAnimation(view.Animator, "Jump1");
             }
         }
     }

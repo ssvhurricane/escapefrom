@@ -1,5 +1,4 @@
 using Data.Settings;
-using Services.Essence;
 using UnityEngine;
 using Zenject;
 using System.Linq;
@@ -96,18 +95,37 @@ namespace Services.Movement
         /// <summary>
 		/// Rotate towards the direction the character is moving.
 		/// </summary>
-        public void RotateTowardsMovementDir(IView view, Vector2 direction) 
+        public void Rotate(IView view, Vector2 direction) 
         {
             view.GetGameObject().transform.Rotate(0f, direction.x * .1f, 0f, Space.Self);
         }
-        public void RotateTowardsDir(IView view, Vector2 direction)
+
+        public void RotateWithClamp(IView view, Vector2 direction)
         {
-            _cameraVerticalAngle += (-direction.y) * .1f;
+             _cameraVerticalAngle += (-direction.y) * .1f;
             
-            _cameraVerticalAngle = Mathf.Clamp(_cameraVerticalAngle, -90f, 90f);
+             _cameraVerticalAngle = Mathf.Clamp(_cameraVerticalAngle, -90f, 90f);
            
-            view.GetGameObject().transform.localEulerAngles = new Vector3(_cameraVerticalAngle, 0, 0);
+             view.GetGameObject().transform.localEulerAngles = new Vector3(_cameraVerticalAngle, 0, 0);
         }
+
+        public void Follow(IView baseView, IView targetView, Vector3 followOffset, Vector3 position, float followSpeed) 
+        {
+            var smoothedPosition = Vector3.Lerp(baseView.GetGameObject().transform.position,
+                                                (targetView.GetGameObject().transform.position + followOffset),
+                                                followSpeed);
+
+           baseView.GetGameObject().transform.position = smoothedPosition + position;
+        }
+
+        public void Parent(IView baseView, IView targetView, bool resetParent = false) 
+        {
+            if(!resetParent)
+                 baseView.GetGameObject().transform.parent = targetView.GetGameObject().transform;
+            else
+                 baseView.GetGameObject().transform.parent = null;
+        }
+
         public bool IsGrounded() 
         {
             if(_capsuleCollider != null) 

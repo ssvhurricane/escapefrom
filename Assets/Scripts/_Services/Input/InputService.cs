@@ -5,6 +5,7 @@ using Presenters;
 using Presenters.Window;
 using Services.Ability;
 using Services.Animation;
+using Services.Camera;
 using Services.Log;
 using Services.Pool;
 using Services.Resources;
@@ -12,7 +13,6 @@ using Services.Window;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using View;
 using View.Camera;
@@ -21,7 +21,7 @@ using Zenject;
 
 namespace Services.Input
 {
-    public class InputService : IFixedTickable, ILateTickable
+    public class InputService : IFixedTickable
     {
         private readonly SignalBus _signalBus;
 
@@ -33,6 +33,7 @@ namespace Services.Input
         private PoolService _poolService;
         private ResourcesService _resourcesService;
         private LogService _logService;
+        private CameraService _cameraService;
 
         private readonly IWindowService _windowService;
 
@@ -49,7 +50,9 @@ namespace Services.Input
                                      _playerMoveAbility,
                                          _playerRotateAbility,
                                             _cameraRotateAbility,
-                                                 _playerJumpAbility;
+                                               // _cameraFollowAbility,
+                                                    _cameraParentAbility,
+                                                      _playerJumpAbility;
                                                             
                                                                    
         private IEnumerable<IAbility> _playerAttackAbilities;
@@ -74,7 +77,8 @@ namespace Services.Input
             CameraPresenter cameraPresenter,
             PoolService poolService,
             ResourcesService resourcesService,
-            LogService logService
+            LogService logService,
+            CameraService cameraService
             )
         {
             _signalBus = signalBus;
@@ -83,6 +87,7 @@ namespace Services.Input
             _abilityService = abilityService;
             _animationService = animationService;
             _windowService = windowService;
+            _cameraService = cameraService;
 
             _pauseMenuPresenter = pauseMenuPresenter;
             _mainHUDPresenter = mainHUDPresenter;
@@ -278,16 +283,18 @@ namespace Services.Input
             };
 
             _topDownGameInput.Player.Turn.performed += value =>
-            { 
-                _abilityService.UseAbility((IAbilityWithVector2Param)_playerRotateAbility
+            {
+                if (_startProc && Time.timeScale == 1.0f)
+                {
+                    _abilityService.UseAbility((IAbilityWithVector2Param)_playerRotateAbility
                    , _playerPresenter,
                    value.ReadValue<Vector2>(), ActionModifier.None);
 
-
-                // Bind Camera Rotate Ability.
-                _abilityService.UseAbility((IAbilityWithVector2Param)_cameraRotateAbility
-                  , _cameraPresenter,
-                  value.ReadValue<Vector2>(), ActionModifier.None);
+                    // Bind Camera Rotate Ability.
+                    _abilityService.UseAbility((IAbilityWithVector2Param)_cameraRotateAbility
+                      , _cameraPresenter,
+                      value.ReadValue<Vector2>(), ActionModifier.None);
+                }
             };
         }
 
@@ -322,19 +329,14 @@ namespace Services.Input
                 else 
                     _abilityService.UseAbility((IAbilityWithOutParam)_playerIdleAbility, _playerPresenter, ActionModifier.None);
 
-              
-               
             }
         } 
-        public void LateTick()
-        {
-            //if (_topDownGameInput.Player.Turn.triggered)
-            //    _cameraPresenter.GetView().GetGameObject().transform.Rotate(0f, direction.x * .1f, 0f, Space.Self);
-        }
     
         public void TakePossessionOfObject(IPresenter presenter)
         {
             _playerPresenter = (PlayerPresenter) presenter;
+
+            _cameraPresenter.ShowView<FPSCameraView>(CameraServiceConstants.FPSCamera, _playerPresenter.GetView());
 
             _playerView = (PlayerView) _playerPresenter.GetView();
 
@@ -342,7 +344,20 @@ namespace Services.Input
 
             InitAbilities();
 
+            // Bind Camera Follow Ability.
+            _abilityService.UseAbility((IAbilityWithAffectedPresenterParam)_cameraParentAbility
+                                        , _cameraPresenter,
+                                        _playerPresenter,
+                                        ActionModifier.None);
+
+            _cameraPresenter.GetView().GetGameObject().transform.localPosition = _cameraService.GetCurrentCameraSettings().Position;
+
+            _cameraPresenter.GetView().GetGameObject().transform.localRotation = Quaternion.Euler(_cameraService.GetCurrentCameraSettings().Rotation);
+           
+            _cameraPresenter.GetView().GetGameObject().transform.localScale = Vector3.one;
+           
             _startProc = true;
+
             _topDownGameInput.Enable();
         }
 
@@ -393,6 +408,14 @@ namespace Services.Input
             // Caching Camera Rotate Ability.
             _cameraRotateAbility = _abilityService.GetAbilityById(_cameraPresenter,
                 AbilityServiceConstants.CameraRotateAbility);
+
+            // Caching Camera Follow Ability.
+           // _cameraFollowAbility = _abilityService.GetAbilityById(_cameraPresenter,
+             //   AbilityServiceConstants.CameraFollowAbility);
+
+            // Caching Camera Parent Ability.
+            _cameraParentAbility = _abilityService.GetAbilityById(_cameraPresenter,
+                AbilityServiceConstants.CameraParentAbility);
 
             // Caching Player Jump Ability.
             _playerJumpAbility = _abilityService.GetAbilityById(_playerPresenter,

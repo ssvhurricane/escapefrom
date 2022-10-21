@@ -23,7 +23,6 @@ namespace Presenters
 
         private MainHUDPresenter _mainHUDPresenter;
         private PlayerPresenter _playerPresenter;
-        private CameraPresenter _cameraPresenter;
 
         private  InputService _inputService;
 
@@ -32,7 +31,6 @@ namespace Presenters
             MainMenuPresenter mainMenuPresenter,
             MainHUDPresenter mainHUDPresenter,
             PlayerPresenter playerPresenter,
-            CameraPresenter cameraPresenter,
             ProjectModel projectModel,
             ProjectService projectService,
             InputService inputService
@@ -43,7 +41,6 @@ namespace Presenters
             _mainMenuPresenter = mainMenuPresenter;
             _mainHUDPresenter = mainHUDPresenter;
             _playerPresenter = playerPresenter;
-            _cameraPresenter = cameraPresenter;
 
             _projectModel = projectModel;
             _projectService = projectService;
@@ -99,7 +96,6 @@ namespace Presenters
             // Entry point. 
             _projectService.Configurate();
 
-
             _inputService?.ClearServiceValues();
 
             _mainMenuPresenter.ShowView(_projectService.GetProjectType());
@@ -121,8 +117,6 @@ namespace Presenters
                 _mainHUDPresenter.ShowView();
                
                 _playerPresenter.ShowView();
-               
-                _cameraPresenter.ShowView<FPSCameraView>(CameraServiceConstants.FPSCamera, _playerPresenter.GetView());
                 
                 _inputService.TakePossessionOfObject(_playerPresenter);
 
@@ -139,8 +133,12 @@ namespace Presenters
                             Services.Log.LogType.Message,
                             "Call StartGame Method.",
                             LogOutputLocationType.Console);
+            // TODO:
         }
 
-        private void PauseGame() { }
+        private void PauseGame() 
+        {
+            // TODO:
+        }
     }
 }

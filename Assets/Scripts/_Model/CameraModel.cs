@@ -16,20 +16,31 @@ namespace Model
         private CameraAbilityContainer _cameraAbilityContainer;
 
         private CameraRotateAbility _cameraRotateAbility;
+        private CameraFollowAbility _cameraFollowAbility;
+        private CameraParentAbility _cameraParentAbility;
 
         private IAbility _currentAbility;
 
         public CameraModel(CameraServiceSettings[] settings,
-                           CameraRotateAbility cameraRotateAbility) 
+                           CameraRotateAbility cameraRotateAbility,
+                           CameraFollowAbility cameraFollowAbility,
+                           CameraParentAbility cameraParentAbility)
         {
             _settings = settings;
-            _cameraRotateAbility = cameraRotateAbility;
 
+            _cameraRotateAbility = cameraRotateAbility;
+            _cameraFollowAbility = cameraFollowAbility;
+            _cameraParentAbility = cameraParentAbility;
 
             //Init Base Ability.
             _cameraAbilityContainer = new CameraAbilityContainer();
 
             _cameraAbilityContainer.abilities.Add(_cameraRotateAbility);
+
+            _cameraAbilityContainer.abilities.Add(_cameraFollowAbility);
+
+            _cameraAbilityContainer.abilities.Add(_cameraParentAbility);
+           
         }
 
         public void Dispose()

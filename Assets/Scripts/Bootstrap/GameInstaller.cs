@@ -81,6 +81,8 @@ namespace Bootstrap
 
             // Camera Abilities.
             Container.InstallElementAsSingle<CameraRotateAbility>();
+            Container.InstallElementAsSingle<CameraFollowAbility>();
+            Container.InstallElementAsSingle<CameraParentAbility>();
         }
 
         public void InstallItems() 

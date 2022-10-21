@@ -6,18 +6,15 @@ using Zenject;
 
 namespace Services.Camera
 {
-    public class CameraService : IFixedTickable
+    public class CameraService
     {
         private readonly SignalBus _signalBus;
         private readonly CameraServiceSettings[] _cameraServiceSettings;
 
         private CameraServiceSettings _settings;
 
-        private GameObject _baseView;
-        private GameObject _cameraView;
-
-        private bool _startProc = false;
-
+        private IView _ownerView, _currentCameraView;
+      
         public CameraService(SignalBus signalBus, CameraServiceSettings[] cameraServiceSettings)
         {
             _signalBus = signalBus;
@@ -26,7 +23,7 @@ namespace Services.Camera
         }
         public void ClearServiceValues()
         {
-            _startProc = false;
+            // TODO:
         }
 
         public void InitializeCamera(string cameraId, IView baseView, IView cameraView)
@@ -43,73 +40,35 @@ namespace Services.Camera
 
                             break;
                         }
-                    case CameraType.SideScrollerCamera: 
-                        {
-                            SideScrollerCamera(baseView, cameraView, _settings);
-
-                            break;
-                        }
-                    case CameraType.TopDownCamera: 
-                        {
-                            TopDownCamera(baseView, cameraView, _settings);
-
-                            break;
-                        }
-                    case CameraType.TPSCamera: 
-                        {
-                            TPSCamera(baseView, cameraView, _settings);
-
-                            break;
-                        }
+                        // TODO:
                 }
-            }
-        }
-
-        public void FixedTick()
-        {
-            if (_startProc && _baseView != null && _cameraView != null)
-            {
-                CameraFolow();
             }
         }
 
         private void FPSCamera(IView bsView, IView camView, CameraServiceSettings cameraServiceSettings)
         {
-            _baseView = bsView.GetGameObject();
+            _ownerView = bsView;
 
-            _cameraView = camView.GetGameObject();
+            _currentCameraView = camView;
 
-            _cameraView.transform.position = cameraServiceSettings.Position;
+            _currentCameraView.GetGameObject().transform.position = cameraServiceSettings.Position;
 
-            _cameraView.transform.rotation = Quaternion.Euler(cameraServiceSettings.Rotation);
-
-            _startProc = true;
+            _currentCameraView.GetGameObject().transform.rotation = Quaternion.Euler(cameraServiceSettings.Rotation);
         }
 
-        private void SideScrollerCamera(IView bsView, IView camView, CameraServiceSettings cameraServiceSettings) 
+        public IView GetCurrentCamera() 
         {
-            //TODO:
+            return _currentCameraView;
         }
 
-        private void TopDownCamera(IView bsView, IView camView, CameraServiceSettings cameraServiceSettings) 
+        public IView GetOwnerView() 
         {
-           // TODOl
+            return this._ownerView;
         }
 
-        private void TPSCamera(IView bsView, IView camView, CameraServiceSettings cameraServiceSettings) 
+        public CameraServiceSettings GetCurrentCameraSettings() 
         {
-            // TODO: custom settings...
-           
-        }
-
-        private void CameraFolow() 
-        {
-
-            var smoothedPosition = Vector3.Lerp(_cameraView.transform.position,
-                                                (_baseView.transform.position + _settings.CameraFollowOffset),
-                                                _settings.CameraFollowSmoothSpeed);
-
-            _cameraView.transform.position = smoothedPosition + _settings.Position;
+            return _settings;
         }
     }
 }

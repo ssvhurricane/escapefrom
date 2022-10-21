@@ -69,58 +69,53 @@ namespace Services.Ability
         {
             if (ownerPresenter != null)
             {
-                _view = (PlayerView) ownerPresenter.GetView();
-
-                if (actionModifier == ActionModifier.None) 
-                {
-                    _movementService.Move(ownerPresenter.GetView(), param);
-                }
+               _view = (PlayerView) ownerPresenter.GetView();
 
                 switch (actionModifier)
                 {
                     case ActionModifier.None:
                         {
-                            _movementService.Move(ownerPresenter.GetView(), param);
+                            _movementService.Move(_view, param);
 
-                            if (_animationService.GetBool(_view.Animator, "IsIdleResting"))
-                            {
-                                // If Resting Mode.
-                                _animationService.SetFloat(_view.Animator, "WalkRestingValue", 0f);
-                                _animationService.SetBool(_view.Animator, "IsWalkResting", true);
+                            //if (_animationService.GetBool(_view.Animator, "IsIdleResting"))
+                            //{
+                            //    // If Resting Mode.
+                            //    _animationService.SetFloat(_view.Animator, "WalkRestingValue", 0f);
+                            //    _animationService.SetBool(_view.Animator, "IsWalkResting", true);
 
-                                _animationService.SetBool(_view.Animator, "IsRunResting", false);
-                            }
+                            //    _animationService.SetBool(_view.Animator, "IsRunResting", false);
+                            //}
 
-                            if (_animationService.GetBool(_view.Animator, "IsIdleCombat"))
-                            {
-                                // If Resting Mode.
-                                _animationService.SetFloat(_view.Animator, "WalkCombatValue", 0f);
-                                _animationService.SetBool(_view.Animator, "IsWalkCombat", true);
+                            //if (_animationService.GetBool(_view.Animator, "IsIdleCombat"))
+                            //{
+                            //    // If Resting Mode.
+                            //    _animationService.SetFloat(_view.Animator, "WalkCombatValue", 0f);
+                            //    _animationService.SetBool(_view.Animator, "IsWalkCombat", true);
 
-                                _animationService.SetBool(_view.Animator, "IsRunCombat", false);
-                            }
+                            //    _animationService.SetBool(_view.Animator, "IsRunCombat", false);
+                            //}
                         }
                             break;
                         
                     case ActionModifier.Shift:
                         {
-                            _movementService.Move(ownerPresenter.GetView(), param * 3.5f);
+                            _movementService.Move(_view, param * 3.5f);
 
-                            if (_animationService.GetBool(_view.Animator, "IsIdleResting"))
-                            {
-                                _animationService.SetFloat(_view.Animator, "RunRestingValue", 0f);
-                                _animationService.SetBool(_view.Animator, "IsRunResting", true);
+                            //if (_animationService.GetBool(_view.Animator, "IsIdleResting"))
+                            //{
+                            //    _animationService.SetFloat(_view.Animator, "RunRestingValue", 0f);
+                            //    _animationService.SetBool(_view.Animator, "IsRunResting", true);
 
-                                _animationService.SetBool(_view.Animator, "IsWalkResting", false);
-                            }
+                            //    _animationService.SetBool(_view.Animator, "IsWalkResting", false);
+                            //}
 
-                            if (_animationService.GetBool(_view.Animator, "IsIdleCombat"))
-                            {
-                                _animationService.SetFloat(_view.Animator, "RunCombatValue", 0f);
-                                _animationService.SetBool(_view.Animator, "IsRunCombat", true);
+                            //if (_animationService.GetBool(_view.Animator, "IsIdleCombat"))
+                            //{
+                            //    _animationService.SetFloat(_view.Animator, "RunCombatValue", 0f);
+                            //    _animationService.SetBool(_view.Animator, "IsRunCombat", true);
 
-                                _animationService.SetBool(_view.Animator, "IsWalkCombat", false);
-                            }
+                            //    _animationService.SetBool(_view.Animator, "IsWalkCombat", false);
+                            //}
                             break;
                         }
                 }

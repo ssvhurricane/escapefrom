@@ -21,5 +21,7 @@ namespace Constants
         public static string PlayerSpeakAbility ="PlayerSpeakAbility";
 
         public static string CameraRotateAbility = "CameraRotateAbility";
+        public static string CameraFollowAbility = "CameraFollowAbility";
+        public static string CameraParentAbility = "CameraParentAbility";
     }
 }

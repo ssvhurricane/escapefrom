@@ -64,7 +64,7 @@ namespace Services.Ability
       
         public void StartAbility(IPresenter ownerPresenter, Vector2 param, ActionModifier actionModifier)
         {
-            _movementService.RotateTowardsDir(ownerPresenter.GetView(), param);
+            _movementService.RotateWithClamp(ownerPresenter.GetView(), param);
         }
     }
 }

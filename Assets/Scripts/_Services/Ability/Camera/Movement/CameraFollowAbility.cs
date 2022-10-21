@@ -1,3 +1,4 @@
+using Constants;
 using Data.Settings;
 using Presenters;
 using Services.Animation;
@@ -8,49 +9,54 @@ using Services.VFX;
 using Services.Item.Weapon;
 using System.Linq;
 using UnityEngine;
-using View;
 using Zenject;
+using Services.Camera;
 
 namespace Services.Ability
 {
-    public class PlayerIdleAbility : IAbilityWithOutParam
+    public class CameraFollowAbility : IAbilityWithAffectedPresenterParam
     {
         private SignalBus _signalBus;
 
         private readonly MovementService _movementService;
         private readonly AnimationService _animationService;
+        private readonly CameraService _cameraService;
         private readonly SFXService _sFXService;
         private readonly VFXService _vFXService;
-      
-        private  AbilitySettings _abilitySettings;
+
+        private AbilitySettings _abilitySettings;
 
         public string Id { get; set; }
         public AbilityType AbilityType { get; set; }
-        public WeaponType WeaponType { get; set; } 
-        public ActionModifier ActionModifier { get; set; }
+        public WeaponType WeaponType { get; set; }
         public bool ActivateAbility { get; set; } = true;
+        public ActionModifier ActionModifier { get; set; }
         public Sprite Icon { get; set; }
 
-        private PlayerView _view;
-        public PlayerIdleAbility(SignalBus signalBus,
+        public CameraFollowAbility(SignalBus signalBus,
              MovementService movementService,
              AnimationService animationService,
+             CameraService cameraService,
              SFXService sFXService,
              VFXService vFXService,
-              AbilitySettings[] abilitiesSettings)
+             AbilitySettings[] abilitiesSettings)
         {
             _signalBus = signalBus;
 
             _movementService = movementService;
+            _movementService.InitService(MovementServiceConstants.BasePlayerMovement);
+
             _animationService = animationService;
             _sFXService = sFXService;
             _vFXService = vFXService;
+
+            _cameraService = cameraService;
 
             InitAbility(abilitiesSettings);
         }
         public void InitAbility(AbilitySettings[] abilitiesSettings)
         {
-            Id = this.GetType().Name;
+            Id = this.GetType().Name; 
 
             _abilitySettings = abilitiesSettings.FirstOrDefault(s => s.Id == Id);
 
@@ -60,21 +66,17 @@ namespace Services.Ability
 
             Icon = _abilitySettings.Icon;
         }
-        public void StartAbility(IPresenter ownerPresenter, ActionModifier actionModifier)
+     
+        public void StartAbility(IPresenter ownerPresenter, IPresenter affectedPresenter, ActionModifier actionModifier)
         {
-            if (ownerPresenter != null)
-            {
-                if (_view == null) _view = (PlayerView) ownerPresenter.GetView();
+            var camSettings = _cameraService.GetCurrentCameraSettings();
 
-                //if(_view.Animator != null) 
-                //{ 
-                //    _animationService.SetBool(_view.Animator, "IsWalkResting", false);
-                //    _animationService.SetBool(_view.Animator, "IsRunResting", false);
-
-                //    _animationService.SetBool(_view.Animator, "IsWalkCombat", false);
-                //    _animationService.SetBool(_view.Animator, "IsRunCombat", false);
-                //}
-            }
+            _movementService.Follow(
+                ownerPresenter.GetView(),
+                affectedPresenter.GetView(),
+                camSettings.CameraFollowOffset,
+                camSettings.Position,
+                camSettings.CameraFollowSmoothSpeed);
         }
     }
 }
