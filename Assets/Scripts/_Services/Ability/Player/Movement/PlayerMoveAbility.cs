@@ -75,7 +75,7 @@ namespace Services.Ability
                 {
                     case ActionModifier.None:
                         {
-                            _movementService.Move(_view, param);
+                            _movementService.MoveWithPhysics(_view, param);
 
                             //if (_animationService.GetBool(_view.Animator, "IsIdleResting"))
                             //{
@@ -99,7 +99,7 @@ namespace Services.Ability
                         
                     case ActionModifier.Shift:
                         {
-                            _movementService.Move(_view, param * 3.5f);
+                            _movementService.MoveWithPhysics(_view, param * 3.5f);
 
                             //if (_animationService.GetBool(_view.Animator, "IsIdleResting"))
                             //{

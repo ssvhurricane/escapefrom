@@ -3,7 +3,6 @@ using Services.Anchor;
 using Services.Camera;
 using Services.Essence;
 using Services.Factory;
-using System.Linq;
 using UnityEngine;
 using View;
 using Zenject;
@@ -48,8 +47,7 @@ namespace Presenters
                 _cameraView = (TCameraView)_essenceService.ShowEssence<TCameraView>();
             else
             {
-                Transform holderTansform = _holderService._essenceTypeTypeHolders
-                    .FirstOrDefault(holder => holder.Key == EssenceType.CameraGameObject).Value;
+                Transform holderTansform = baseView.GetGameObject().transform;
 
                 if (holderTansform != null)
                     _cameraView = _factoryService.Spawn<TCameraView>(holderTansform);

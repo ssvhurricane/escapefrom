@@ -51,9 +51,11 @@ namespace Services.Camera
 
             _currentCameraView = camView;
 
-            _currentCameraView.GetGameObject().transform.position = cameraServiceSettings.Position;
+            _currentCameraView.GetGameObject().transform.localPosition = cameraServiceSettings.Position;
 
-            _currentCameraView.GetGameObject().transform.rotation = Quaternion.Euler(cameraServiceSettings.Rotation);
+            _currentCameraView.GetGameObject().transform.localRotation = Quaternion.Euler(cameraServiceSettings.Rotation);
+
+            _currentCameraView.GetGameObject().transform.localScale = Vector3.one;
         }
 
         public IView GetCurrentCamera() 

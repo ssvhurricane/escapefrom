@@ -61,15 +61,18 @@ namespace Services.Movement
 
         public void MoveWithPhysics(IView view, Vector2 direction) 
         {
-            if (_viewRigidbody == null)
-            {
+           if (_viewRigidbody == null)
                 _viewRigidbody = view.GetGameObject().GetComponent<Rigidbody>();
-            }
+            
+            Vector3 currentVelocity = _viewRigidbody.velocity;
+            Vector3 targetVelocity = new Vector3(direction.x, 0.0f, direction.y);
+            targetVelocity *= _settings.Move.Speed;
 
-            Vector3 movement = new Vector3(direction.x, 0.0f, direction.y);
+            Vector3 velocityChange = targetVelocity - currentVelocity;
 
-            _viewRigidbody.AddForce(movement * (_settings.Move.Speed * 10f)); 
-         
+            Vector3.ClampMagnitude(velocityChange, 10f);
+
+            _viewRigidbody.AddForce(velocityChange, ForceMode.VelocityChange); 
         }
 
         /// <summary>

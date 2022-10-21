@@ -5,7 +5,6 @@ using Presenters;
 using Presenters.Window;
 using Services.Ability;
 using Services.Animation;
-using Services.Camera;
 using Services.Log;
 using Services.Pool;
 using Services.Resources;
@@ -33,7 +32,6 @@ namespace Services.Input
         private PoolService _poolService;
         private ResourcesService _resourcesService;
         private LogService _logService;
-        private CameraService _cameraService;
 
         private readonly IWindowService _windowService;
 
@@ -77,8 +75,7 @@ namespace Services.Input
             CameraPresenter cameraPresenter,
             PoolService poolService,
             ResourcesService resourcesService,
-            LogService logService,
-            CameraService cameraService
+            LogService logService
             )
         {
             _signalBus = signalBus;
@@ -87,7 +84,6 @@ namespace Services.Input
             _abilityService = abilityService;
             _animationService = animationService;
             _windowService = windowService;
-            _cameraService = cameraService;
 
             _pauseMenuPresenter = pauseMenuPresenter;
             _mainHUDPresenter = mainHUDPresenter;
@@ -334,28 +330,21 @@ namespace Services.Input
     
         public void TakePossessionOfObject(IPresenter presenter)
         {
-            _playerPresenter = (PlayerPresenter) presenter;
+            _playerPresenter = (PlayerPresenter) presenter; 
+            
+            _playerView = (PlayerView) _playerPresenter.GetView();
 
             _cameraPresenter.ShowView<FPSCameraView>(CameraServiceConstants.FPSCamera, _playerPresenter.GetView());
 
-            _playerView = (PlayerView) _playerPresenter.GetView();
-
             CachingAbilities();
 
-            InitAbilities();
-
-            // Bind Camera Follow Ability.
+            InitAbilities(); 
+            
+            
             _abilityService.UseAbility((IAbilityWithAffectedPresenterParam)_cameraParentAbility
                                         , _cameraPresenter,
                                         _playerPresenter,
                                         ActionModifier.None);
-
-            _cameraPresenter.GetView().GetGameObject().transform.localPosition = _cameraService.GetCurrentCameraSettings().Position;
-
-            _cameraPresenter.GetView().GetGameObject().transform.localRotation = Quaternion.Euler(_cameraService.GetCurrentCameraSettings().Rotation);
-           
-            _cameraPresenter.GetView().GetGameObject().transform.localScale = Vector3.one;
-           
             _startProc = true;
 
             _topDownGameInput.Enable();
