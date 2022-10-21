@@ -4,12 +4,15 @@ using UnityEngine;
 using Zenject;
 using System.Linq;
 using View;
+using Services.Log;
 
 namespace Services.Movement
 {
     public class MovementService 
     {
         private readonly SignalBus _signalBus;
+        private readonly LogService _logService;
+
         private readonly MovementServiceSettings[] _movementServiceSettings;
         private MovementServiceSettings _settings;
 
@@ -17,10 +20,13 @@ namespace Services.Movement
         private CapsuleCollider _capsuleCollider;
         private LayerMask _groundLayers;
 
-        float _cameraVerticalAngle = 0f;
-        public MovementService(SignalBus signalBus, MovementServiceSettings[] movementServiceSettings) 
+        float _cameraVerticalAngle, cameraHorizontalAngle = 0f;
+        public MovementService(SignalBus signalBus,
+                               LogService logService,  
+                               MovementServiceSettings[] movementServiceSettings) 
         {
             _signalBus = signalBus;
+            _logService = logService;
             _movementServiceSettings = movementServiceSettings;
         }
 
@@ -92,25 +98,16 @@ namespace Services.Movement
 		/// </summary>
         public void RotateTowardsMovementDir(IView view, Vector2 direction) 
         {
-            // TODO:
-            Vector3 rotateVector = new Vector3(direction.x, 0, direction.y);
-
-            view.GetGameObject().transform.Rotate(rotateVector, Space.Self);
+            view.GetGameObject().transform.Rotate(0f, direction.x * .1f, 0f, Space.Self);
         }
         public void RotateTowardsDir(IView view, Vector2 direction)
         {
-
-            // TODO:
-
-            Vector3 rotateVector = new Vector3(direction.x, 0, direction.y);
+            _cameraVerticalAngle += (-direction.y) * .1f;
+            
+            _cameraVerticalAngle = Mathf.Clamp(_cameraVerticalAngle, -90f, 90f);
            
-           // _cameraVerticalAngle += m_InputHandler.GetLookInputsVertical() * _settings.Rotate.Speed * RotationMultiplier;
-            
-          //  _cameraVerticalAngle = Mathf.Clamp(_cameraVerticalAngle, -89f, 89f);
-            
             view.GetGameObject().transform.localEulerAngles = new Vector3(_cameraVerticalAngle, 0, 0);
         }
-
         public bool IsGrounded() 
         {
             if(_capsuleCollider != null) 
@@ -121,11 +118,7 @@ namespace Services.Movement
                         );
             }
             else 
-            {
                 return false;
-            }
         }
     }
-
-   
 }

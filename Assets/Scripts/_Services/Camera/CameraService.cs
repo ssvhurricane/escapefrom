@@ -111,6 +111,5 @@ namespace Services.Camera
 
             _cameraView.transform.position = smoothedPosition + _settings.Position;
         }
-       
     }
 }

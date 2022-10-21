@@ -76,7 +76,7 @@ namespace Presenters.Window
 
             OnDisposeAll();
 
-            //Cursor.visible = true;
+            Cursor.visible = true;
             Time.timeScale = 0; 
             
             if (_windowService.GetWindow<PauseMenuView>() != null)
@@ -145,12 +145,12 @@ namespace Presenters.Window
 
         private void OnPauseMenuViewButtonClick(int buttonId)
         {
-           // Cursor.visible = true;
+            Cursor.visible = true;
            
             if (buttonId == _pauseMenuView._backToGameButton.GetInstanceID())
             {
                
-               // Cursor.visible = false;
+                Cursor.visible = false;
 
                 _logService.ShowLog(GetType().Name,
                       Services.Log.LogType.Message,
@@ -190,7 +190,7 @@ namespace Presenters.Window
                         "Call OnQuitMainMenuButtonClick Method.",
                         LogOutputLocationType.Console);
              
-                //Cursor.visible = true;
+                Cursor.visible = true;
                 Time.timeScale = 1;
                 
                 _cameraService.ClearServiceValues();

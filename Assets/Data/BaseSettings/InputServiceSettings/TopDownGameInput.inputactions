@@ -15,6 +15,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Turn",
+                    "type": "Value",
+                    "id": "37bd10ad-5a16-40d3-80d8-f122355b3dad",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "LeftMouseButton",
                     "type": "Button",
                     "id": "de3112bb-313d-49e3-a199-d17199ebd308",
@@ -85,15 +94,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Rotation",
-                    "type": "Value",
-                    "id": "37bd10ad-5a16-40d3-80d8-f122355b3dad",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -408,11 +408,11 @@
                 {
                     "name": "",
                     "id": "15020444-83c5-4b2f-b2e2-a459810fbf88",
-                    "path": "<Mouse>/position",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "Rotation",
+                    "action": "Turn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -423,7 +423,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Rotation",
+                    "action": "Turn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

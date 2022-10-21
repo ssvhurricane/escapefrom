@@ -37,6 +37,15 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Turn"",
+                    ""type"": ""Value"",
+                    ""id"": ""37bd10ad-5a16-40d3-80d8-f122355b3dad"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""LeftMouseButton"",
                     ""type"": ""Button"",
                     ""id"": ""de3112bb-313d-49e3-a199-d17199ebd308"",
@@ -107,15 +116,6 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Rotation"",
-                    ""type"": ""Value"",
-                    ""id"": ""37bd10ad-5a16-40d3-80d8-f122355b3dad"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -430,11 +430,11 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""15020444-83c5-4b2f-b2e2-a459810fbf88"",
-                    ""path"": ""<Mouse>/position"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Rotation"",
+                    ""action"": ""Turn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -445,7 +445,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Rotation"",
+                    ""action"": ""Turn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -485,6 +485,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_WASD = m_Player.FindAction("WASD", throwIfNotFound: true);
+        m_Player_Turn = m_Player.FindAction("Turn", throwIfNotFound: true);
         m_Player_LeftMouseButton = m_Player.FindAction("LeftMouseButton", throwIfNotFound: true);
         m_Player_RightMouseButton = m_Player.FindAction("RightMouseButton", throwIfNotFound: true);
         m_Player_Space = m_Player.FindAction("Space", throwIfNotFound: true);
@@ -493,7 +494,6 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
         m_Player_E = m_Player.FindAction("E", throwIfNotFound: true);
         m_Player_C = m_Player.FindAction("C", throwIfNotFound: true);
-        m_Player_Rotation = m_Player.FindAction("Rotation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -554,6 +554,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_WASD;
+    private readonly InputAction m_Player_Turn;
     private readonly InputAction m_Player_LeftMouseButton;
     private readonly InputAction m_Player_RightMouseButton;
     private readonly InputAction m_Player_Space;
@@ -562,12 +563,12 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Esc;
     private readonly InputAction m_Player_E;
     private readonly InputAction m_Player_C;
-    private readonly InputAction m_Player_Rotation;
     public struct PlayerActions
     {
         private @TopDownGameInput m_Wrapper;
         public PlayerActions(@TopDownGameInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @WASD => m_Wrapper.m_Player_WASD;
+        public InputAction @Turn => m_Wrapper.m_Player_Turn;
         public InputAction @LeftMouseButton => m_Wrapper.m_Player_LeftMouseButton;
         public InputAction @RightMouseButton => m_Wrapper.m_Player_RightMouseButton;
         public InputAction @Space => m_Wrapper.m_Player_Space;
@@ -576,7 +577,6 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         public InputAction @Esc => m_Wrapper.m_Player_Esc;
         public InputAction @E => m_Wrapper.m_Player_E;
         public InputAction @C => m_Wrapper.m_Player_C;
-        public InputAction @Rotation => m_Wrapper.m_Player_Rotation;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -589,6 +589,9 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @WASD.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWASD;
                 @WASD.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWASD;
                 @WASD.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWASD;
+                @Turn.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurn;
+                @Turn.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurn;
+                @Turn.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurn;
                 @LeftMouseButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
                 @LeftMouseButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
                 @LeftMouseButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
@@ -613,9 +616,6 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @C.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnC;
                 @C.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnC;
                 @C.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnC;
-                @Rotation.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
-                @Rotation.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
-                @Rotation.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotation;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -623,6 +623,9 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @WASD.started += instance.OnWASD;
                 @WASD.performed += instance.OnWASD;
                 @WASD.canceled += instance.OnWASD;
+                @Turn.started += instance.OnTurn;
+                @Turn.performed += instance.OnTurn;
+                @Turn.canceled += instance.OnTurn;
                 @LeftMouseButton.started += instance.OnLeftMouseButton;
                 @LeftMouseButton.performed += instance.OnLeftMouseButton;
                 @LeftMouseButton.canceled += instance.OnLeftMouseButton;
@@ -647,9 +650,6 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 @C.started += instance.OnC;
                 @C.performed += instance.OnC;
                 @C.canceled += instance.OnC;
-                @Rotation.started += instance.OnRotation;
-                @Rotation.performed += instance.OnRotation;
-                @Rotation.canceled += instance.OnRotation;
             }
         }
     }
@@ -675,6 +675,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnWASD(InputAction.CallbackContext context);
+        void OnTurn(InputAction.CallbackContext context);
         void OnLeftMouseButton(InputAction.CallbackContext context);
         void OnRightMouseButton(InputAction.CallbackContext context);
         void OnSpace(InputAction.CallbackContext context);
@@ -683,6 +684,5 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         void OnEsc(InputAction.CallbackContext context);
         void OnE(InputAction.CallbackContext context);
         void OnC(InputAction.CallbackContext context);
-        void OnRotation(InputAction.CallbackContext context);
     }
 }

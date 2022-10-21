@@ -12,14 +12,16 @@ using Services.Window;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using View;
+using View.Camera;
 using View.Window;
 using Zenject;
 
 namespace Services.Input
 {
-    public class InputService : IFixedTickable
+    public class InputService : IFixedTickable, ILateTickable
     {
         private readonly SignalBus _signalBus;
 
@@ -274,7 +276,21 @@ namespace Services.Input
 
                 _pauseMenuPresenter.ShowView();
             };
+
+            _topDownGameInput.Player.Turn.performed += value =>
+            { 
+                _abilityService.UseAbility((IAbilityWithVector2Param)_playerRotateAbility
+                   , _playerPresenter,
+                   value.ReadValue<Vector2>(), ActionModifier.None);
+
+
+                // Bind Camera Rotate Ability.
+                _abilityService.UseAbility((IAbilityWithVector2Param)_cameraRotateAbility
+                  , _cameraPresenter,
+                  value.ReadValue<Vector2>(), ActionModifier.None);
+            };
         }
+
         public void ClearServiceValues()
         {
             _startProc = false;
@@ -304,23 +320,18 @@ namespace Services.Input
                     }
                 }
                 else 
-                {
                     _abilityService.UseAbility((IAbilityWithOutParam)_playerIdleAbility, _playerPresenter, ActionModifier.None);
-                }
 
-                // TODO:
-                // Bind Player Rotate Ability.
-                //_abilityService.UseAbility((IAbilityWithVector2Param)_playerRotateAbility
-                //    , _playerPresenter,
-                //    _topDownGameInput.Player.Rotation.ReadValue<Vector2>(), ActionModifier.None);
-
-                //// Bind Camera Rotate Ability.
-                //_abilityService.UseAbility((IAbilityWithVector2Param)_cameraRotateAbility
-                //    , _cameraPresenter,
-                //    _topDownGameInput.Player.Rotation.ReadValue<Vector2>(), ActionModifier.None);
+              
+               
             }
+        } 
+        public void LateTick()
+        {
+            //if (_topDownGameInput.Player.Turn.triggered)
+            //    _cameraPresenter.GetView().GetGameObject().transform.Rotate(0f, direction.x * .1f, 0f, Space.Self);
         }
-
+    
         public void TakePossessionOfObject(IPresenter presenter)
         {
             _playerPresenter = (PlayerPresenter) presenter;
@@ -394,5 +405,7 @@ namespace Services.Input
             _playerAttackAbilities = _abilityService.GetAbilitiesyByAbilityType(_playerPresenter,
                 AbilityType.AttackAbility);
         }
+
+     
     }
 }

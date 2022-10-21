@@ -9,6 +9,8 @@ namespace View.Camera
     {
         [SerializeField] protected EssenceType Layer;
 
+        [SerializeField] protected UnityEngine.Camera Camera;
+
         private SignalBus _signalBus;
 
         [Inject]
@@ -19,6 +21,11 @@ namespace View.Camera
             EssenceType = Layer; 
             
             _signalBus.Fire(new EssenceServiceSignals.Register(this));
+        }
+
+        public UnityEngine.Camera GetMainCamera() 
+        {
+            return Camera;
         }
     }
 }

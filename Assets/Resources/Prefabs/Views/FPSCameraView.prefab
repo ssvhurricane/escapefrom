@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Layer: 5
+  Camera: {fileID: 8881107686480854882}
 --- !u!1 &8801670364263030228
 GameObject:
   m_ObjectHideFlags: 0
