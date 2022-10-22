@@ -16,7 +16,7 @@ MonoBehaviour:
   - Id: FPSCamera
     Name: FPSCamera
     CameraType: 0
-    Position: {x: -2.2, y: 0.8, z: 1.7}
+    Position: {x: -2.2, y: 0.8, z: 2}
     Rotation: {x: 0, y: 0, z: 0}
     CameraFollowSmoothSpeed: 3
     CameraFollowOffset: {x: 1, y: 1, z: 1}

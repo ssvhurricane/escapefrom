@@ -42,20 +42,11 @@ namespace Services.Movement
         /// <param name="direction">Direction moving</param>
         public void Move(IView view, Vector2 direction) 
         {
-            float scaledMoveSpeed = _settings.Move.Speed * Time.deltaTime;
+            Vector3 horizontalVelocity = 
+                (view.GetGameObject().transform.right * direction.x) 
+                + (view.GetGameObject().transform.forward * direction.y);
 
-            Vector3 moveDirection = new Vector3(direction.x, 0.0f, direction.y);
-          
-            view.GetGameObject().transform.position += moveDirection * scaledMoveSpeed;
-        }
-
-        public void MoveWithTranslate(IView view, Vector2 direction) 
-        {
-            float scaledMoveSpeed = _settings.Move.Speed * Time.fixedDeltaTime;
-
-            Vector3 moveDirection = new Vector3(direction.x, 0.0f, direction.y);
-
-            view.GetGameObject().transform.Translate(moveDirection * scaledMoveSpeed);
+            view.GetGameObject().transform.position += (horizontalVelocity * _settings.Move.Speed);
         }
 
         public void MoveWithPhysics(IView view, Vector2 direction) 
@@ -63,15 +54,10 @@ namespace Services.Movement
            if (_viewRigidbody == null)
                 _viewRigidbody = view.GetGameObject().GetComponent<Rigidbody>();
             
-            Vector3 currentVelocity = _viewRigidbody.velocity;
-            Vector3 targetVelocity = new Vector3(direction.x, 0.0f, direction.y);
-            targetVelocity *= _settings.Move.Speed;
-
-            Vector3 velocityChange = targetVelocity - currentVelocity;
-
-            Vector3.ClampMagnitude(velocityChange, 10f);
-
-            _viewRigidbody.AddForce(velocityChange, ForceMode.VelocityChange); 
+            Vector3 targetVelocity = (view.GetGameObject().transform.right * direction.x)
+                + (view.GetGameObject().transform.forward * direction.y);
+          
+            _viewRigidbody.AddForce(targetVelocity * _settings.Move.Speed); 
         }
 
         /// <summary>

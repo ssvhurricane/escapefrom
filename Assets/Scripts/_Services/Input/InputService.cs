@@ -12,6 +12,7 @@ using Services.Window;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using View;
 using View.Camera;
@@ -110,7 +111,7 @@ namespace Services.Input
                             Services.Log.LogType.Message,
                             "Press Up(d-pad).",
                             LogOutputLocationType.Console);
-
+                       
                         //if (!_mainHudView.VerticalAbilityPanel.gameObject.activeSelf)
                         //    _mainHudView.VerticalAbilityPanel.gameObject.SetActive(true);
 
@@ -287,9 +288,14 @@ namespace Services.Input
                    value.ReadValue<Vector2>(), ActionModifier.None);
 
                     // Bind Camera Rotate Ability.
+                    _logService.ShowLog(GetType().Name,
+                           Services.Log.LogType.Message,
+                           "Control: " + value.ReadValue<Vector2>().x +" | "+ value.ReadValue<Vector2>().y,
+                           LogOutputLocationType.Console);
+                  
                     _abilityService.UseAbility((IAbilityWithVector2Param)_cameraRotateAbility
-                      , _cameraPresenter,
-                      value.ReadValue<Vector2>(), ActionModifier.None);
+                         , _cameraPresenter,
+                    value.ReadValue<Vector2>(), ActionModifier.None);
                 }
             };
         }
