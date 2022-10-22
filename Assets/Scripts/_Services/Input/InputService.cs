@@ -49,7 +49,7 @@ namespace Services.Input
                                          _playerRotateAbility,
                                             _cameraRotateAbility,
                                                // _cameraFollowAbility,
-                                                    _cameraParentAbility,
+                                                   // _cameraParentAbility,
                                                       _playerJumpAbility;
                                                             
                                                                    
@@ -338,13 +338,8 @@ namespace Services.Input
 
             CachingAbilities();
 
-            InitAbilities(); 
-            
-            
-            _abilityService.UseAbility((IAbilityWithAffectedPresenterParam)_cameraParentAbility
-                                        , _cameraPresenter,
-                                        _playerPresenter,
-                                        ActionModifier.None);
+            InitAbilities();
+
             _startProc = true;
 
             _topDownGameInput.Enable();
@@ -402,9 +397,9 @@ namespace Services.Input
            // _cameraFollowAbility = _abilityService.GetAbilityById(_cameraPresenter,
              //   AbilityServiceConstants.CameraFollowAbility);
 
-            // Caching Camera Parent Ability.
-            _cameraParentAbility = _abilityService.GetAbilityById(_cameraPresenter,
-                AbilityServiceConstants.CameraParentAbility);
+            //// Caching Camera Parent Ability.
+            //_cameraParentAbility = _abilityService.GetAbilityById(_cameraPresenter,
+            //    AbilityServiceConstants.CameraParentAbility);
 
             // Caching Player Jump Ability.
             _playerJumpAbility = _abilityService.GetAbilityById(_playerPresenter,

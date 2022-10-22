@@ -45,9 +45,8 @@ namespace Services.Movement
             float scaledMoveSpeed = _settings.Move.Speed * Time.deltaTime;
 
             Vector3 moveDirection = new Vector3(direction.x, 0.0f, direction.y);
-
-            view.GetGameObject().transform.position += moveDirection * scaledMoveSpeed;
           
+            view.GetGameObject().transform.position += moveDirection * scaledMoveSpeed;
         }
 
         public void MoveWithTranslate(IView view, Vector2 direction) 
