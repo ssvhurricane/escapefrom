@@ -11,16 +11,9 @@ namespace View
 {
     public class PlayerView : NetworkEssence
     {
-        [SerializeField] public Text PlayerName;
-
-        [SerializeField] public Animator Animator;
         [SerializeField] protected EssenceType Layer;
 
-        [SerializeField] public GameObject FirstJointHand;
-        [SerializeField] public GameObject FirstJointBack;
-
-        [SerializeField] public GameObject SecondJointHand;
-        [SerializeField] public GameObject SecondJointBack;
+        [SerializeField] public GameObject Armature;
 
         private SignalBus _signalBus;
 
@@ -52,6 +45,11 @@ namespace View
              EssenceType = Layer;
 
             _signalBus.Fire(new EssenceServiceSignals.Register(this));
+        }
+
+        public GameObject GetArmature() 
+        {
+            return Armature;
         }
     }
 }

@@ -74,28 +74,28 @@ namespace Services.Ability
             {
                 var view = (PlayerView)presenter.GetView();
 
-                _animationService.SetBool(view.Animator, "IsIdleCombat", true);
-                _animationService.SetBool(view.Animator, "IsIdleResting", false);
+                //_animationService.SetBool(view.Animator, "IsIdleCombat", true);
+                //_animationService.SetBool(view.Animator, "IsIdleResting", false);
 
                 
-                BaseEssence bowView = _itemService
-                  .GetAllItemViews()
-                  .FirstOrDefault(item => item.Id == ItemServiceConstants.BowItem);
-
-                //bowView.gameObject.transform.SetParent(view.SecondJointHand.transform);
-                bowView.gameObject.transform.localPosition = Vector3.zero;
-                bowView.gameObject.transform.localRotation = Quaternion.identity;
-                bowView.gameObject.transform.localScale = Vector3.one;
-
-                // ToDo...
-                //BaseView axeView = _itemService
+                //BaseEssence bowView = _itemService
                 //  .GetAllItemViews()
                 //  .FirstOrDefault(item => item.Id == ItemServiceConstants.BowItem);
 
-                //axeView.gameObject.transform.SetParent(view.FirstJointBack.transform);
-                //axeView.gameObject.transform.localPosition = Vector3.zero;
-                //axeView.gameObject.transform.localRotation = Quaternion.identity;
-                //axeView.gameObject.transform.localScale = Vector3.one;
+                ////bowView.gameObject.transform.SetParent(view.SecondJointHand.transform);
+                //bowView.gameObject.transform.localPosition = Vector3.zero;
+                //bowView.gameObject.transform.localRotation = Quaternion.identity;
+                //bowView.gameObject.transform.localScale = Vector3.one;
+
+                //// ToDo...
+                ////BaseView axeView = _itemService
+                ////  .GetAllItemViews()
+                ////  .FirstOrDefault(item => item.Id == ItemServiceConstants.BowItem);
+
+                ////axeView.gameObject.transform.SetParent(view.FirstJointBack.transform);
+                ////axeView.gameObject.transform.localPosition = Vector3.zero;
+                ////axeView.gameObject.transform.localRotation = Quaternion.identity;
+                ////axeView.gameObject.transform.localScale = Vector3.one;
 
                 if (actionModifier == ActionModifier.None)
                 {

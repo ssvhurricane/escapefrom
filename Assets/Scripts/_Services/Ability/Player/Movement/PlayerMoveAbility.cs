@@ -99,7 +99,7 @@ namespace Services.Ability
                         
                     case ActionModifier.Shift:
                         {
-                            _movementService.MoveWithPhysics(_view, param * 3.5f);
+                            _movementService.MoveWithPhysics(_view, param * 2.0f);
 
                             //if (_animationService.GetBool(_view.Animator, "IsIdleResting"))
                             //{

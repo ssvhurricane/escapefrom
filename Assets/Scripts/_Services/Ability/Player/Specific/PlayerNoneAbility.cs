@@ -87,76 +87,76 @@ namespace Services.Ability
             { 
                 var view = (PlayerView) presenter.GetView();
                 
-                _animationService.SetBool(view.Animator, "IsIdleCombat", false);
-                _animationService.SetBool(view.Animator, "IsIdleResting", true);
+                //_animationService.SetBool(view.Animator, "IsIdleCombat", false);
+                //_animationService.SetBool(view.Animator, "IsIdleResting", true);
 
-                if (!_itemService.GetAllItemViews().Any(item => item.Id == ItemServiceConstants.AxeItem 
-                || item.Id == ItemServiceConstants.BowItem)) 
-                { 
-                    _playerWeaponItems =_itemService.GetItemsByType(((ILiveModel)presenter.GetModel()).GetInventoryContainer(), ItemType.Weapon);
-
-
-                    _poolService.InitPool(PoolServiceConstants.PlayerAbilityItemViewPool);
-
-                    for (var item = 0; item < _playerWeaponItems.Count(); item++)
-                    {
-                        if (_playerWeaponItems.ToList()[item].Id == ItemServiceConstants.AxeItem && view.FirstJointBack != null) 
-                        {
-                           _playerWeaponItem = (WeaponItemView)_poolService.Spawn<WeaponItemView>(view.FirstJointBack.transform);
-
-                            _playerWeaponItem.Id = _playerWeaponItems.ToList()[item].Id;
-                            _playerWeaponItem.SetSourcePrefab(_playerWeaponItems.ToList()[item].Prefab); 
-                            _playerWeaponItem.InitializeView();
-
-                            _itemService.AddItemView(_playerWeaponItem);
-                        }
-
-                        if (_playerWeaponItems.ToList()[item].Id == ItemServiceConstants.BowItem && view.SecondJointBack != null)
-                        {
-                            _playerWeaponItem = (WeaponItemView)_poolService.Spawn<WeaponItemView>(view.SecondJointBack.transform);
-
-                            _playerWeaponItem.Id = _playerWeaponItems.ToList()[item].Id;
-                            _playerWeaponItem.SetSourcePrefab(_playerWeaponItems.ToList()[item].Prefab);
-                            _playerWeaponItem.InitializeView();
-
-                            _itemService.AddItemView(_playerWeaponItem);
-                        }
-                    }
-
-                }
-                else 
-                {
-                    var itemViews = _itemService.GetAllItemViews();
-                    BaseEssence itemView;
-
-                    if (itemViews.Count() != 0)
-                    {
-                        if (view != null)
-                        {
-                            if (view.FirstJointBack != null)
-                            {
-                                itemView = itemViews.FirstOrDefault(item => item.Id == ItemServiceConstants.AxeItem);
+                //if (!_itemService.GetAllItemViews().Any(item => item.Id == ItemServiceConstants.AxeItem 
+                //|| item.Id == ItemServiceConstants.BowItem)) 
+                //{ 
+                //    _playerWeaponItems =_itemService.GetItemsByType(((ILiveModel)presenter.GetModel()).GetInventoryContainer(), ItemType.Weapon);
 
 
-                                itemView?.gameObject.transform.SetParent(view.FirstJointBack.transform);
+                //    _poolService.InitPool(PoolServiceConstants.PlayerAbilityItemViewPool);
 
-                                itemView.gameObject.transform.localPosition = Vector3.zero;
-                                itemView.gameObject.transform.localRotation = Quaternion.identity;
-                                itemView.gameObject.transform.localScale = Vector3.one;
-                            }
+                //    for (var item = 0; item < _playerWeaponItems.Count(); item++)
+                //    {
+                //        if (_playerWeaponItems.ToList()[item].Id == ItemServiceConstants.AxeItem && view.FirstJointBack != null) 
+                //        {
+                //           _playerWeaponItem = (WeaponItemView)_poolService.Spawn<WeaponItemView>(view.FirstJointBack.transform);
 
-                            if (view.SecondJointBack != null)
-                            {
-                                itemView = itemViews.FirstOrDefault(item => item.Id == ItemServiceConstants.BowItem);
-                                itemView.gameObject.transform.SetParent(view.SecondJointBack.transform);
+                //            _playerWeaponItem.Id = _playerWeaponItems.ToList()[item].Id;
+                //            _playerWeaponItem.SetSourcePrefab(_playerWeaponItems.ToList()[item].Prefab); 
+                //            _playerWeaponItem.InitializeView();
 
-                                itemView.gameObject.transform.localPosition = Vector3.zero;
-                                itemView.gameObject.transform.localRotation = Quaternion.identity;
-                                itemView.gameObject.transform.localScale = Vector3.one;
-                            }
-                        }
-                    }
-                }
+                //            _itemService.AddItemView(_playerWeaponItem);
+                //        }
+
+                //        if (_playerWeaponItems.ToList()[item].Id == ItemServiceConstants.BowItem && view.SecondJointBack != null)
+                //        {
+                //            _playerWeaponItem = (WeaponItemView)_poolService.Spawn<WeaponItemView>(view.SecondJointBack.transform);
+
+                //            _playerWeaponItem.Id = _playerWeaponItems.ToList()[item].Id;
+                //            _playerWeaponItem.SetSourcePrefab(_playerWeaponItems.ToList()[item].Prefab);
+                //            _playerWeaponItem.InitializeView();
+
+                //            _itemService.AddItemView(_playerWeaponItem);
+                //        }
+                //    }
+
+                //}
+                //else 
+                //{
+                //    var itemViews = _itemService.GetAllItemViews();
+                //    BaseEssence itemView;
+
+                //    if (itemViews.Count() != 0)
+                //    {
+                //        if (view != null)
+                //        {
+                //            if (view.FirstJointBack != null)
+                //            {
+                //                itemView = itemViews.FirstOrDefault(item => item.Id == ItemServiceConstants.AxeItem);
+
+
+                //                itemView?.gameObject.transform.SetParent(view.FirstJointBack.transform);
+
+                //                itemView.gameObject.transform.localPosition = Vector3.zero;
+                //                itemView.gameObject.transform.localRotation = Quaternion.identity;
+                //                itemView.gameObject.transform.localScale = Vector3.one;
+                //            }
+
+                //            if (view.SecondJointBack != null)
+                //            {
+                //                itemView = itemViews.FirstOrDefault(item => item.Id == ItemServiceConstants.BowItem);
+                //                itemView.gameObject.transform.SetParent(view.SecondJointBack.transform);
+
+                //                itemView.gameObject.transform.localPosition = Vector3.zero;
+                //                itemView.gameObject.transform.localRotation = Quaternion.identity;
+                //                itemView.gameObject.transform.localScale = Vector3.one;
+                //            }
+                //        }
+                //    }
+                //}
             }
         }
     }

@@ -74,17 +74,17 @@ namespace Services.Ability
             {
                 var view = (PlayerView) presenter.GetView();
 
-                _animationService.SetBool(view.Animator, "IsIdleCombat", true);
-                _animationService.SetBool(view.Animator, "IsIdleResting", false);
+//                _animationService.SetBool(view.Animator, "IsIdleCombat", true);
+//                _animationService.SetBool(view.Animator, "IsIdleResting", false);
 
-                BaseEssence axeView = _itemService
-                    .GetAllItemViews()
-                    .FirstOrDefault(item => item.Id == ItemServiceConstants.AxeItem);
+//                BaseEssence axeView = _itemService
+//                    .GetAllItemViews()
+//                    .FirstOrDefault(item => item.Id == ItemServiceConstants.AxeItem);
 
-//axeView.gameObject.transform.SetParent(view.FirstJointHand.transform);
-                axeView.gameObject.transform.localPosition = Vector3.zero;
-                axeView.gameObject.transform.localRotation = Quaternion.identity;
-                axeView.gameObject.transform.localScale = Vector3.one;
+////axeView.gameObject.transform.SetParent(view.FirstJointHand.transform);
+//                axeView.gameObject.transform.localPosition = Vector3.zero;
+//                axeView.gameObject.transform.localRotation = Quaternion.identity;
+//                axeView.gameObject.transform.localScale = Vector3.one;
 
                 // ToDo...
                 //BaseView bowView = _itemService
@@ -98,11 +98,11 @@ namespace Services.Ability
 
                 if (actionModifier == ActionModifier.None) 
                 { 
-                    if (_animationService.GetBool(view.Animator, "IsIdleCombat"))
-                    { 
-                        _animationService.PlayAnimation(view.Animator, "Attack");
-                        _animationService.SetFloat(view.Animator, "AttackingValue", _animationService.GetRandomAnimation(1,3));
-                    }
+                    //if (_animationService.GetBool(view.Animator, "IsIdleCombat"))
+                    //{ 
+                    //    _animationService.PlayAnimation(view.Animator, "Attack");
+                    //    _animationService.SetFloat(view.Animator, "AttackingValue", _animationService.GetRandomAnimation(1,3));
+                    //}
 
                     Debug.Log("[PlayerAttackAbility]-> Base Attack!");
 

@@ -15,7 +15,7 @@ MonoBehaviour:
   RegistryItems:
   - Id: BasePlayerMovement
     Move:
-      Speed: 10
+      Speed: 1000
     Jump:
       Speed: 3
       ForceMode: 1
