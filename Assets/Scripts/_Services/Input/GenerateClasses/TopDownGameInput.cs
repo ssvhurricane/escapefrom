@@ -28,7 +28,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
             ""id"": ""44c77a15-cec4-4687-be2f-a79d536cffd3"",
             ""actions"": [
                 {
-                    ""name"": ""WASD"",
+                    ""name"": ""Move"",
                     ""type"": ""PassThrough"",
                     ""id"": ""9258de9e-9963-435e-a16d-29f95fdd7f3a"",
                     ""expectedControlType"": ""Vector2"",
@@ -37,7 +37,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Turn"",
+                    ""name"": ""Look"",
                     ""type"": ""Value"",
                     ""id"": ""37bd10ad-5a16-40d3-80d8-f122355b3dad"",
                     ""expectedControlType"": ""Vector2"",
@@ -46,7 +46,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""LeftMouseButton"",
+                    ""name"": ""Attack1"",
                     ""type"": ""Button"",
                     ""id"": ""de3112bb-313d-49e3-a199-d17199ebd308"",
                     ""expectedControlType"": ""Button"",
@@ -55,7 +55,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RightMouseButton"",
+                    ""name"": ""Attack2"",
                     ""type"": ""Button"",
                     ""id"": ""4207d5d1-81a2-475c-924a-39065a69af39"",
                     ""expectedControlType"": ""Button"",
@@ -64,7 +64,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Space"",
+                    ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""6f3fb6c0-83bb-4243-b58f-73047d2c5588"",
                     ""expectedControlType"": ""Button"",
@@ -73,7 +73,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Shift"",
+                    ""name"": ""Run"",
                     ""type"": ""Button"",
                     ""id"": ""835bf1b3-6cb1-43f3-b63b-7ca8bd573f66"",
                     ""expectedControlType"": ""Button"",
@@ -82,7 +82,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Arrow"",
+                    ""name"": ""SelectWeapon"",
                     ""type"": ""Button"",
                     ""id"": ""6bd898b6-7f1a-4404-a947-610535734b1b"",
                     ""expectedControlType"": ""Button"",
@@ -91,7 +91,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Esc"",
+                    ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""21343cde-a46e-41b1-b5a5-295bc8da5622"",
                     ""expectedControlType"": ""Button"",
@@ -100,7 +100,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""E"",
+                    ""name"": ""Interaction"",
                     ""type"": ""Button"",
                     ""id"": ""8f0e3df6-6f5b-49a4-b003-6eaf528f0d1f"",
                     ""expectedControlType"": ""Button"",
@@ -109,7 +109,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""C"",
+                    ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""19a2a098-32a0-41c4-a6fb-98e47eba52e6"",
                     ""expectedControlType"": ""Button"",
@@ -126,7 +126,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""LeftMouseButton"",
+                    ""action"": ""Attack1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -137,7 +137,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""LeftMouseButton"",
+                    ""action"": ""Attack1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -148,7 +148,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""WASD"",
+                    ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -159,7 +159,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""WASD"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -170,7 +170,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""WASD"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -181,7 +181,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""WASD"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -192,7 +192,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""WASD"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -203,7 +203,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""WASD"",
+                    ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -214,7 +214,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""WASD"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -225,7 +225,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""WASD"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -236,7 +236,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""WASD"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -247,7 +247,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""WASD"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -258,7 +258,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Space"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -269,7 +269,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Space"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -280,7 +280,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Shift"",
+                    ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -291,7 +291,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Shift"",
+                    ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -302,7 +302,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Arrow"",
+                    ""action"": ""SelectWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -313,7 +313,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Arrow"",
+                    ""action"": ""SelectWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -324,7 +324,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Arrow"",
+                    ""action"": ""SelectWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -335,7 +335,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Arrow"",
+                    ""action"": ""SelectWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -346,7 +346,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Esc"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -357,7 +357,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Esc"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -368,7 +368,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""E"",
+                    ""action"": ""Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -379,7 +379,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""E"",
+                    ""action"": ""Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -390,7 +390,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""C"",
+                    ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -401,7 +401,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""C"",
+                    ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -412,7 +412,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""RightMouseButton"",
+                    ""action"": ""Attack2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -423,7 +423,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""RightMouseButton"",
+                    ""action"": ""Attack2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -434,7 +434,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Turn"",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -445,7 +445,7 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Turn"",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -484,16 +484,16 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_WASD = m_Player.FindAction("WASD", throwIfNotFound: true);
-        m_Player_Turn = m_Player.FindAction("Turn", throwIfNotFound: true);
-        m_Player_LeftMouseButton = m_Player.FindAction("LeftMouseButton", throwIfNotFound: true);
-        m_Player_RightMouseButton = m_Player.FindAction("RightMouseButton", throwIfNotFound: true);
-        m_Player_Space = m_Player.FindAction("Space", throwIfNotFound: true);
-        m_Player_Shift = m_Player.FindAction("Shift", throwIfNotFound: true);
-        m_Player_Arrow = m_Player.FindAction("Arrow", throwIfNotFound: true);
-        m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
-        m_Player_E = m_Player.FindAction("E", throwIfNotFound: true);
-        m_Player_C = m_Player.FindAction("C", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_Attack1 = m_Player.FindAction("Attack1", throwIfNotFound: true);
+        m_Player_Attack2 = m_Player.FindAction("Attack2", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
+        m_Player_SelectWeapon = m_Player.FindAction("SelectWeapon", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
+        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -553,30 +553,30 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_WASD;
-    private readonly InputAction m_Player_Turn;
-    private readonly InputAction m_Player_LeftMouseButton;
-    private readonly InputAction m_Player_RightMouseButton;
-    private readonly InputAction m_Player_Space;
-    private readonly InputAction m_Player_Shift;
-    private readonly InputAction m_Player_Arrow;
-    private readonly InputAction m_Player_Esc;
-    private readonly InputAction m_Player_E;
-    private readonly InputAction m_Player_C;
+    private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_Attack1;
+    private readonly InputAction m_Player_Attack2;
+    private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Run;
+    private readonly InputAction m_Player_SelectWeapon;
+    private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_Interaction;
+    private readonly InputAction m_Player_Crouch;
     public struct PlayerActions
     {
         private @TopDownGameInput m_Wrapper;
         public PlayerActions(@TopDownGameInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @WASD => m_Wrapper.m_Player_WASD;
-        public InputAction @Turn => m_Wrapper.m_Player_Turn;
-        public InputAction @LeftMouseButton => m_Wrapper.m_Player_LeftMouseButton;
-        public InputAction @RightMouseButton => m_Wrapper.m_Player_RightMouseButton;
-        public InputAction @Space => m_Wrapper.m_Player_Space;
-        public InputAction @Shift => m_Wrapper.m_Player_Shift;
-        public InputAction @Arrow => m_Wrapper.m_Player_Arrow;
-        public InputAction @Esc => m_Wrapper.m_Player_Esc;
-        public InputAction @E => m_Wrapper.m_Player_E;
-        public InputAction @C => m_Wrapper.m_Player_C;
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputAction @Attack1 => m_Wrapper.m_Player_Attack1;
+        public InputAction @Attack2 => m_Wrapper.m_Player_Attack2;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Run => m_Wrapper.m_Player_Run;
+        public InputAction @SelectWeapon => m_Wrapper.m_Player_SelectWeapon;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
+        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -586,70 +586,70 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @WASD.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWASD;
-                @WASD.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWASD;
-                @WASD.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWASD;
-                @Turn.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurn;
-                @Turn.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurn;
-                @Turn.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTurn;
-                @LeftMouseButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
-                @LeftMouseButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
-                @LeftMouseButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftMouseButton;
-                @RightMouseButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouseButton;
-                @RightMouseButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouseButton;
-                @RightMouseButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightMouseButton;
-                @Space.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpace;
-                @Space.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpace;
-                @Space.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpace;
-                @Shift.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShift;
-                @Shift.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShift;
-                @Shift.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShift;
-                @Arrow.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnArrow;
-                @Arrow.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnArrow;
-                @Arrow.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnArrow;
-                @Esc.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
-                @Esc.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
-                @Esc.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEsc;
-                @E.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnE;
-                @E.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnE;
-                @E.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnE;
-                @C.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnC;
-                @C.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnC;
-                @C.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnC;
+                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Attack1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack1;
+                @Attack1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack1;
+                @Attack1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack1;
+                @Attack2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack2;
+                @Attack2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack2;
+                @Attack2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack2;
+                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
+                @Run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
+                @Run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
+                @SelectWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeapon;
+                @SelectWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeapon;
+                @SelectWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeapon;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Interaction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
+                @Interaction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
+                @Interaction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
+                @Crouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                @Crouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                @Crouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @WASD.started += instance.OnWASD;
-                @WASD.performed += instance.OnWASD;
-                @WASD.canceled += instance.OnWASD;
-                @Turn.started += instance.OnTurn;
-                @Turn.performed += instance.OnTurn;
-                @Turn.canceled += instance.OnTurn;
-                @LeftMouseButton.started += instance.OnLeftMouseButton;
-                @LeftMouseButton.performed += instance.OnLeftMouseButton;
-                @LeftMouseButton.canceled += instance.OnLeftMouseButton;
-                @RightMouseButton.started += instance.OnRightMouseButton;
-                @RightMouseButton.performed += instance.OnRightMouseButton;
-                @RightMouseButton.canceled += instance.OnRightMouseButton;
-                @Space.started += instance.OnSpace;
-                @Space.performed += instance.OnSpace;
-                @Space.canceled += instance.OnSpace;
-                @Shift.started += instance.OnShift;
-                @Shift.performed += instance.OnShift;
-                @Shift.canceled += instance.OnShift;
-                @Arrow.started += instance.OnArrow;
-                @Arrow.performed += instance.OnArrow;
-                @Arrow.canceled += instance.OnArrow;
-                @Esc.started += instance.OnEsc;
-                @Esc.performed += instance.OnEsc;
-                @Esc.canceled += instance.OnEsc;
-                @E.started += instance.OnE;
-                @E.performed += instance.OnE;
-                @E.canceled += instance.OnE;
-                @C.started += instance.OnC;
-                @C.performed += instance.OnC;
-                @C.canceled += instance.OnC;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
+                @Attack1.started += instance.OnAttack1;
+                @Attack1.performed += instance.OnAttack1;
+                @Attack1.canceled += instance.OnAttack1;
+                @Attack2.started += instance.OnAttack2;
+                @Attack2.performed += instance.OnAttack2;
+                @Attack2.canceled += instance.OnAttack2;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Run.started += instance.OnRun;
+                @Run.performed += instance.OnRun;
+                @Run.canceled += instance.OnRun;
+                @SelectWeapon.started += instance.OnSelectWeapon;
+                @SelectWeapon.performed += instance.OnSelectWeapon;
+                @SelectWeapon.canceled += instance.OnSelectWeapon;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @Interaction.started += instance.OnInteraction;
+                @Interaction.performed += instance.OnInteraction;
+                @Interaction.canceled += instance.OnInteraction;
+                @Crouch.started += instance.OnCrouch;
+                @Crouch.performed += instance.OnCrouch;
+                @Crouch.canceled += instance.OnCrouch;
             }
         }
     }
@@ -674,15 +674,15 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnWASD(InputAction.CallbackContext context);
-        void OnTurn(InputAction.CallbackContext context);
-        void OnLeftMouseButton(InputAction.CallbackContext context);
-        void OnRightMouseButton(InputAction.CallbackContext context);
-        void OnSpace(InputAction.CallbackContext context);
-        void OnShift(InputAction.CallbackContext context);
-        void OnArrow(InputAction.CallbackContext context);
-        void OnEsc(InputAction.CallbackContext context);
-        void OnE(InputAction.CallbackContext context);
-        void OnC(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
+        void OnAttack1(InputAction.CallbackContext context);
+        void OnAttack2(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
+        void OnSelectWeapon(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
     }
 }

@@ -6,7 +6,7 @@
             "id": "44c77a15-cec4-4687-be2f-a79d536cffd3",
             "actions": [
                 {
-                    "name": "WASD",
+                    "name": "Move",
                     "type": "PassThrough",
                     "id": "9258de9e-9963-435e-a16d-29f95fdd7f3a",
                     "expectedControlType": "Vector2",
@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Turn",
+                    "name": "Look",
                     "type": "Value",
                     "id": "37bd10ad-5a16-40d3-80d8-f122355b3dad",
                     "expectedControlType": "Vector2",
@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "LeftMouseButton",
+                    "name": "Attack1",
                     "type": "Button",
                     "id": "de3112bb-313d-49e3-a199-d17199ebd308",
                     "expectedControlType": "Button",
@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RightMouseButton",
+                    "name": "Attack2",
                     "type": "Button",
                     "id": "4207d5d1-81a2-475c-924a-39065a69af39",
                     "expectedControlType": "Button",
@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Space",
+                    "name": "Jump",
                     "type": "Button",
                     "id": "6f3fb6c0-83bb-4243-b58f-73047d2c5588",
                     "expectedControlType": "Button",
@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Shift",
+                    "name": "Run",
                     "type": "Button",
                     "id": "835bf1b3-6cb1-43f3-b63b-7ca8bd573f66",
                     "expectedControlType": "Button",
@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Arrow",
+                    "name": "SelectWeapon",
                     "type": "Button",
                     "id": "6bd898b6-7f1a-4404-a947-610535734b1b",
                     "expectedControlType": "Button",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Esc",
+                    "name": "Pause",
                     "type": "Button",
                     "id": "21343cde-a46e-41b1-b5a5-295bc8da5622",
                     "expectedControlType": "Button",
@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "E",
+                    "name": "Interaction",
                     "type": "Button",
                     "id": "8f0e3df6-6f5b-49a4-b003-6eaf528f0d1f",
                     "expectedControlType": "Button",
@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "C",
+                    "name": "Crouch",
                     "type": "Button",
                     "id": "19a2a098-32a0-41c4-a6fb-98e47eba52e6",
                     "expectedControlType": "Button",
@@ -104,7 +104,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "LeftMouseButton",
+                    "action": "Attack1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -115,7 +115,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "LeftMouseButton",
+                    "action": "Attack1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -126,7 +126,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -137,7 +137,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "WASD",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -148,7 +148,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "WASD",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -159,7 +159,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "WASD",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -170,7 +170,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "WASD",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -181,7 +181,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "WASD",
+                    "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -192,7 +192,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "WASD",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -203,7 +203,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "WASD",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -214,7 +214,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "WASD",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -225,7 +225,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "WASD",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -236,7 +236,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "Space",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -247,7 +247,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Space",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -258,7 +258,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "Shift",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -269,7 +269,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Shift",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -280,7 +280,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Arrow",
+                    "action": "SelectWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -291,7 +291,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Arrow",
+                    "action": "SelectWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -302,7 +302,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "Arrow",
+                    "action": "SelectWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -313,7 +313,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "Arrow",
+                    "action": "SelectWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -324,7 +324,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "Esc",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -335,7 +335,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Esc",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -346,7 +346,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "E",
+                    "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -357,7 +357,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "E",
+                    "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -368,7 +368,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "C",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -379,7 +379,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "C",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -390,7 +390,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "RightMouseButton",
+                    "action": "Attack2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -401,7 +401,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "RightMouseButton",
+                    "action": "Attack2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -412,7 +412,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "Turn",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -423,7 +423,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Turn",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

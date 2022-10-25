@@ -99,7 +99,7 @@ namespace Services.Input
             _topDownGameInput = new TopDownGameInput();
 
             // Bind Select Ability(Weapon).
-            _topDownGameInput.Player.Arrow.performed += value => 
+            _topDownGameInput.Player.SelectWeapon.performed += value => 
             {
                 if (_startProc && Time.timeScale == 1.0f)
                 {
@@ -174,7 +174,7 @@ namespace Services.Input
             };
 
             // Interaction Ability.
-            _topDownGameInput.Player.E.performed += value =>
+            _topDownGameInput.Player.Interaction.performed += value =>
             {
 
                 _logService.ShowLog(GetType().Name,
@@ -196,7 +196,7 @@ namespace Services.Input
             };
 
             // Crouch Ability.
-            _topDownGameInput.Player.C.performed += value =>
+            _topDownGameInput.Player.Crouch.performed += value =>
             {
                 _logService.ShowLog(GetType().Name,
                     Services.Log.LogType.Message,
@@ -206,7 +206,7 @@ namespace Services.Input
 
 
             // Bind Player Base Attack Ability.
-            _topDownGameInput.Player.LeftMouseButton.performed += value =>
+            _topDownGameInput.Player.Attack1.performed += value =>
             {
                 _logService.ShowLog(GetType().Name,
                             Services.Log.LogType.Message,
@@ -226,7 +226,7 @@ namespace Services.Input
             };
 
              // Bind Player Aim Down Sights Ability.
-            _topDownGameInput.Player.RightMouseButton.performed += value =>
+            _topDownGameInput.Player.Attack2.performed += value =>
             { 
                 _logService.ShowLog(GetType().Name,
                             Services.Log.LogType.Message,
@@ -240,7 +240,7 @@ namespace Services.Input
             };
 
             // Bind Player Jump Ability.
-            _topDownGameInput.Player.Space.performed += value =>
+            _topDownGameInput.Player.Jump.performed += value =>
             {
                 if (_startProc && Time.timeScale == 1.0f)
                 {
@@ -254,7 +254,7 @@ namespace Services.Input
             };
 
             // Press Shift Button.
-            _topDownGameInput.Player.Shift.started += value => 
+            _topDownGameInput.Player.Run.started += value => 
             {
                 _logService.ShowLog(GetType().Name,
                             Services.Log.LogType.Message,
@@ -264,13 +264,13 @@ namespace Services.Input
                 _shiftModifier = true;
             };
 
-            _topDownGameInput.Player.Shift.canceled += value =>
+            _topDownGameInput.Player.Run.canceled += value =>
             {
                 _shiftModifier = false;
             };
 
             // Back Menu.
-            _topDownGameInput.Player.Esc.performed += value =>
+            _topDownGameInput.Player.Pause.performed += value =>
             {
                 if (_windowService.IsWindowShowing<PauseMenuView>()) return;
 
@@ -279,7 +279,7 @@ namespace Services.Input
                 _pauseMenuPresenter.ShowView();
             };
 
-            _topDownGameInput.Player.Turn.performed += value =>
+            _topDownGameInput.Player.Look.performed += value =>
             {
                 if (_startProc && Time.timeScale == 1.0f)
                 {
@@ -312,20 +312,20 @@ namespace Services.Input
         {
             if (_startProc && Time.timeScale == 1.0f)
             {
-                if (_topDownGameInput.Player.WASD.ReadValue<Vector2>() != Vector2.zero)
+                if (_topDownGameInput.Player.Move.ReadValue<Vector2>() != Vector2.zero)
                 {
                     if (!_shiftModifier)
                     {
                         // Bind Player Move Ability.
                         _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
                          , _playerPresenter,
-                         _topDownGameInput.Player.WASD.ReadValue<Vector2>(), ActionModifier.None);
+                         _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.None);
                     }
                     else
                     {
                         _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
                          , _playerPresenter,
-                         _topDownGameInput.Player.WASD.ReadValue<Vector2>(), ActionModifier.Shift);
+                         _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Shift);
                     }
                 }
                 else 
