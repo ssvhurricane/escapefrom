@@ -25,6 +25,7 @@ namespace Services.Ability
         
         private AbilitySettings _abilitySettings;
 
+        private MovementServiceSettings _movementServiceSettings;
         public string Id { get; set; }
         public AbilityType AbilityType { get; set; }
         public WeaponType WeaponType { get; set; }
@@ -44,7 +45,7 @@ namespace Services.Ability
             _signalBus = signalBus;
 
             _movementService = movementService;
-            _movementService.InitService(MovementServiceConstants.BasePlayerMovement);
+            _movementServiceSettings = _movementService.InitService(MovementServiceConstants.BasePlayerMovement);
 
             _animationService = animationService;
             _sFXService = sFXService;
@@ -75,47 +76,19 @@ namespace Services.Ability
                 {
                     case ActionModifier.None:
                         {
-                            _movementService.MoveWithPhysics(_view, param);
-
-                            //if (_animationService.GetBool(_view.Animator, "IsIdleResting"))
-                            //{
-                            //    // If Resting Mode.
-                            //    _animationService.SetFloat(_view.Animator, "WalkRestingValue", 0f);
-                            //    _animationService.SetBool(_view.Animator, "IsWalkResting", true);
-
-                            //    _animationService.SetBool(_view.Animator, "IsRunResting", false);
-                            //}
-
-                            //if (_animationService.GetBool(_view.Animator, "IsIdleCombat"))
-                            //{
-                            //    // If Resting Mode.
-                            //    _animationService.SetFloat(_view.Animator, "WalkCombatValue", 0f);
-                            //    _animationService.SetBool(_view.Animator, "IsWalkCombat", true);
-
-                            //    _animationService.SetBool(_view.Animator, "IsRunCombat", false);
-                            //}
+                            _movementService.Move(_view, param * _movementServiceSettings.Move.Speed);
                         }
                             break;
                         
                     case ActionModifier.Shift:
                         {
-                            _movementService.MoveWithPhysics(_view, param * 2.0f);
-
-                            //if (_animationService.GetBool(_view.Animator, "IsIdleResting"))
-                            //{
-                            //    _animationService.SetFloat(_view.Animator, "RunRestingValue", 0f);
-                            //    _animationService.SetBool(_view.Animator, "IsRunResting", true);
-
-                            //    _animationService.SetBool(_view.Animator, "IsWalkResting", false);
-                            //}
-
-                            //if (_animationService.GetBool(_view.Animator, "IsIdleCombat"))
-                            //{
-                            //    _animationService.SetFloat(_view.Animator, "RunCombatValue", 0f);
-                            //    _animationService.SetBool(_view.Animator, "IsRunCombat", true);
-
-                            //    _animationService.SetBool(_view.Animator, "IsWalkCombat", false);
-                            //}
+                           
+                            _movementService.Move(_view, param * _movementServiceSettings.Run.Speed);
+                            break;
+                        }
+                    case ActionModifier.Crouch:
+                        {
+                            _movementService.Move(_view, param * _movementServiceSettings.Crouch.Speed);
                             break;
                         }
                 }

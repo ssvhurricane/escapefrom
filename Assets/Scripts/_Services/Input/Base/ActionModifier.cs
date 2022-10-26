@@ -4,6 +4,7 @@ namespace Services.Input
     {
         None,
         Shift,
+        Crouch,
         Ctrl,
         Alt,
         Cmd,

@@ -15,49 +15,22 @@ MonoBehaviour:
   RegistryItems:
   - Id: BasePlayerMovement
     Move:
-      Speed: 1000
+      Speed: 2
+      BlendSpeed: 9
+      AirResistance: 0.8
+    Run:
+      Speed: 6
     Jump:
-      Speed: 3
+      Speed: 300
       ForceMode: 1
       GroundLayers:
         serializedVersion: 2
-        m_Bits: 64
-      RadiusModifier: 1
+        m_Bits: 1
+      Dis2Ground: 0.8
     Rotate:
       Speed: 5
-    Fly:
-      Speed: 0
-    Drive:
-      Speed: 0
-  - Id: BaseEnemyMovement
-    Move:
-      Speed: 0
-    Jump:
-      Speed: 0
-      ForceMode: 0
-      GroundLayers:
-        serializedVersion: 2
-        m_Bits: 0
-      RadiusModifier: 0
-    Rotate:
-      Speed: 0
-    Fly:
-      Speed: 0
-    Drive:
-      Speed: 0
-  - Id: BaseNPCMovement
-    Move:
-      Speed: 0
-    Jump:
-      Speed: 0
-      ForceMode: 0
-      GroundLayers:
-        serializedVersion: 2
-        m_Bits: 0
-      RadiusModifier: 0
-    Rotate:
-      Speed: 0
-    Fly:
-      Speed: 0
-    Drive:
-      Speed: 0
+      UpperLimit: -40
+      BottomLimit: 70
+      Sensitivity: 22
+    Crouch:
+      Speed: 1

@@ -71,7 +71,7 @@ namespace Services.Ability
 
                 _movementService.Jump(view);
                 
-                //_animationService.PlayAnimation(view.Animator, "Jump1");
+              
             }
         }
     }

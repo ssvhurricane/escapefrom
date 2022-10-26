@@ -8,12 +8,23 @@ namespace Data.Settings
     public class Move 
     {
         public float Speed;
+        public float BlendSpeed;
+        public float AirResistance;
+    }
+
+    [Serializable]
+    public class Run 
+    {
+        public float Speed;
     }
 
     [Serializable]
     public class Rotate
     {
         public float Speed;
+        public float UpperLimit;
+        public float BottomLimit;
+        public float Sensitivity;
     }
 
     [Serializable]
@@ -22,17 +33,11 @@ namespace Data.Settings
         public float Speed;
         public ForceMode ForceMode;
         public LayerMask GroundLayers;
-        public float RadiusModifier;
+        public float Dis2Ground;
     }
 
     [Serializable]
-    public class Fly
-    {
-        public float Speed;
-    }
-
-    [Serializable]
-    public class Drive
+    public class Crouch 
     {
         public float Speed;
     }
@@ -43,10 +48,10 @@ namespace Data.Settings
         public string Id;
 
         public Move Move;
+        public Run Run;
         public Jump Jump;
         public Rotate Rotate;
-        public Fly Fly;
-        public Drive Drive;
+        public Crouch Crouch;
 
         string IRegistryData.Id => Id;
     }

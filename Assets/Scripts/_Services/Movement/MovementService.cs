@@ -19,7 +19,9 @@ namespace Services.Movement
         private CapsuleCollider _capsuleCollider;
         private LayerMask _groundLayers;
 
-        float _cameraVerticalAngle, cameraHorizontalAngle = 0f;
+        float _xRotation;
+        Vector3 _currentVelocity;
+
         public MovementService(SignalBus signalBus,
                                LogService logService,  
                                MovementServiceSettings[] movementServiceSettings) 
@@ -29,35 +31,40 @@ namespace Services.Movement
             _movementServiceSettings = movementServiceSettings;
         }
 
-        public void InitService(string settingsID)
+        public MovementServiceSettings InitService(string settingsID)
         { 
-            _settings = _movementServiceSettings?.
+           return _settings = _movementServiceSettings?.
                 FirstOrDefault(_=>_.Id == settingsID);
         }
 
-        /// <summary>
-        /// Base Move View GameObject.
-        /// </summary>
-        /// <param name="view">BaseView</param>
-        /// <param name="direction">Direction moving</param>
         public void Move(IView view, Vector2 direction) 
-        {
-            Vector3 horizontalVelocity = 
-                (view.GetGameObject().transform.right * direction.x) 
-                + (view.GetGameObject().transform.forward * direction.y);
-
-            view.GetGameObject().transform.position += (horizontalVelocity * _settings.Move.Speed);
-        }
-
-        public void MoveWithPhysics(IView view, Vector2 direction) 
         {
            if (_viewRigidbody == null)
                 _viewRigidbody = view.GetGameObject().GetComponent<Rigidbody>();
-            
+
             Vector3 targetVelocity = (view.GetGameObject().transform.right * direction.x)
                 + (view.GetGameObject().transform.forward * direction.y);
-          
-            _viewRigidbody.AddForce(targetVelocity * _settings.Move.Speed); 
+
+            if (IsGrounded(view))
+                _viewRigidbody.AddForce(targetVelocity * _settings.Move.BlendSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+
+
+            //if (IsGrounded(view))
+            //{
+
+            //    _currentVelocity.x = Mathf.Lerp(_currentVelocity.x, direction.x, _settings.Move.BlendSpeed * Time.fixedDeltaTime);
+            //    _currentVelocity.y = Mathf.Lerp(_currentVelocity.y, direction.y, _settings.Move.BlendSpeed * Time.fixedDeltaTime);
+
+            //    var xVelDifference = _currentVelocity.x - _viewRigidbody.velocity.x;
+            //    var zVelDifference = _currentVelocity.y - _viewRigidbody.velocity.z;
+
+            //    _viewRigidbody.AddForce(view.GetGameObject().transform.TransformVector(new Vector3(xVelDifference, 0, zVelDifference)), ForceMode.VelocityChange);
+            //}
+            //else
+            //{
+            //    _viewRigidbody.AddForce(view.GetGameObject().transform.TransformVector(new Vector3(_currentVelocity.x * _settings.Move.AirResistance, 0, _currentVelocity.y * _settings.Move.AirResistance)), ForceMode.VelocityChange);
+            //}
+
         }
 
         /// <summary>
@@ -67,34 +74,30 @@ namespace Services.Movement
         public void Jump(IView view)
         {
             if (_viewRigidbody == null) 
-            {
                 _viewRigidbody = view.GetGameObject().GetComponent<Rigidbody>();
-            }
 
-            if (_capsuleCollider == null)
-            {
-                _capsuleCollider = view.GetGameObject().GetComponent<CapsuleCollider>();
-            }
-          
-            if (IsGrounded())
-                _viewRigidbody.AddForce(view.GetGameObject().transform.up * _settings.Jump.Speed, _settings.Jump.ForceMode);
+            if(IsGrounded(view))
+              _viewRigidbody.AddForce(view.GetGameObject().transform.up * _settings.Jump.Speed, _settings.Jump.ForceMode);
         }
 
         /// <summary>
 		/// Rotate towards the direction the character is moving.
 		/// </summary>
-        public void Rotate(IView view, Vector2 direction) 
+        public void Rotate(IView view, Vector2 direction)
         {
-            view.GetGameObject().transform.Rotate(0f, direction.x * .1f, 0f, Space.Self);
+            if (_viewRigidbody == null)
+                _viewRigidbody = view.GetGameObject().GetComponent<Rigidbody>();
+            
+            _viewRigidbody.MoveRotation(_viewRigidbody.rotation * Quaternion.Euler(0f, direction.x * _settings.Rotate.Sensitivity * Time.smoothDeltaTime, 0f));
         }
 
         public void RotateWithClamp(IView view, Vector2 direction)
         {
-             _cameraVerticalAngle += (-direction.y) * .1f;
+             _xRotation -= direction.y * _settings.Rotate.Sensitivity * Time.smoothDeltaTime;
             
-             _cameraVerticalAngle = Mathf.Clamp(_cameraVerticalAngle, -90f, 90f);
+             _xRotation = Mathf.Clamp(_xRotation, _settings.Rotate.UpperLimit, _settings.Rotate.BottomLimit);
            
-             view.GetGameObject().transform.localEulerAngles = new Vector3(_cameraVerticalAngle, 0, 0);
+             view.GetGameObject().transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
         }
 
         public void Follow(IView baseView, IView targetView, Vector3 followOffset, Vector3 position, float followSpeed) 
@@ -114,17 +117,15 @@ namespace Services.Movement
                  baseView.GetGameObject().transform.parent = null;
         }
 
-        public bool IsGrounded() 
+        public bool IsGrounded(IView view) 
         {
-            if(_capsuleCollider != null) 
-            { 
-                return Physics.CheckCapsule(_capsuleCollider.bounds.center, 
-                        new Vector3(_capsuleCollider.bounds.center.x,_capsuleCollider.bounds.min.y, _capsuleCollider.bounds.center.z)
-                        ,_capsuleCollider.radius * _settings.Jump.RadiusModifier, _settings.Jump.GroundLayers
-                        );
-            }
-            else 
-                return false;
+            if (_viewRigidbody == null)
+                _viewRigidbody = view.GetGameObject().GetComponent<Rigidbody>();
+
+            RaycastHit hitInfo;
+            if (Physics.Raycast(_viewRigidbody.worldCenterOfMass, Vector3.down, out hitInfo, _settings.Jump.Dis2Ground + 0.1f, _settings.Jump.GroundLayers))
+                return true;
+            return false;
         }
     }
 }
