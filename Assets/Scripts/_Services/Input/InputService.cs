@@ -7,6 +7,7 @@ using Services.Ability;
 using Services.Animation;
 using Services.Log;
 using Services.Pool;
+using Services.Project;
 using Services.Resources;
 using Services.Window;
 using System.Collections.Generic;
@@ -33,6 +34,7 @@ namespace Services.Input
         private PoolService _poolService;
         private ResourcesService _resourcesService;
         private LogService _logService;
+        private readonly ProjectService _projectService;
 
         private readonly IWindowService _windowService;
 
@@ -55,11 +57,6 @@ namespace Services.Input
                                                             
                                                                    
         private IEnumerable<IAbility> _playerAttackAbilities;
-                                               
-
-        private bool _startProc, 
-                        _shiftModifier, 
-                            _crouchModifier = false;
     
         private MainHUDView _mainHudView;
         private PlayerView _playerView;
@@ -77,7 +74,8 @@ namespace Services.Input
             CameraPresenter cameraPresenter,
             PoolService poolService,
             ResourcesService resourcesService,
-            LogService logService
+            LogService logService,
+            ProjectService projectService
             )
         {
             _signalBus = signalBus;
@@ -94,6 +92,7 @@ namespace Services.Input
             _poolService = poolService;
             _resourcesService = resourcesService;
             _logService = logService;
+            _projectService = projectService;
             
             _settings = _inputServiceSettings?.FirstOrDefault(s => s.Id == InputServiceConstants.TopDownGameId);
 
@@ -102,7 +101,7 @@ namespace Services.Input
             // Bind Select Ability(Weapon).
             _topDownGameInput.Player.SelectWeapon.performed += value => 
             {
-                if (_startProc && Time.timeScale == 1.0f)
+                if (_projectService.GetProjectState() == ProjectState.Start)
                 {
                     var nameControl = value.control.name;
 
@@ -131,48 +130,45 @@ namespace Services.Input
             // Interaction Ability.
             _topDownGameInput.Player.Interaction.performed += value =>
             {
-
-                _logService.ShowLog(GetType().Name,
+                if (_projectService.GetProjectState() == ProjectState.Start) 
+                {  
+                    _logService.ShowLog(GetType().Name,
                     Services.Log.LogType.Message,
                     "Press E(X).",
                     LogOutputLocationType.Console);
 
-                // TODO:
+                    // TODO:
+                }
+              
             };
 
             // Crouch Ability.
             _topDownGameInput.Player.Crouch.performed += value =>
             {
-                _logService.ShowLog(GetType().Name,
-                    Services.Log.LogType.Message,
-                    "Press C(B).",
-                    LogOutputLocationType.Console);
+                if (_projectService.GetProjectState() == ProjectState.Start)
+                {
+                    _logService.ShowLog(GetType().Name,
+                        Services.Log.LogType.Message,
+                        "Press C(B).",
+                        LogOutputLocationType.Console);
 
-                _crouchModifier = true;
-            };
-
-            _topDownGameInput.Player.Crouch.canceled+= value =>
-            {
-                _logService.ShowLog(GetType().Name,
-                    Services.Log.LogType.Message,
-                    "Press C(B).",
-                    LogOutputLocationType.Console);
-
-                _crouchModifier = false;
+                    _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
+                                  , _playerPresenter,
+                                  _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Crouch);
+                }
             };
 
 
             // Bind Player Base Attack Ability.
             _topDownGameInput.Player.Attack1.performed += value =>
             {
-                _logService.ShowLog(GetType().Name,
-                            Services.Log.LogType.Message,
-                            "Press LeftMouseButton(LT).",
-                            LogOutputLocationType.Console);
-
-                if (_startProc && Time.timeScale == 1.0f)
+                if (_projectService.GetProjectState() == ProjectState.Start)
                 {
                     
+                    _logService.ShowLog(GetType().Name,
+                                Services.Log.LogType.Message,
+                                "Press LeftMouseButton(LT).",
+                                LogOutputLocationType.Console);
 
                     // TODO:
                 }
@@ -181,21 +177,19 @@ namespace Services.Input
              // Bind Player Aim Down Sights Ability.
             _topDownGameInput.Player.Attack2.performed += value =>
             { 
-                _logService.ShowLog(GetType().Name,
+                if (_projectService.GetProjectState() == ProjectState.Start)
+                {
+                  _logService.ShowLog(GetType().Name,
                             Services.Log.LogType.Message,
                             "Press RightMouseButton(RT).",
                             LogOutputLocationType.Console);
-
-                if (_startProc && Time.timeScale == 1.0f)
-                {
-                   // TODO:
                 }
             };
 
             // Bind Player Jump Ability.
             _topDownGameInput.Player.Jump.performed += value =>
             {
-                if (_startProc && Time.timeScale == 1.0f)
+                if (_projectService.GetProjectState() == ProjectState.Start)
                 {
                     _logService.ShowLog(GetType().Name,
                             Services.Log.LogType.Message,
@@ -206,22 +200,7 @@ namespace Services.Input
                                         _abilityService.UseAbility((IAbilityWithOutParam)_playerJumpAbility, _playerPresenter, ActionModifier.None);
                 }
             };
-
-            // Press Shift Button.
-            _topDownGameInput.Player.Run.started += value => 
-            {
-                _logService.ShowLog(GetType().Name,
-                            Services.Log.LogType.Message,
-                            "Press ShiftStart(LeftTrigger).",
-                            LogOutputLocationType.Console);
-
-                _shiftModifier = true;
-            };
-
-            _topDownGameInput.Player.Run.canceled += value =>
-            {
-                _shiftModifier = false;
-            };
+            
 
             // Back Menu.
             _topDownGameInput.Player.Pause.performed += value =>
@@ -236,22 +215,19 @@ namespace Services.Input
 
         public void ClearServiceValues()
         {
-            _startProc = false;
-            _shiftModifier = false;
-            _crouchModifier = false;
             _playerAbilityItems.Clear();
             _topDownGameInput.Disable();
         }
 
         public void FixedTick()
         {
-            if (_startProc && Time.timeScale == 1.0f)
+            if (_projectService.GetProjectState() == ProjectState.Start)
             {
                 if (_topDownGameInput.Player.Move.IsPressed())
                 {
-                    if (!_crouchModifier)
+                    if (!_topDownGameInput.Player.Crouch.IsPressed())
                     {
-                        if (!_shiftModifier)
+                        if (!_topDownGameInput.Player.Run.IsPressed())
                         {
                             // Bind Player Move Ability.
                             _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
@@ -262,14 +238,14 @@ namespace Services.Input
                         {
                             _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
                              , _playerPresenter,
-                             _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Shift);
+                             _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Run);
                         }
                     }
                     else
                     {
                         _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
-                            , _playerPresenter,
-                            _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Crouch);
+                               , _playerPresenter,
+                               _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Crouch);
                     }
                 }
                 else 
@@ -280,17 +256,12 @@ namespace Services.Input
 
         public void LateTick()
         {
-            if (_startProc && Time.timeScale == 1.0f && _topDownGameInput.Player.Look.triggered)
+            if (_projectService.GetProjectState() == ProjectState.Start && _topDownGameInput.Player.Look.IsPressed())
             {
                 _abilityService.UseAbility((IAbilityWithVector2Param)_playerRotateAbility
                , _playerPresenter,
                _topDownGameInput.Player.Look.ReadValue<Vector2>(), ActionModifier.None);
 
-                // Bind Camera Rotate Ability.
-                _logService.ShowLog(GetType().Name,
-                       Services.Log.LogType.Message,
-                       "Control: " + _topDownGameInput.Player.Look.ReadValue<Vector2>().x + " | " + _topDownGameInput.Player.Look.ReadValue<Vector2>().y,
-                       LogOutputLocationType.Console);
 
                 _abilityService.UseAbility((IAbilityWithVector2Param)_cameraRotateAbility
                      , _cameraPresenter,
@@ -309,8 +280,6 @@ namespace Services.Input
             CachingAbilities();
 
             InitAbilities();
-
-            _startProc = true;
 
             _topDownGameInput.Enable();
         }

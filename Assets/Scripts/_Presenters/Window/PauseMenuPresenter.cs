@@ -32,6 +32,7 @@ namespace Presenters.Window
         private readonly HolderService _holderService;
 
         private readonly GameSettingsPresenter _gameSettingsPresenter;
+        //private readonly ProjectPresenter _projectPresenter;
 
         private PauseMenuView _pauseMenuView;
         private MainHUDView _mainHUDView;
@@ -47,6 +48,7 @@ namespace Presenters.Window
             FactoryService factoryService,
             HolderService holderService,
             GameSettingsPresenter gameSettingsPresenter
+            //,ProjectPresenter projectPresenter
             )
         {
             _signalBus = signalBus;
@@ -62,6 +64,7 @@ namespace Presenters.Window
             _holderService = holderService;
 
            _gameSettingsPresenter = gameSettingsPresenter;
+           // _projectPresenter = projectPresenter;
 
             _logService.ShowLog(GetType().Name,
                 Services.Log.LogType.Message,
@@ -77,7 +80,8 @@ namespace Presenters.Window
             OnDisposeAll();
 
             Cursor.visible = true;
-            Time.timeScale = 0; 
+            //_projectPresenter.PauseGame(); TODO
+
             
             if (_windowService.GetWindow<PauseMenuView>() != null)
                 _pauseMenuView = (PauseMenuView)_windowService.ShowWindow<PauseMenuView>();
@@ -159,8 +163,8 @@ namespace Presenters.Window
                
                 _windowService.HideWindow<PauseMenuView>();
                 _windowService.ShowWindow<MainHUDView>();
-
-                Time.timeScale = 1;
+               
+                //_projectPresenter.StartGame();
             }
 
             if (buttonId == _pauseMenuView._settingsButton.GetInstanceID())
@@ -191,7 +195,7 @@ namespace Presenters.Window
                         LogOutputLocationType.Console);
              
                 Cursor.visible = true;
-                Time.timeScale = 1;
+                //_projectPresenter.StartGame();
                 
                 _cameraService.ClearServiceValues();
                 _essenceService.ClearServiceValues();

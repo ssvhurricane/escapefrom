@@ -107,11 +107,11 @@ namespace Services.Ability
                     Debug.Log("[PlayerAttackAbility]-> Base Attack!");
 
                 }
-                else if (actionModifier == ActionModifier.Power) 
-                {
-                    //ToDo...
-                    Debug.Log("[PlayerAttackAbility]-> Power Attack!");
-                }
+                //else if (actionModifier == ActionModifier.Power) 
+                //{
+                //    //ToDo...
+                //    Debug.Log("[PlayerAttackAbility]-> Power Attack!");
+                //}
             }
         }
     }

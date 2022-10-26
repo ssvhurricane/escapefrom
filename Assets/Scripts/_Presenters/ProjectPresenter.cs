@@ -127,18 +127,22 @@ namespace Presenters
             } 
         }
 
-        private void StartGame()
+        public void StartGame()
         {
-            _logService.ShowLog(GetType().Name,
-                            Services.Log.LogType.Message,
-                            "Call StartGame Method.",
-                            LogOutputLocationType.Console);
-            // TODO:
+            Time.timeScale = 1;
+            _projectService.SetProjectState(ProjectState.Start);
         }
 
-        private void PauseGame() 
+        public void PauseGame() 
         {
-            // TODO:
+            Time.timeScale = 0;
+            _projectService.SetProjectState(ProjectState.Pause);
+        }
+
+        public void StopGame()
+        {
+            Time.timeScale = 0;
+            _projectService.SetProjectState(ProjectState.Stop);
         }
     }
 }

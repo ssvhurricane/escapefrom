@@ -80,7 +80,7 @@ namespace Services.Ability
                         }
                             break;
                         
-                    case ActionModifier.Shift:
+                    case ActionModifier.Run:
                         {
                            
                             _movementService.Move(_view, param * _movementServiceSettings.Run.Speed);
