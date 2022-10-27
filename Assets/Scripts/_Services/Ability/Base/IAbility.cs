@@ -25,6 +25,12 @@ namespace Services.Ability
         public void StartAbility(IPresenter ownerPresenter, Vector2 param, ActionModifier actionModifier);
     }
 
+    public interface IAbilityWithBoolParam : IAbility
+    {
+        public void StartAbility(IPresenter ownerPresenter, bool param, ActionModifier actionModifier);
+    }
+
+
     public interface IAbilityWithAffectedPresenterParam : IAbility
     {
          public void StartAbility(IPresenter ownerPresenter, IPresenter affectedPresenter, ActionModifier actionModifier);

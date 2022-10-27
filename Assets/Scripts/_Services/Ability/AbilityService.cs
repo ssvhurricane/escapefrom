@@ -32,6 +32,13 @@ namespace Services.Ability
                 ability.StartAbility(presenter, param, actionModifier);
             }
         }
+        public void UseAbility(IAbilityWithBoolParam ability, IPresenter presenter, bool param, ActionModifier actionModifier)
+        {
+            if (ability.ActivateAbility)
+            {
+                ability.StartAbility(presenter, param, actionModifier);
+            }
+        }
 
         public void UseAbility(IAbilityWithAffectedPresenterParam ability, IPresenter presenter, IPresenter affectedPresenter, ActionModifier actionModifier)
         {

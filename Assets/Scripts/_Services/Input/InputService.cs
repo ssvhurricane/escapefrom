@@ -149,12 +149,26 @@ namespace Services.Input
                         "Press C(B).",
                         LogOutputLocationType.Console);
 
-                    _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
+                    _abilityService.UseAbility((IAbilityWithBoolParam)_playerMoveAbility
                                   , _playerPresenter,
-                                  _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Crouch);
+                                  value.performed, ActionModifier.Crouch);
                 }
             };
 
+            _topDownGameInput.Player.Crouch.canceled += value =>
+            {
+                if (_projectService.GetProjectState() == ProjectState.Start)
+                {
+                    _logService.ShowLog(GetType().Name,
+                        Services.Log.LogType.Message,
+                        "Press C_canceled(B).",
+                        LogOutputLocationType.Console);
+
+                    _abilityService.UseAbility((IAbilityWithBoolParam)_playerMoveAbility
+                                  , _playerPresenter,
+                                  !value.canceled, ActionModifier.Crouch);
+                }
+            };
 
             // Bind Player Base Attack Ability.
             _topDownGameInput.Player.Attack1.performed += value =>
@@ -219,7 +233,7 @@ namespace Services.Input
         {
             if (_projectService.GetProjectState() == ProjectState.Start)
             {
-                if (_topDownGameInput.Player.Move.IsPressed())
+                if (_topDownGameInput.Player.Move.IsPressed() && _topDownGameInput.Player.Move.ReadValue<Vector2>() != Vector2.zero)
                 {
                     if (!_topDownGameInput.Player.Crouch.IsPressed())
                     {

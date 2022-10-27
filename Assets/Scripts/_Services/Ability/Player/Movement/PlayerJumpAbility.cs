@@ -32,6 +32,7 @@ namespace Services.Ability
         public bool ActivateAbility { get; set; } = true;
         public Sprite Icon { get; set; }
 
+        private int _jumpHash;
         public PlayerJumpAbility(SignalBus signalBus,
             MovementService movementService,
              AnimationService animationService,
@@ -61,6 +62,8 @@ namespace Services.Ability
             WeaponType = _abilitySettings.WeaponType;
 
             Icon = _abilitySettings.Icon;
+
+            _jumpHash = Animator.StringToHash("Jump");
         }
 
         public void StartAbility(IPresenter ownerPresenter, ActionModifier actionModifier)
@@ -71,7 +74,9 @@ namespace Services.Ability
 
                 _movementService.Jump(view);
                 
-              
+                _animationService.SetTrigger(view.GetAnimator(), "Jump");
+
+                _animationService.SetBool(view.GetAnimator(), "Falling", !_movementService.IsGrounded(view));
             }
         }
     }

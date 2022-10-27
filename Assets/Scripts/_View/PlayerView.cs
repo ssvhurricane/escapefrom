@@ -14,6 +14,7 @@ namespace View
 
         [SerializeField] protected GameObject Armature;
         [SerializeField] protected GameObject CameraRoot;
+        [SerializeField] protected Animator Animator;
 
         private SignalBus _signalBus;
       
@@ -36,6 +37,11 @@ namespace View
         public GameObject GetCameraRoot() 
         {
             return CameraRoot;
+        }
+
+        public Animator GetAnimator()
+        {
+            return Animator;
         }
     }
 }

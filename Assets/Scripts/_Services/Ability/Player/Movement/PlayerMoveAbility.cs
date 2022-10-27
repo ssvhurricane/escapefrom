@@ -14,7 +14,7 @@ using Zenject;
 
 namespace Services.Ability
 {
-    public class PlayerMoveAbility : IAbilityWithVector2Param
+    public class PlayerMoveAbility : IAbilityWithVector2Param, IAbilityWithBoolParam
     {
         private SignalBus _signalBus;
        
@@ -34,6 +34,12 @@ namespace Services.Ability
         public Sprite Icon { get; set; }
 
         private PlayerView _view;
+        private int _xVelHash;
+        private int _yVelHash;
+        private int _zVelHash;
+        private int _groundHash;
+        private int _fallingHash;
+        private int _crouchHash;
 
         public PlayerMoveAbility(SignalBus signalBus,
             MovementService movementService,
@@ -64,6 +70,13 @@ namespace Services.Ability
             WeaponType = _abilitySettings.WeaponType;
 
             Icon = _abilitySettings.Icon;
+            
+           _xVelHash = Animator.StringToHash("X_Velocity");
+            _yVelHash = Animator.StringToHash("Y_Velocity");
+           _zVelHash = Animator.StringToHash("Z_Velocity");
+           _groundHash = Animator.StringToHash("Grounded");
+           _fallingHash = Animator.StringToHash("Falling");
+           _crouchHash = Animator.StringToHash("Crouch");
         }
        
         public void StartAbility(IPresenter ownerPresenter, Vector2 param, ActionModifier actionModifier)
@@ -77,6 +90,9 @@ namespace Services.Ability
                     case ActionModifier.None:
                         {
                             _movementService.Move(_view, param * _movementServiceSettings.Move.Speed);
+                             
+                            _animationService.SetFloat(_view.GetAnimator(), "X_Velocity", param.x * _movementServiceSettings.Move.Speed);
+                            _animationService.SetFloat(_view.GetAnimator(), "Y_Velocity", param.y * _movementServiceSettings.Move.Speed);
                         }
                             break;
                         
@@ -84,16 +100,40 @@ namespace Services.Ability
                         {
                            
                             _movementService.Move(_view, param * _movementServiceSettings.Run.Speed);
+
+                            _animationService.SetFloat(_view.GetAnimator(), "X_Velocity", param.x * _movementServiceSettings.Run.Speed);
+                            _animationService.SetFloat(_view.GetAnimator(), "Y_Velocity", param.y * _movementServiceSettings.Run.Speed);
+                          
                             break;
                         }
                     case ActionModifier.Crouch:
                         {
                             _movementService.Move(_view, param * _movementServiceSettings.Crouch.Speed);
+
+                            _animationService.SetFloat(_view.GetAnimator(), "X_Velocity", param.x * _movementServiceSettings.Crouch.Speed);
+                            _animationService.SetFloat(_view.GetAnimator(), "Y_Velocity", param.y * _movementServiceSettings.Crouch.Speed);
+                         
                             break;
                         }
+                      
                 }
+                
+                if(!_movementService.IsGrounded(_view)) // TODO: ref
+                            _animationService.SetFloat(_view.GetAnimator(), "Z_Velocity", _view.GetComponent<Rigidbody>().velocity.y);
+
+
             }
         }
 
+        public void StartAbility(IPresenter ownerPresenter, bool param, ActionModifier actionModifier)
+        {
+            if (ownerPresenter != null)
+            {
+                _view = (PlayerView)ownerPresenter.GetView();
+
+                if(_movementService.IsGrounded(_view))
+                   _animationService.SetBool(_view.GetAnimator(), "Crouch", param);
+            }
+        }
     }
 }

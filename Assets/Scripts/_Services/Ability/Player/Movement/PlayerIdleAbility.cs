@@ -66,14 +66,8 @@ namespace Services.Ability
             {
                 if (_view == null) _view = (PlayerView) ownerPresenter.GetView();
 
-                //if(_view.Animator != null) 
-                //{ 
-                //    _animationService.SetBool(_view.Animator, "IsWalkResting", false);
-                //    _animationService.SetBool(_view.Animator, "IsRunResting", false);
-
-                //    _animationService.SetBool(_view.Animator, "IsWalkCombat", false);
-                //    _animationService.SetBool(_view.Animator, "IsRunCombat", false);
-                //}
+                _animationService.SetFloat(_view.GetAnimator(), "X_Velocity", 0f);
+                _animationService.SetFloat(_view.GetAnimator(), "Y_Velocity", 0f);
             }
         }
     }

@@ -19,10 +19,13 @@ namespace Services.Animation
                 animator.Play(name);
             }
         }
-
-        public void SetBool(Animator animator, string name, bool value)
+        public void SetBool(Animator animator, string id, bool value)
         {
-            animator.SetBool(name, value);
+            animator.SetBool(id, value);
+        }
+        public void SetBool(Animator animator, int id, bool value)
+        {
+            animator.SetBool(id, value);
         }
 
         public bool GetBool(Animator animator, string nameAnim) 
@@ -33,6 +36,21 @@ namespace Services.Animation
         public void SetFloat(Animator animator, string name, float value) 
         {
             animator.SetFloat(name, value);
+        }
+
+        public void SetFloat(Animator animator, int id, float value)
+        {
+            animator.SetFloat(id, value);
+        }
+
+        public void SetTrigger(Animator animator, int id) 
+        {
+            animator.SetTrigger(id);
+        }
+
+        public void SetTrigger(Animator animator, string id)
+        {
+            animator.SetTrigger(id);
         }
 
         public float GetFloat(Animator animator, string nameAnim) 

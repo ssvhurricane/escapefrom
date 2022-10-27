@@ -50,6 +50,7 @@ MonoBehaviour:
   Layer: 0
   Armature: {fileID: 2036711889617980758}
   CameraRoot: {fileID: 7518462421338239293}
+  Animator: {fileID: 4749088499803819414}
 --- !u!54 &151960818924495912
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -58,7 +59,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4292413336086662627}
   serializedVersion: 2
-  m_Mass: 54
+  m_Mass: 75
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -159,6 +160,11 @@ Transform:
 --- !u!1 &2036711889617980758 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000763664338631358, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
+  m_PrefabInstance: {fileID: 1270217319955249128}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4749088499803819414 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5785033391108274814, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
   m_PrefabInstance: {fileID: 1270217319955249128}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7518462421338239293 stripped
