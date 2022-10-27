@@ -4,7 +4,6 @@ using Services.Essence;
 using Services.Input;
 using Signals;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace View
@@ -13,35 +12,17 @@ namespace View
     {
         [SerializeField] protected EssenceType Layer;
 
-        [SerializeField] public GameObject Armature;
+        [SerializeField] protected GameObject Armature;
+        [SerializeField] protected GameObject CameraRoot;
 
         private SignalBus _signalBus;
-
-        private MainHUDPresenter _mainHUDPresenter;
-
-        private CameraPresenter _cameraPresenter;
-
-        private PlayerPresenter _playerPresenter;
-
-        private InputService _inputService;
-
+      
         [Inject]
-        public void Constrcut(SignalBus signalBus, 
-            CameraPresenter cameraPresenter,
-            PlayerPresenter playerPresenter, MainHUDPresenter mainHUDPresenter,
-            InputService inputService)
+        public void Constrcut(SignalBus signalBus)
             
         {
             _signalBus = signalBus;
-
-            _cameraPresenter = cameraPresenter;
-
-            _playerPresenter = playerPresenter;
-
-            _mainHUDPresenter = mainHUDPresenter;
-
-            _inputService = inputService;
-
+           
              EssenceType = Layer;
 
             _signalBus.Fire(new EssenceServiceSignals.Register(this));
@@ -50,6 +31,11 @@ namespace View
         public GameObject GetArmature() 
         {
             return Armature;
+        }
+
+        public GameObject GetCameraRoot() 
+        {
+            return CameraRoot;
         }
     }
 }

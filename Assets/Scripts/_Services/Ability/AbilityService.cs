@@ -40,6 +40,13 @@ namespace Services.Ability
                 ability.StartAbility(presenter, affectedPresenter, actionModifier);
             }
         }
+        public void UseAbility(IAbilityWithAffectedPresenterVector2Param ability, IPresenter presenter, IPresenter affectedPresenter,Vector2 param, ActionModifier actionModifier)
+        {
+            if (ability.ActivateAbility)
+            {
+                ability.StartAbility(presenter, affectedPresenter, param, actionModifier);
+            }
+        }
 
         public void UseAbility(IAbilityWithAffectedPresentersParam ability, IPresenter presenter, IPresenter[] affectedPresenters, ActionModifier actionModifier)
         {

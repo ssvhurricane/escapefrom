@@ -30,6 +30,11 @@ namespace Services.Ability
          public void StartAbility(IPresenter ownerPresenter, IPresenter affectedPresenter, ActionModifier actionModifier);
     }
 
+    public interface IAbilityWithAffectedPresenterVector2Param : IAbility
+    {
+        public void StartAbility(IPresenter ownerPresenter, IPresenter affectedPresenter, Vector2 param, ActionModifier actionModifier);
+    }
+
     public interface IAbilityWithAffectedPresentersParam : IAbility
     {
         public void StartAbility(IPresenter ownerPresenter, IPresenter[] affectedPresenters, ActionModifier actionModifier);

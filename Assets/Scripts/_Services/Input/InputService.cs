@@ -13,7 +13,6 @@ using Services.Window;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using View;
 using View.Camera;
@@ -51,8 +50,6 @@ namespace Services.Input
                                      _playerMoveAbility,
                                          _playerRotateAbility,
                                             _cameraRotateAbility,
-                                               // _cameraFollowAbility,
-                                                   // _cameraParentAbility,
                                                       _playerJumpAbility;
                                                             
                                                                    
@@ -200,7 +197,6 @@ namespace Services.Input
                                         _abilityService.UseAbility((IAbilityWithOutParam)_playerJumpAbility, _playerPresenter, ActionModifier.None);
                 }
             };
-            
 
             // Back Menu.
             _topDownGameInput.Player.Pause.performed += value =>
@@ -229,44 +225,45 @@ namespace Services.Input
                     {
                         if (!_topDownGameInput.Player.Run.IsPressed())
                         {
-                            // Bind Player Move Ability.
                             _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
                              , _playerPresenter,
                              _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.None);
                         }
                         else
-                        {
                             _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
                              , _playerPresenter,
                              _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Run);
-                        }
+                        
                     }
                     else
-                    {
                         _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
                                , _playerPresenter,
                                _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Crouch);
-                    }
                 }
                 else 
                     _abilityService.UseAbility((IAbilityWithOutParam)_playerIdleAbility, _playerPresenter, ActionModifier.None);
-
             }
         }
 
         public void LateTick()
         {
-            if (_projectService.GetProjectState() == ProjectState.Start && _topDownGameInput.Player.Look.IsPressed())
+            if (_projectService.GetProjectState() == ProjectState.Start)
             {
-                _abilityService.UseAbility((IAbilityWithVector2Param)_playerRotateAbility
-               , _playerPresenter,
-               _topDownGameInput.Player.Look.ReadValue<Vector2>(), ActionModifier.None);
+                if (_topDownGameInput.Player.Look.IsPressed())
+                {
+                    _abilityService.UseAbility((IAbilityWithVector2Param)_playerRotateAbility
+                   , _playerPresenter,
+                   _topDownGameInput.Player.Look.ReadValue<Vector2>(), ActionModifier.None);
 
-
-                _abilityService.UseAbility((IAbilityWithVector2Param)_cameraRotateAbility
-                     , _cameraPresenter,
-                _topDownGameInput.Player.Look.ReadValue<Vector2>(), ActionModifier.None);
-            }
+                    _abilityService.UseAbility((IAbilityWithVector2Param)_cameraRotateAbility
+                         , _cameraPresenter,
+                    _topDownGameInput.Player.Look.ReadValue<Vector2>(), ActionModifier.None);
+                } 
+                
+                // Set CameraRoot position.
+                _abilityService.UseAbility((IAbilityWithAffectedPresenterParam)_cameraRotateAbility
+                    , _cameraPresenter, _playerPresenter, ActionModifier.None);
+            }  
         }
 
         public void TakePossessionOfObject(IPresenter presenter)
@@ -275,7 +272,7 @@ namespace Services.Input
             
             _playerView = (PlayerView) _playerPresenter.GetView();
 
-            _cameraPresenter.ShowView<FPSCameraView>(CameraServiceConstants.FPSCamera, _playerPresenter.GetView());
+            _cameraPresenter.ShowView<FPSCameraView>(CameraServiceConstants.FPSCamera, _playerView);
 
             CachingAbilities();
 

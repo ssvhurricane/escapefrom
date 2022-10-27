@@ -10,10 +10,12 @@ using Services.Item.Weapon;
 using System.Linq;
 using UnityEngine;
 using Zenject;
+using View.Camera;
+using View;
 
 namespace Services.Ability
 {
-    public class CameraRotateAbility : IAbilityWithVector2Param
+    public class CameraRotateAbility : IAbilityWithVector2Param, IAbilityWithAffectedPresenterParam
     {
         private SignalBus _signalBus;
 
@@ -23,7 +25,10 @@ namespace Services.Ability
         private readonly VFXService _vFXService;
 
         private AbilitySettings _abilitySettings;
-
+        private CameraPresenter _cameraPresenter;
+        private PlayerPresenter _playerPresenter;
+        private FPSCameraView _cameraView;
+        private PlayerView _playerView;
         public string Id { get; set; }
         public AbilityType AbilityType { get; set; }
         public WeaponType WeaponType { get; set; }
@@ -61,7 +66,23 @@ namespace Services.Ability
 
             Icon = _abilitySettings.Icon;
         }
-      
+
+        public void StartAbility(IPresenter ownerPresenter, IPresenter affectedPresenter, ActionModifier actionModifier)
+        {
+            if (_cameraPresenter == null)
+                _cameraPresenter = ownerPresenter as CameraPresenter;
+            if (_playerPresenter == null)
+                _playerPresenter = affectedPresenter as PlayerPresenter;
+
+            if (_cameraView == null)
+                _cameraView = _cameraPresenter.GetView() as FPSCameraView;
+
+            if (_playerView == null)
+                _playerView = _playerPresenter.GetView() as PlayerView;
+
+            _cameraView.GetMainCamera().transform.position = _playerView.GetCameraRoot().transform.position;
+        }
+
         public void StartAbility(IPresenter ownerPresenter, Vector2 param, ActionModifier actionModifier)
         {
             _movementService.RotateWithClamp(ownerPresenter.GetView(), param);

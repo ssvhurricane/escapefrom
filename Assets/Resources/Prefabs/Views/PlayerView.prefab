@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Layer: 0
   Armature: {fileID: 2036711889617980758}
+  CameraRoot: {fileID: 7518462421338239293}
 --- !u!54 &151960818924495912
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -135,6 +136,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Armature
       objectReference: {fileID: 0}
+    - target: {fileID: 8179732389960561771, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179732389960561771, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179732389960561771, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.028
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
@@ -146,5 +159,10 @@ Transform:
 --- !u!1 &2036711889617980758 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000763664338631358, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
+  m_PrefabInstance: {fileID: 1270217319955249128}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7518462421338239293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8788289036424185557, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
   m_PrefabInstance: {fileID: 1270217319955249128}
   m_PrefabAsset: {fileID: 0}
