@@ -15,12 +15,7 @@ namespace Services.Movement
         private readonly MovementServiceSettings[] _movementServiceSettings;
         private MovementServiceSettings _settings;
 
-       
-        private CapsuleCollider _capsuleCollider;
-        private LayerMask _groundLayers;
-
-        float _xRotation;
-        Vector3 _currentVelocity;
+        private float _xRotation;
 
         public MovementService(SignalBus signalBus,
                                LogService logService,  
@@ -33,32 +28,20 @@ namespace Services.Movement
 
         public MovementServiceSettings InitService(string settingsID)
         { 
-           return _settings = _movementServiceSettings?.
-                FirstOrDefault(_=>_.Id == settingsID);
+           return _settings = _movementServiceSettings?.FirstOrDefault(_=>_.Id == settingsID);
         }
 
         public void Move(IView view, Vector2 direction, Rigidbody viewRigidbody)
         {
             if (viewRigidbody != null)
             {
-                //Vector3 targetVelocity = (view.GetGameObject().transform.right * (direction.x - viewRigidbody.velocity.x))
-                //        + (view.GetGameObject().transform.forward * (direction.y - viewRigidbody.velocity.z));
+                Vector3 targetVelocity = (view.GetGameObject().transform.right * direction.x)
+                        + (view.GetGameObject().transform.forward * direction.y);
 
-                //if (IsGrounded(view, viewRigidbody))
-                //    viewRigidbody.AddForce(targetVelocity, ForceMode.VelocityChange);
-                //else
-                //    viewRigidbody.AddForce(targetVelocity * _settings.Move.AirResistance, ForceMode.VelocityChange);
-
-                //if (IsGrounded(view, viewRigidbody))
-                //{
-                //    var xVelDifference = direction.x - viewRigidbody.velocity.x;
-                //    var zVelDifference = direction.y - viewRigidbody.velocity.z;
-
-                //    viewRigidbody.AddForce(view.GetGameObject().transform.TransformVector(new Vector3(xVelDifference, 0, zVelDifference)), ForceMode.VelocityChange);
-                //}
-                //else
-                //    viewRigidbody.AddForce(view.GetGameObject().transform
-                //        .TransformVector(new Vector3(direction.x * _settings.Move.AirResistance, 0, direction.y * _settings.Move.AirResistance)), ForceMode.VelocityChange);
+                if (IsGrounded(view, viewRigidbody))
+                    viewRigidbody.AddForce(targetVelocity - viewRigidbody.velocity, ForceMode.VelocityChange);
+                else
+                    viewRigidbody.AddForce((targetVelocity - viewRigidbody.velocity) * _settings.Move.AirResistance, ForceMode.VelocityChange);
             }
         }
 
@@ -108,17 +91,16 @@ namespace Services.Movement
                  baseView.GetGameObject().transform.parent = null;
         }
 
-        public bool IsGrounded(IView view , Rigidbody viewRigidbody) 
+        public bool IsGrounded(IView view, Rigidbody viewRigidbody) 
         {
             if (viewRigidbody != null)
             {
                 RaycastHit hitInfo;
                 if (Physics.Raycast(viewRigidbody.worldCenterOfMass, Vector3.down, out hitInfo, _settings.Jump.Dis2Ground + 0.1f, _settings.Jump.GroundLayers))
                     return true;
-                return false;
             }
-            else
-                 return false;
+            
+           return false;
         }
     }
 }

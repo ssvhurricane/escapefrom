@@ -31,6 +31,6 @@ MonoBehaviour:
       Speed: 5
       UpperLimit: -40
       BottomLimit: 70
-      Sensitivity: 10
+      Sensitivity: 8
     Crouch:
       Speed: 1
