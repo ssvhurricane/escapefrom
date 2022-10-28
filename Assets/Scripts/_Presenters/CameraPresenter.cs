@@ -47,7 +47,7 @@ namespace Presenters
                 _cameraView = (TCameraView)_essenceService.ShowEssence<TCameraView>();
             else
             {
-                Transform holderTansform = baseView.GetGameObject().transform;
+                Transform holderTansform = (baseView as PlayerView).transform;
 
                 if (holderTansform != null)
                     _cameraView = _factoryService.Spawn<TCameraView>(holderTansform);

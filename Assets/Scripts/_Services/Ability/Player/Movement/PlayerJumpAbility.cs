@@ -14,11 +14,12 @@ using Zenject;
 
 namespace Services.Ability
 {
-    public class PlayerJumpAbility : IAbilityWithOutParam
+    public class PlayerJumpAbility :  IAbilityWithBoolParam
     {
         private SignalBus _signalBus;
 
         private readonly MovementService _movementService;
+        private readonly MovementServiceSettings _movementServiceSettings;
         private readonly AnimationService _animationService;
         private readonly SFXService _sFXService;
         private readonly VFXService _vFXService;
@@ -33,6 +34,9 @@ namespace Services.Ability
         public Sprite Icon { get; set; }
 
         private int _jumpHash;
+        private Rigidbody _rigidbody;
+        private PlayerView _view;
+
         public PlayerJumpAbility(SignalBus signalBus,
             MovementService movementService,
              AnimationService animationService,
@@ -43,7 +47,7 @@ namespace Services.Ability
             _signalBus = signalBus;
 
             _movementService = movementService;
-            _movementService.InitService(MovementServiceConstants.BasePlayerMovement);
+            _movementServiceSettings = _movementService.InitService(MovementServiceConstants.BasePlayerMovement);
 
             _animationService = animationService;
             _sFXService = sFXService;
@@ -66,17 +70,21 @@ namespace Services.Ability
             _jumpHash = Animator.StringToHash("Jump");
         }
 
-        public void StartAbility(IPresenter ownerPresenter, ActionModifier actionModifier)
+        public void StartAbility(IPresenter ownerPresenter, bool param, ActionModifier actionModifier)
         {
             if (ownerPresenter != null)
-            { 
-                 var view = (PlayerView) ownerPresenter.GetView(); 
+            {
+                if (_view == null) _view = (PlayerView)ownerPresenter.GetView();
 
-                _movementService.Jump(view);
-                
-                _animationService.SetTrigger(view.GetAnimator(), "Jump");
+                if (_rigidbody == null) _rigidbody = _view.GetComponent<Rigidbody>();
 
-                _animationService.SetBool(view.GetAnimator(), "Falling", !_movementService.IsGrounded(view));
+                if (!param) return;
+                if (!_movementService.IsGrounded(_view, _rigidbody)) return;
+
+                 _movementService.Jump(_view, _rigidbody);
+
+                _animationService.SetTrigger(_view.GetAnimator(), _jumpHash);
+              
             }
         }
     }

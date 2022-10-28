@@ -208,7 +208,8 @@ namespace Services.Input
                             LogOutputLocationType.Console);
 
                     if(!_topDownGameInput.Player.Crouch.IsPressed())
-                                        _abilityService.UseAbility((IAbilityWithOutParam)_playerJumpAbility, _playerPresenter, ActionModifier.None);
+                                        _abilityService.UseAbility((IAbilityWithBoolParam)_playerJumpAbility,
+                                            _playerPresenter, value.performed, ActionModifier.None);
                 }
             };
 
@@ -247,15 +248,21 @@ namespace Services.Input
                             _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
                              , _playerPresenter,
                              _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Run);
-                        
+
                     }
                     else
                         _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
                                , _playerPresenter,
                                _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Crouch);
                 }
-                else 
+                else
+                {
+                    _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
+                             , _playerPresenter,
+                             Vector2.zero, ActionModifier.None);
+
                     _abilityService.UseAbility((IAbilityWithOutParam)_playerIdleAbility, _playerPresenter, ActionModifier.None);
+                }
             }
         }
 

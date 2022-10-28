@@ -10,6 +10,7 @@ using Services.Item.Weapon;
 using System.Linq;
 using UnityEngine;
 using Zenject;
+using View;
 
 namespace Services.Ability
 {
@@ -23,6 +24,8 @@ namespace Services.Ability
         private readonly VFXService _vFXService;
 
         private AbilitySettings _abilitySettings;
+        private Rigidbody _rigidbody;
+        private PlayerView _view;
 
         public string Id { get; set; }
         public AbilityType AbilityType { get; set; }
@@ -64,7 +67,14 @@ namespace Services.Ability
       
         public void StartAbility(IPresenter ownerPresenter, Vector2 param, ActionModifier actionModifier)
         {
-            _movementService.Rotate(ownerPresenter.GetView(), param);
+            if (ownerPresenter != null)
+            {
+                if (_view == null) _view = (PlayerView)ownerPresenter.GetView();
+
+                if (_rigidbody == null) _rigidbody = _view.GetComponent<Rigidbody>();
+
+                _movementService.Rotate(ownerPresenter.GetView(), param, _rigidbody);
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Services.Movement
         private readonly MovementServiceSettings[] _movementServiceSettings;
         private MovementServiceSettings _settings;
 
-        private Rigidbody _viewRigidbody;
+       
         private CapsuleCollider _capsuleCollider;
         private LayerMask _groundLayers;
 
@@ -37,58 +37,49 @@ namespace Services.Movement
                 FirstOrDefault(_=>_.Id == settingsID);
         }
 
-        public void Move(IView view, Vector2 direction) 
+        public void Move(IView view, Vector2 direction, Rigidbody viewRigidbody)
         {
-           if (_viewRigidbody == null)
-                _viewRigidbody = view.GetGameObject().GetComponent<Rigidbody>();
+            if (viewRigidbody != null)
+            {
+                //Vector3 targetVelocity = (view.GetGameObject().transform.right * (direction.x - viewRigidbody.velocity.x))
+                //        + (view.GetGameObject().transform.forward * (direction.y - viewRigidbody.velocity.z));
 
-            Vector3 targetVelocity = (view.GetGameObject().transform.right * direction.x)
-                + (view.GetGameObject().transform.forward * direction.y);
+                //if (IsGrounded(view, viewRigidbody))
+                //    viewRigidbody.AddForce(targetVelocity, ForceMode.VelocityChange);
+                //else
+                //    viewRigidbody.AddForce(targetVelocity * _settings.Move.AirResistance, ForceMode.VelocityChange);
 
-            if (IsGrounded(view))
-                _viewRigidbody.AddForce(targetVelocity * _settings.Move.BlendSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+                //if (IsGrounded(view, viewRigidbody))
+                //{
+                //    var xVelDifference = direction.x - viewRigidbody.velocity.x;
+                //    var zVelDifference = direction.y - viewRigidbody.velocity.z;
 
-
-            //if (IsGrounded(view))
-            //{
-
-            //    _currentVelocity.x = Mathf.Lerp(_currentVelocity.x, direction.x, _settings.Move.BlendSpeed * Time.fixedDeltaTime);
-            //    _currentVelocity.y = Mathf.Lerp(_currentVelocity.y, direction.y, _settings.Move.BlendSpeed * Time.fixedDeltaTime);
-
-            //    var xVelDifference = _currentVelocity.x - _viewRigidbody.velocity.x;
-            //    var zVelDifference = _currentVelocity.y - _viewRigidbody.velocity.z;
-
-            //    _viewRigidbody.AddForce(view.GetGameObject().transform.TransformVector(new Vector3(xVelDifference, 0, zVelDifference)), ForceMode.VelocityChange);
-            //}
-            //else
-            //{
-            //    _viewRigidbody.AddForce(view.GetGameObject().transform.TransformVector(new Vector3(_currentVelocity.x * _settings.Move.AirResistance, 0, _currentVelocity.y * _settings.Move.AirResistance)), ForceMode.VelocityChange);
-            //}
-
+                //    viewRigidbody.AddForce(view.GetGameObject().transform.TransformVector(new Vector3(xVelDifference, 0, zVelDifference)), ForceMode.VelocityChange);
+                //}
+                //else
+                //    viewRigidbody.AddForce(view.GetGameObject().transform
+                //        .TransformVector(new Vector3(direction.x * _settings.Move.AirResistance, 0, direction.y * _settings.Move.AirResistance)), ForceMode.VelocityChange);
+            }
         }
 
         /// <summary>
         /// Jump With Physics.
         /// </summary>
         /// <param name="view"></param>
-        public void Jump(IView view)
+        public void Jump(IView view, Rigidbody viewRigidbody)
         {
-            if (_viewRigidbody == null) 
-                _viewRigidbody = view.GetGameObject().GetComponent<Rigidbody>();
-
-            if(IsGrounded(view))
-              _viewRigidbody.AddForce(view.GetGameObject().transform.up * _settings.Jump.Speed, _settings.Jump.ForceMode);
+            if (viewRigidbody != null)
+                if (IsGrounded(view, viewRigidbody))
+                    viewRigidbody.AddForce(view.GetGameObject().transform.up * _settings.Jump.Speed, _settings.Jump.ForceMode);
         }
 
         /// <summary>
 		/// Rotate towards the direction the character is moving.
 		/// </summary>
-        public void Rotate(IView view, Vector2 direction)
+        public void Rotate(IView view, Vector2 direction, Rigidbody viewRigidbody)
         {
-            if (_viewRigidbody == null)
-                _viewRigidbody = view.GetGameObject().GetComponent<Rigidbody>();
-            
-            _viewRigidbody.MoveRotation(_viewRigidbody.rotation * Quaternion.Euler(0f, direction.x * _settings.Rotate.Sensitivity * Time.smoothDeltaTime, 0f));
+            if (viewRigidbody != null)
+                    viewRigidbody.MoveRotation(viewRigidbody.rotation * Quaternion.Euler(0f, direction.x * _settings.Rotate.Sensitivity * Time.smoothDeltaTime, 0f));
         }
 
         public void RotateWithClamp(IView view, Vector2 direction)
@@ -117,15 +108,17 @@ namespace Services.Movement
                  baseView.GetGameObject().transform.parent = null;
         }
 
-        public bool IsGrounded(IView view) 
+        public bool IsGrounded(IView view , Rigidbody viewRigidbody) 
         {
-            if (_viewRigidbody == null)
-                _viewRigidbody = view.GetGameObject().GetComponent<Rigidbody>();
-
-            RaycastHit hitInfo;
-            if (Physics.Raycast(_viewRigidbody.worldCenterOfMass, Vector3.down, out hitInfo, _settings.Jump.Dis2Ground + 0.1f, _settings.Jump.GroundLayers))
-                return true;
-            return false;
+            if (viewRigidbody != null)
+            {
+                RaycastHit hitInfo;
+                if (Physics.Raycast(viewRigidbody.worldCenterOfMass, Vector3.down, out hitInfo, _settings.Jump.Dis2Ground + 0.1f, _settings.Jump.GroundLayers))
+                    return true;
+                return false;
+            }
+            else
+                 return false;
         }
     }
 }

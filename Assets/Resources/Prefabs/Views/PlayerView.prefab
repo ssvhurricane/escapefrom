@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6355914873327573048}
   - component: {fileID: 6534419461352861946}
-  - component: {fileID: 151960818924495912}
-  - component: {fileID: 4416841038048769228}
+  - component: {fileID: 4868479629482273719}
+  - component: {fileID: 841879468596532589}
   m_Layer: 6
   m_Name: PlayerView
   m_TagString: Untagged
@@ -51,7 +51,7 @@ MonoBehaviour:
   Armature: {fileID: 2036711889617980758}
   CameraRoot: {fileID: 7518462421338239293}
   Animator: {fileID: 4749088499803819414}
---- !u!54 &151960818924495912
+--- !u!54 &4868479629482273719
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,7 +67,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &4416841038048769228
+--- !u!136 &841879468596532589
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,15 +111,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 479842183901732868, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 479842183901732868, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 479842183901732868, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 479842183901732868, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -136,18 +136,6 @@ PrefabInstance:
     - target: {fileID: 1000763664338631358, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
       propertyPath: m_Name
       value: Armature
-      objectReference: {fileID: 0}
-    - target: {fileID: 8179732389960561771, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 8179732389960561771, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.012
-      objectReference: {fileID: 0}
-    - target: {fileID: 8179732389960561771, guid: 59bdac2b9e887ce4f877cca6f8f9abc6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.028
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

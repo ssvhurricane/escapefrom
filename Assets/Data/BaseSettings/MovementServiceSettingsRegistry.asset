@@ -21,7 +21,7 @@ MonoBehaviour:
     Run:
       Speed: 6
     Jump:
-      Speed: 300
+      Speed: 150
       ForceMode: 1
       GroundLayers:
         serializedVersion: 2
@@ -31,6 +31,6 @@ MonoBehaviour:
       Speed: 5
       UpperLimit: -40
       BottomLimit: 70
-      Sensitivity: 22
+      Sensitivity: 10
     Crouch:
       Speed: 1

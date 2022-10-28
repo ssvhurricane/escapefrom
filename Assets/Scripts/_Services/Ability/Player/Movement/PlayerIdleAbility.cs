@@ -10,6 +10,7 @@ using System.Linq;
 using UnityEngine;
 using View;
 using Zenject;
+using Constants;
 
 namespace Services.Ability
 {
@@ -31,7 +32,17 @@ namespace Services.Ability
         public bool ActivateAbility { get; set; } = true;
         public Sprite Icon { get; set; }
 
+        private int _xVelHash;
+        private int _yVelHash;
+        private int _zVelHash;
+        private int _groundHash;
+        private int _fallingHash;
+        private int _crouchHash;
         private PlayerView _view;
+        private MovementServiceSettings _movementServiceSettings;
+
+        private Rigidbody _rigidbody;
+
         public PlayerIdleAbility(SignalBus signalBus,
              MovementService movementService,
              AnimationService animationService,
@@ -47,6 +58,8 @@ namespace Services.Ability
             _vFXService = vFXService;
 
             InitAbility(abilitiesSettings);
+
+            _movementServiceSettings = _movementService.InitService(MovementServiceConstants.BasePlayerMovement);
         }
         public void InitAbility(AbilitySettings[] abilitiesSettings)
         {
@@ -59,6 +72,15 @@ namespace Services.Ability
             WeaponType = _abilitySettings.WeaponType;
 
             Icon = _abilitySettings.Icon;
+
+
+            _xVelHash = Animator.StringToHash("X_Velocity");
+            _yVelHash = Animator.StringToHash("Y_Velocity");
+            _zVelHash = Animator.StringToHash("Z_Velocity");
+            _groundHash = Animator.StringToHash("Grounded");
+            _fallingHash = Animator.StringToHash("Falling");
+            _crouchHash = Animator.StringToHash("Crouch");
+
         }
         public void StartAbility(IPresenter ownerPresenter, ActionModifier actionModifier)
         {
@@ -66,8 +88,14 @@ namespace Services.Ability
             {
                 if (_view == null) _view = (PlayerView) ownerPresenter.GetView();
 
-                _animationService.SetFloat(_view.GetAnimator(), "X_Velocity", 0f);
-                _animationService.SetFloat(_view.GetAnimator(), "Y_Velocity", 0f);
+                _animationService.SetFloat(_view.GetAnimator(), _xVelHash, 0f);
+                _animationService.SetFloat(_view.GetAnimator(), _yVelHash, 0f);
+                _animationService.SetFloat(_view.GetAnimator(), _zVelHash , 0f);
+
+                if (_rigidbody == null) _rigidbody = _view.GetComponent<Rigidbody>();
+
+                _animationService.SetBool(_view.GetAnimator(), _fallingHash, !_movementService.IsGrounded(_view, _rigidbody));
+                _animationService.SetBool(_view.GetAnimator(), _groundHash, _movementService.IsGrounded(_view, _rigidbody));
             }
         }
     }

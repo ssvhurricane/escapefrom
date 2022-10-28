@@ -48,6 +48,11 @@ namespace Services.Animation
             animator.SetTrigger(id);
         }
 
+        public AnimatorControllerParameter GetTrigger(Animator animator, int id)
+        {
+          return animator.GetParameter(id);
+        }
+
         public void SetTrigger(Animator animator, string id)
         {
             animator.SetTrigger(id);
