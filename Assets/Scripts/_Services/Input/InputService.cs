@@ -108,9 +108,31 @@ namespace Services.Input
                             Services.Log.LogType.Message,
                             "Press Up(d-pad).",
                             LogOutputLocationType.Console);
-                       
-                       // TODO:
-                   
+
+                        if (!_mainHudView.GetVerticalAbilityPanel().gameObject.activeSelf)
+                            _mainHudView.GetVerticalAbilityPanel().gameObject.SetActive(true);
+
+                        if (_playerAbility.Value != null)
+                            _playerAbility.Value._image.color = Color.white;
+
+                        if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id == AbilityServiceConstants.PlayerNoneAbility
+                        || _playerAbility.Key <= 0)
+                        {
+                            _playerAbility = _playerAbilityItems.LastOrDefault();
+                        }
+                        else
+                        {
+                            _playerAbility = _playerAbilityItems.FirstOrDefault(item => item.Key == _playerAbility.Key - 1);
+                        }
+
+                        if (_playerAbility.Value != null)
+                            _playerAbility.Value._image.color = Color.red;
+
+                        ((ILiveModel)_playerPresenter.GetModel())
+                            .SetCurrentAbility(_playerAttackAbilities.FirstOrDefault(ability => ability.Id == _playerAbility.Value.Id));
+
+                        _mainHudView.GetPlayerAbilityContainer().GetComponent<Image>().sprite = ((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Icon;
+
                     }
                     else if (nameControl == "downArrow" || nameControl == "down")
                     {
@@ -119,7 +141,30 @@ namespace Services.Input
                            "Press Down(d-pad).",
                            LogOutputLocationType.Console);
 
-                      // TODO:
+                        if (!_mainHudView.GetVerticalAbilityPanel().gameObject.activeSelf)
+                            _mainHudView.GetVerticalAbilityPanel().gameObject.SetActive(true);
+
+                        // ToDo move logic in View...
+                        if (_playerAbility.Value != null)
+                            _playerAbility.Value._image.color = Color.white;
+
+                        if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id == AbilityServiceConstants.PlayerNoneAbility
+                        || _playerAbility.Key >= _playerAbilityItems.Count() - 1)
+                        {
+                            _playerAbility = _playerAbilityItems.FirstOrDefault();
+                        }
+                        else
+                        {
+                            _playerAbility = _playerAbilityItems.FirstOrDefault(item => item.Key == _playerAbility.Key + 1);
+                        }
+                        // ToDo move logic in View...
+                        if (_playerAbility.Value != null)
+                            _playerAbility.Value._image.color = Color.red;
+
+                        ((ILiveModel)_playerPresenter.GetModel())
+                            .SetCurrentAbility(_playerAttackAbilities.FirstOrDefault(ability => ability.Id == _playerAbility.Value.Id));
+
+                        _mainHudView.GetPlayerAbilityContainer().GetComponent<Image>().sprite = ((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Icon;
                     }
                 }
             };
@@ -181,7 +226,11 @@ namespace Services.Input
                                 "Press LeftMouseButton(LT).",
                                 LogOutputLocationType.Console);
 
-                    // TODO:
+                    if (_mainHudView.GetVerticalAbilityPanel().gameObject.activeSelf)
+                        _mainHudView.GetVerticalAbilityPanel().gameObject.SetActive(false);
+
+                    if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id != AbilityServiceConstants.PlayerNoneAbility)
+                        _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility(), _playerPresenter, ActionModifier.None);
                 }
             };
 
@@ -194,6 +243,12 @@ namespace Services.Input
                             Services.Log.LogType.Message,
                             "Press RightMouseButton(RT).",
                             LogOutputLocationType.Console);
+
+                    if (_mainHudView.GetVerticalAbilityPanel().gameObject.activeSelf)
+                        _mainHudView.GetVerticalAbilityPanel().gameObject.SetActive(false);
+
+                    if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id != AbilityServiceConstants.PlayerNoneAbility)
+                        _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility(), _playerPresenter, ActionModifier.None);
                 }
             };
 
@@ -297,23 +352,23 @@ namespace Services.Input
 
             CachingAbilities();
 
-            InitAbilities();
+            InitializePlayerAbilityViews();
 
             _topDownGameInput.Enable();
         }
 
-        private void InitAbilities() 
+        private void InitializePlayerAbilityViews() 
         {
             PlayerAbilityItemView playerAbilityItemView;
 
             _mainHudView = (MainHUDView)_mainHUDPresenter.GetView();
-            _mainHudView.VerticalAbilityPanel.gameObject.SetActive(false);
+            _mainHudView.GetVerticalAbilityPanel().gameObject.SetActive(false);
 
             // Init Player Ability.
             ((ILiveModel)_playerPresenter.GetModel())
                 .SetCurrentAbility(_playerNoneAbility);
 
-            _mainHudView.PlayerAbilityContainer.GetComponent<Image>().sprite = ((ILiveModel) _playerPresenter.GetModel()).GetCurrentAbility().Icon;
+            _mainHudView.GetPlayerAbilityContainer().GetComponent<Image>().sprite = ((ILiveModel) _playerPresenter.GetModel()).GetCurrentAbility().Icon;
 
             _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility(), _playerPresenter, ActionModifier.None);
 
@@ -322,7 +377,7 @@ namespace Services.Input
             for (var item = 0; item < _playerAttackAbilities.Count(); item++) 
             {
                  playerAbilityItemView
-                    = (PlayerAbilityItemView)_poolService.Spawn<PlayerAbilityItemView>(_mainHudView.VerticalAbilityPanel.transform);
+                    = (PlayerAbilityItemView)_poolService.Spawn<PlayerAbilityItemView>(_mainHudView.GetVerticalAbilityPanel().transform);
 
                  playerAbilityItemView._image.sprite = _playerAttackAbilities.ToList()[item].Icon;
 

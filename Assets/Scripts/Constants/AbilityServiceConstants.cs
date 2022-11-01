@@ -8,8 +8,8 @@ namespace Constants
         public static string PlayerRotateAbility = "PlayerRotateAbility";
         public static string PlayerJumpAbility = "PlayerJumpAbility";
        
-        public static string PlayerAttackAbility = "PlayerAttackAbility";
-        public static string PlayerRangeAttackAbility ="PlayerRangeAttackAbility";
+        public static string PlayerBaseAttackAbility = "PlayerBaseAttackAbility";
+        public static string PlayerAdvancedAttackAbility = "PlayerAdvancedAttackAbility";
 
         public static string PlayerBlockAbility = "PlayerBlockAbility";
 

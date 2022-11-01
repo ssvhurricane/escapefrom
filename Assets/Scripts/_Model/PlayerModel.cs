@@ -21,8 +21,8 @@ namespace Model
         private PlayerRotateAbility _playerRotateAbility;
         private PlayerJumpAbility _playerJumpAbility;
         
-        private PlayerAttackAbility _playerAttackAbility;
-        private PlayerRangeAttackAbility _playerRangeAttackAbility;
+        private PlayerBaseAttackAbility _playerAttackAbility;
+        private PlayerAdvancedAttackAbility _playerRangeAttackAbility;
         
         private PlayerNoneAbility _playerNoneCurrentAbility;
         private PlayerDeathAbility _playerDeathAbility;
@@ -41,8 +41,8 @@ namespace Model
                 PlayerRotateAbility playerRotateAbility,
                 PlayerJumpAbility playerJumpAbility,
                
-                PlayerAttackAbility playerAttackAbility,
-                PlayerRangeAttackAbility playerRangeAttackAbility,
+                PlayerBaseAttackAbility playerAttackAbility,
+                PlayerAdvancedAttackAbility playerRangeAttackAbility,
                 
                 PlayerNoneAbility playerNoneCurrentAbility,
                 PlayerDeathAbility playerDeathAbility,

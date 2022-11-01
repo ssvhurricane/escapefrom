@@ -11,12 +11,11 @@ using UnityEngine;
 using View;
 using Zenject;
 using Services.Item;
-using Constants;
-using Services.Essence;
+using Services.Log;
 
 namespace Services.Ability
 {
-    public class PlayerAttackAbility : IAbilityWithOutParam
+    public class PlayerBaseAttackAbility : IAbilityWithOutParam
     {
         private SignalBus _signalBus; 
         
@@ -25,6 +24,7 @@ namespace Services.Ability
         private readonly SFXService _sFXService;
         private readonly VFXService _vFXService;
         private readonly ItemService _itemService;
+        private LogService _logService;
 
         private AbilitySettings _abilitySettings;
 
@@ -35,13 +35,14 @@ namespace Services.Ability
         public ActionModifier ActionModifier { get; set; }
         public Sprite Icon { get; set; }
 
-        public PlayerAttackAbility(SignalBus signalBus,
+        public PlayerBaseAttackAbility(SignalBus signalBus,
              MovementService movementService,
              AnimationService animationService,
              SFXService sFXService,
              VFXService vFXService,
              ItemService itemService,
-              AbilitySettings[] abilitiesSettings) 
+             LogService logservice,
+             AbilitySettings[] abilitiesSettings) 
         { 
             _signalBus = signalBus;
 
@@ -50,6 +51,7 @@ namespace Services.Ability
             _sFXService = sFXService;
             _vFXService = vFXService;
             _itemService = itemService;
+            _logService = logservice;
 
             InitAbility(abilitiesSettings); 
         }
@@ -103,15 +105,21 @@ namespace Services.Ability
                     //    _animationService.PlayAnimation(view.Animator, "Attack");
                     //    _animationService.SetFloat(view.Animator, "AttackingValue", _animationService.GetRandomAnimation(1,3));
                     //}
-
-                    Debug.Log("[PlayerAttackAbility]-> Base Attack!");
+                  
+                    _logService.ShowLog(GetType().Name,
+                            Services.Log.LogType.Message,
+                            "Base Attack!.",
+                            LogOutputLocationType.Console);
 
                 }
-                //else if (actionModifier == ActionModifier.Power) 
-                //{
-                //    //ToDo...
-                //    Debug.Log("[PlayerAttackAbility]-> Power Attack!");
-                //}
+                else if (actionModifier == ActionModifier.Power)
+                {
+                    //ToDo...
+                    _logService.ShowLog(GetType().Name,
+                            Services.Log.LogType.Message,
+                            "Base Power Attack!.",
+                            LogOutputLocationType.Console);
+                }
             }
         }
     }

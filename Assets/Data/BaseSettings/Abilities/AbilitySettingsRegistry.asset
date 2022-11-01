@@ -41,16 +41,16 @@ MonoBehaviour:
     WeaponType: 0
     Icon: {fileID: 0}
     ActionModifier: 
-  - Id: PlayerAttackAbility
-    Name: PlayerAttackAbility
-    AbilityDescription: PlayerAttackAbility
+  - Id: PlayerBaseAttackAbility
+    Name: PlayerBaseAttackAbility
+    AbilityDescription: PlayerBaseAttackAbility
     AbilityType: 1
     WeaponType: 5
     Icon: {fileID: 21300000, guid: 42d77ede3fef8dd4a83cdd25c482101d, type: 3}
     ActionModifier: 
-  - Id: PlayerRangeAttackAbility
-    Name: PlayerRangeAttackAbility
-    AbilityDescription: PlayerRangeAttackAbility
+  - Id: PlayerAdvancedAttackAbility
+    Name: PlayerAdvancedAttackAbility
+    AbilityDescription: PlayerAdvancedAttackAbility
     AbilityType: 1
     WeaponType: 3
     Icon: {fileID: 21300000, guid: 4e19ad47e633d11499b8a77bc7c21d65, type: 3}

@@ -9,9 +9,9 @@ namespace View.Window
     {
         [SerializeField] protected WindowType Type;
 
-        [SerializeField] public RectTransform PlayerAbilityContainer;
+        [SerializeField] protected RectTransform PlayerAbilityContainer;
 
-        [SerializeField] public RectTransform VerticalAbilityPanel;
+        [SerializeField] protected RectTransform VerticalAbilityPanel;
 
         private SignalBus _signalBus;
 
@@ -23,6 +23,16 @@ namespace View.Window
             WindowType = Type;
 
             _signalBus.Fire(new WindowServiceSignals.Register(this));
+        }
+
+        public RectTransform GetPlayerAbilityContainer() 
+        {
+            return PlayerAbilityContainer;
+        }
+
+        public RectTransform GetVerticalAbilityPanel() 
+        {
+            return VerticalAbilityPanel;
         }
     }
 }

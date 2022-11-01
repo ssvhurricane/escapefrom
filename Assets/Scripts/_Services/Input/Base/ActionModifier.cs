@@ -4,6 +4,7 @@ namespace Services.Input
     {
         None,
         Run,
-        Crouch
+        Crouch,
+        Power
     }
 }

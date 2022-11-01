@@ -11,12 +11,11 @@ using UnityEngine;
 using View;
 using Zenject;
 using Services.Item;
-using Constants;
-using Services.Essence;
+using Services.Log;
 
 namespace Services.Ability
 {
-    public class PlayerRangeAttackAbility : IAbilityWithOutParam
+    public class PlayerAdvancedAttackAbility : IAbilityWithOutParam
     {
         private readonly SignalBus _signalBus;
         private readonly MovementService _movementService;
@@ -24,6 +23,7 @@ namespace Services.Ability
         private readonly SFXService _sFXService;
         private readonly VFXService _vFXService;
         private readonly ItemService _itemService;
+        private readonly LogService _logService;
 
         private AbilitySettings _abilitySettings;
 
@@ -34,12 +34,13 @@ namespace Services.Ability
         public bool ActivateAbility { get; set; } = true;
         public Sprite Icon { get; set; }
 
-        public PlayerRangeAttackAbility(SignalBus signalBus,
+        public PlayerAdvancedAttackAbility(SignalBus signalBus,
              MovementService movementService,
              AnimationService animationService,
              SFXService sFXService,
              VFXService vFXService,
              ItemService itemService,
+             LogService logService,
               AbilitySettings[] abilitiesSettings) 
         {
             _signalBus = signalBus;
@@ -49,6 +50,7 @@ namespace Services.Ability
             _sFXService = sFXService;
             _vFXService = vFXService;
             _itemService = itemService;
+            _logService = logService;
 
             InitAbility(abilitiesSettings);
         }
@@ -100,14 +102,20 @@ namespace Services.Ability
                 if (actionModifier == ActionModifier.None)
                 {
                    // ToDo...
-                    Debug.Log("[PlayerRangeAttackAbility]-> Base Attack!");
+                    _logService.ShowLog(GetType().Name,
+                               Services.Log.LogType.Message,
+                               "Advanced Attack!.",
+                               LogOutputLocationType.Console);
 
                 }
-                //else if (actionModifier == ActionModifier.Power)
-                //{
-                //    // ToDo...
-                //    Debug.Log("[PlayerRangeAttackAbility]-> Power Attack!");
-                //}
+                else if (actionModifier == ActionModifier.Power)
+                {
+                    // ToDo...
+                    _logService.ShowLog(GetType().Name,
+                             Services.Log.LogType.Message,
+                             "Power Advanced Attack!.",
+                             LogOutputLocationType.Console);
+                }
             }
         }
     }
