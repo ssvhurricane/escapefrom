@@ -1,5 +1,6 @@
 using Data.Settings;
 using Services.Log;
+using UnityEngine;
 using Zenject;
 
 namespace Services.Project
@@ -43,6 +44,30 @@ namespace Services.Project
         public void SetProjectState(ProjectState projectState) 
         {
             _projectState = projectState;
+        }
+
+        public void StartGame()
+        {
+            Time.timeScale = 1;
+            SetProjectState(ProjectState.Start);
+        }
+
+        public void PauseGame()
+        {
+            Time.timeScale = 0;
+            SetProjectState(ProjectState.Pause);
+        }
+
+        public void StopGame()
+        {
+            Time.timeScale = 0;
+            SetProjectState(ProjectState.Stop);
+        }
+
+        public void CursorLocked(bool isLocked, CursorLockMode cursorLockMode) 
+        {
+            Cursor.visible = isLocked;
+            Cursor.lockState = cursorLockMode;
         }
     }
 }

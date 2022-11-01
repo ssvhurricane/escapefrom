@@ -76,8 +76,8 @@ namespace Presenters
                     //    LogOutputLocationType.Console);
 
                     CreateGame();
-                    
-                    Cursor.visible = false;
+
+                    _projectService.CursorLocked(false, CursorLockMode.Locked);
                 }
             });
 
@@ -129,20 +129,17 @@ namespace Presenters
 
         public void StartGame()
         {
-            Time.timeScale = 1;
-            _projectService.SetProjectState(ProjectState.Start);
+            _projectService.StartGame();
         }
 
         public void PauseGame() 
         {
-            Time.timeScale = 0;
-            _projectService.SetProjectState(ProjectState.Pause);
+            _projectService.PauseGame();
         }
 
         public void StopGame()
         {
-            Time.timeScale = 0;
-            _projectService.SetProjectState(ProjectState.Stop);
+            _projectService.StopGame();
         }
     }
 }

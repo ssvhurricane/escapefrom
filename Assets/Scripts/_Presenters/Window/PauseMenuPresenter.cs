@@ -6,6 +6,7 @@ using Services.Factory;
 using Services.Item;
 using Services.Log;
 using Services.Pool;
+using Services.Project;
 using Services.Scene;
 using Services.Window;
 using System.Linq;
@@ -30,9 +31,9 @@ namespace Presenters.Window
         
         private readonly FactoryService _factoryService;
         private readonly HolderService _holderService;
+        private readonly ProjectService _projectService;
 
         private readonly GameSettingsPresenter _gameSettingsPresenter;
-        //private readonly ProjectPresenter _projectPresenter;
 
         private PauseMenuView _pauseMenuView;
         private MainHUDView _mainHUDView;
@@ -47,8 +48,8 @@ namespace Presenters.Window
             ItemService itemService, 
             FactoryService factoryService,
             HolderService holderService,
+            ProjectService projectService,
             GameSettingsPresenter gameSettingsPresenter
-            //,ProjectPresenter projectPresenter
             )
         {
             _signalBus = signalBus;
@@ -62,10 +63,10 @@ namespace Presenters.Window
 
             _factoryService = factoryService;
             _holderService = holderService;
+            _projectService = projectService;
 
            _gameSettingsPresenter = gameSettingsPresenter;
-           // _projectPresenter = projectPresenter;
-
+          
             _logService.ShowLog(GetType().Name,
                 Services.Log.LogType.Message,
                 "Call Constructor Method.", 
@@ -79,9 +80,8 @@ namespace Presenters.Window
 
             OnDisposeAll();
 
-            Cursor.visible = true;
-            //_projectPresenter.PauseGame(); TODO
-
+            _projectService.CursorLocked(true, CursorLockMode.Confined);
+            _projectService.PauseGame(); 
             
             if (_windowService.GetWindow<PauseMenuView>() != null)
                 _pauseMenuView = (PauseMenuView)_windowService.ShowWindow<PauseMenuView>();
@@ -149,12 +149,11 @@ namespace Presenters.Window
 
         private void OnPauseMenuViewButtonClick(int buttonId)
         {
-            Cursor.visible = true;
-           
+            _projectService.CursorLocked(true, CursorLockMode.Confined);
+
             if (buttonId == _pauseMenuView._backToGameButton.GetInstanceID())
             {
-               
-                Cursor.visible = false;
+                _projectService.CursorLocked(false, CursorLockMode.Locked);
 
                 _logService.ShowLog(GetType().Name,
                       Services.Log.LogType.Message,
@@ -163,8 +162,8 @@ namespace Presenters.Window
                
                 _windowService.HideWindow<PauseMenuView>();
                 _windowService.ShowWindow<MainHUDView>();
-               
-                //_projectPresenter.StartGame();
+              
+                _projectService.StartGame();
             }
 
             if (buttonId == _pauseMenuView._settingsButton.GetInstanceID())
@@ -193,10 +192,10 @@ namespace Presenters.Window
                         Services.Log.LogType.Message,
                         "Call OnQuitMainMenuButtonClick Method.",
                         LogOutputLocationType.Console);
-             
-                Cursor.visible = true;
-                //_projectPresenter.StartGame();
-                
+
+                _projectService.CursorLocked(true, CursorLockMode.Confined);
+                _projectService.StopGame();
+
                 _cameraService.ClearServiceValues();
                 _essenceService.ClearServiceValues();
                 _poolService.ClearServiceValues();
