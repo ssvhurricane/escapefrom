@@ -407,6 +407,17 @@ public partial class @TopDownGameInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""6a2f7a2b-d82d-4ebd-9271-708ed04cc78c"",
+                    ""path"": ""<Touchscreen>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""eff0808e-d09e-4d3e-9117-571cba5ac517"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
