@@ -46,21 +46,21 @@ MonoBehaviour:
     AbilityDescription: PlayerBaseAttackAbility
     AbilityType: 1
     WeaponType: 5
-    Icon: {fileID: 21300000, guid: 42d77ede3fef8dd4a83cdd25c482101d, type: 3}
+    Icon: {fileID: 21300000, guid: 9540d0014f0ae4c24b1ba577df2a66ad, type: 3}
     ActionModifier: 
   - Id: PlayerAdvancedAttackAbility
     Name: PlayerAdvancedAttackAbility
     AbilityDescription: PlayerAdvancedAttackAbility
     AbilityType: 1
     WeaponType: 3
-    Icon: {fileID: 21300000, guid: 4e19ad47e633d11499b8a77bc7c21d65, type: 3}
+    Icon: {fileID: 21300000, guid: e4c1ce7cde13b437abf82407b099080e, type: 3}
     ActionModifier: 
   - Id: PlayerNoneAbility
     Name: PlayerNoneAbility
     AbilityDescription: PlayerNoneAbility
     AbilityType: 4
     WeaponType: 0
-    Icon: {fileID: 21300000, guid: bffa58996a3bf4445afc7dc9888e350a, type: 3}
+    Icon: {fileID: 21300000, guid: 6b66cb31cdb16460d8c80b4508392029, type: 3}
     ActionModifier: 
   - Id: PlayerDeathAbility
     Name: PlayerDeathAbility
