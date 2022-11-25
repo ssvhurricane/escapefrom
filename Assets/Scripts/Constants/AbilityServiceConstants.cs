@@ -6,6 +6,7 @@ namespace Constants
         public static string PlayerIdleAbility = "PlayerIdleAbility";
         public static string PlayerMoveAbility = "PlayerMoveAbility";
         public static string PlayerRotateAbility = "PlayerRotateAbility";
+        public static string PlayerHeadRotateAbility = "PlayerHeadRotateAbility";
         public static string PlayerJumpAbility = "PlayerJumpAbility";
        
         public static string PlayerBaseAttackAbility = "PlayerBaseAttackAbility";
