@@ -39,7 +39,8 @@ namespace Bootstrap
 
             // View Presenters.
             Container.InstallElementAsSingle<PlayerPresenter>();
-          
+            Container.InstallElementAsSingle<PlayerArmsPresenter>();
+
             Container.InstallElementAsSingle<CameraPresenter>();
         }
 
@@ -68,6 +69,7 @@ namespace Bootstrap
             Container.InstallElementAsSingle<PlayerMoveAbility>();
             Container.InstallElementAsSingle<PlayerRotateAbility>();
             Container.InstallElementAsSingle<PlayerHeadRotateAbility>();
+            Container.InstallElementAsSingle<PlayerArmsRotateAbility>();
             Container.InstallElementAsSingle<PlayerJumpAbility>();
            
             Container.InstallElementAsSingle<PlayerBaseAttackAbility>();

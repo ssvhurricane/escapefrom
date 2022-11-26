@@ -41,6 +41,13 @@ MonoBehaviour:
     WeaponType: 0
     Icon: {fileID: 0}
     ActionModifier: 
+  - Id: PlayerArmsRotateAbility
+    Name: PlayerArmsRotateAbility
+    AbilityDescription: PlayerArmsRotateAbility
+    AbilityType: 2
+    WeaponType: 0
+    Icon: {fileID: 0}
+    ActionModifier: 
   - Id: PlayerJumpAbility
     Name: PlayerJumpAbility
     AbilityDescription: PlayerJumpAbility

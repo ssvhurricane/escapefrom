@@ -15,7 +15,7 @@ using View;
 
 namespace Services.Ability
 {
-    public class PlayerHeadRotateAbility : IAbilityWithAffectedPresenterParam
+    public class PlayerArmsRotateAbility : IAbilityWithAffectedPresenterParam
     {
         private SignalBus _signalBus;
 
@@ -25,10 +25,14 @@ namespace Services.Ability
         private readonly VFXService _vFXService;
 
         private AbilitySettings _abilitySettings;
-        private CameraPresenter _cameraPresenter;
+      
         private PlayerPresenter _playerPresenter;
-        private FPSCameraView _cameraView;
+        private PlayerArmsPresenter _playerArmsPresenter;
+      
         private PlayerView _playerView;
+        private PlayerArmsView _playerArmsView;
+        private Vector3 _offset; // TODO:
+
         public string Id { get; set; }
         public AbilityType AbilityType { get; set; }
         public WeaponType WeaponType { get; set; }
@@ -36,7 +40,7 @@ namespace Services.Ability
         public ActionModifier ActionModifier { get; set; }
         public Sprite Icon { get; set; }
 
-        public PlayerHeadRotateAbility(SignalBus signalBus,
+        public PlayerArmsRotateAbility(SignalBus signalBus,
             MovementService movementService,
              AnimationService animationService,
              SFXService sFXService,
@@ -69,15 +73,25 @@ namespace Services.Ability
 
         public void StartAbility(IPresenter ownerPresenter, IPresenter affectedPresenter, ActionModifier actionModifier)
         {
-            if (_cameraPresenter == null) _cameraPresenter = ownerPresenter as CameraPresenter;
+            if (_playerArmsPresenter == null) _playerArmsPresenter = ownerPresenter as PlayerArmsPresenter;
                 
             if (_playerPresenter == null) _playerPresenter = affectedPresenter as PlayerPresenter;
 
-            if (_cameraView == null) _cameraView = _cameraPresenter.GetView() as FPSCameraView;
+            if (_playerArmsView == null) _playerArmsView = _playerArmsPresenter.GetView() as PlayerArmsView;
 
             if (_playerView == null) _playerView = _playerPresenter.GetView() as PlayerView;
 
-            _playerView.GetHead().transform.rotation = _cameraView.transform.rotation;
+            _movementService.Follow(_playerArmsView, _playerView, Vector3.zero, Vector3.zero, 100f);
+
+            _playerView.SetLeftArmRoot(_playerArmsView.GetLeftArmRoot());
+
+            _playerView.SetRightArmRoot(_playerArmsView.GetRightArmRoot());
+
+            // TODO:
+            //_playerArmsView.transform.rotation = _playerView.GetHead().transform.rotation;
+            //_playerArmsView.transform.Rotate(_playerView.GetHead().transform.position);
+            //_playerArmsView.transform.position = _playerView.GetHead().transform.position
+            //    - (_playerView.GetHead().transform.rotation * _offset);
         }
     }
 }

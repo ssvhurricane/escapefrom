@@ -11,10 +11,11 @@ namespace View
 
         [SerializeField] protected GameObject Armature;
         [SerializeField] protected GameObject Head;
-        [SerializeField] protected GameObject LeftArm, RightArm, LeftArmRoot, RightArmRoot;
         [SerializeField] protected GameObject CameraRoot;
 
         [SerializeField] protected Animator Animator;
+
+        private GameObject LeftArmRoot, RightArmRoot;
 
         private SignalBus _signalBus;
       
@@ -39,16 +40,6 @@ namespace View
             return Head;
         }
 
-        public GameObject GetLeftArm()
-        {
-            return LeftArm;
-        }
-
-        public GameObject GetRightArm()
-        {
-            return RightArm;
-        }
-
         public GameObject GetLeftArmRoot()
         {
             return LeftArmRoot;
@@ -59,6 +50,17 @@ namespace View
             return RightArmRoot;
         }
 
+
+        public void SetLeftArmRoot(GameObject obj)
+        {
+            LeftArmRoot = obj;
+        }
+
+        public void SetRightArmRoot(GameObject obj)
+        {
+            RightArmRoot = obj;
+        }
+
         public GameObject GetCameraRoot() 
         {
             return CameraRoot;
@@ -67,6 +69,24 @@ namespace View
         public Animator GetAnimator()
         {
             return Animator;
+        }
+
+        private void OnAnimatorIK(int layerIndex)
+        {
+            //GetAnimator().SetLookAtWeight(1);
+           // GetAnimator().SetLookAtPosition(GetLeftArmRoot().gameObject.transform.position);
+           
+
+           GetAnimator().SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+           GetAnimator().SetIKPosition(AvatarIKGoal.LeftHand, GetLeftArmRoot().gameObject.transform.position);
+           GetAnimator().SetIKRotation(AvatarIKGoal.LeftHand, GetLeftArmRoot().gameObject.transform.rotation);
+       
+
+            Debug.Log("Left Hand Position Arm Root: " + GetLeftArmRoot().gameObject.transform.position);
+
+           GetAnimator().SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
+           GetAnimator().SetIKPosition(AvatarIKGoal.RightHand, GetRightArmRoot().gameObject.transform.position);
+           GetAnimator().SetIKRotation(AvatarIKGoal.RightHand, GetRightArmRoot().gameObject.transform.rotation);
         }
     }
 }

@@ -40,6 +40,7 @@ namespace Services.Input
         private readonly PauseMenuPresenter _pauseMenuPresenter;
         private readonly MainHUDPresenter _mainHUDPresenter;
         private readonly CameraPresenter _cameraPresenter;
+        private readonly PlayerArmsPresenter  _playerArmsPresenter;
 
         private IPresenter _playerPresenter;
        
@@ -50,8 +51,9 @@ namespace Services.Input
                                      _playerMoveAbility,
                                          _playerRotateAbility,
                                             _playerHeadRotateAbility,
-                                                     _cameraRotateAbility,
-                                                            _playerJumpAbility;
+                                                    _playerArmsRotateAbility,
+                                                              _cameraRotateAbility,
+                                                                       _playerJumpAbility;
                                                             
                                                                    
         private IEnumerable<IAbility> _playerAttackAbilities;
@@ -70,6 +72,7 @@ namespace Services.Input
             PauseMenuPresenter pauseMenuPresenter,
             MainHUDPresenter mainHUDPresenter,
             CameraPresenter cameraPresenter,
+            PlayerArmsPresenter playerArmsPresenter,
             PoolService poolService,
             ResourcesService resourcesService,
             LogService logService,
@@ -86,6 +89,8 @@ namespace Services.Input
             _pauseMenuPresenter = pauseMenuPresenter;
             _mainHUDPresenter = mainHUDPresenter;
             _cameraPresenter = cameraPresenter;
+
+            _playerArmsPresenter = playerArmsPresenter;
 
             _poolService = poolService;
             _resourcesService = resourcesService;
@@ -344,6 +349,10 @@ namespace Services.Input
                 // Set Player Head Follow Camera.
                 _abilityService.UseAbility((IAbilityWithAffectedPresenterParam)_playerHeadRotateAbility
                     , _cameraPresenter, _playerPresenter, ActionModifier.None);
+
+                // Set Player Arrms Follow Player.
+                _abilityService.UseAbility((IAbilityWithAffectedPresenterParam)_playerArmsRotateAbility
+                    , _playerArmsPresenter, _playerPresenter, ActionModifier.None);
             }  
         }
 
@@ -408,6 +417,9 @@ namespace Services.Input
 
             _playerHeadRotateAbility = _abilityService.GetAbilityById(_playerPresenter,
                 AbilityServiceConstants.PlayerHeadRotateAbility);
+
+            _playerArmsRotateAbility = _abilityService.GetAbilityById(_playerArmsPresenter,
+                AbilityServiceConstants.PlayerArmsRotateAbility);
 
             // Caching Camera Rotate Ability.
             _cameraRotateAbility = _abilityService.GetAbilityById(_cameraPresenter,
