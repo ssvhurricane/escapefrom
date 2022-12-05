@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Layer: 0
-  Armature: {fileID: 3573289751197487605}
+  Armature: {fileID: 2949547864335204383}
   Head: {fileID: 6489916128577056704}
   CameraRoot: {fileID: 8995172131393515126}
   Animator: {fileID: 7271191787771776236}
@@ -166,9 +166,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: cc60233b145ed49519861d3ea5991658, type: 3}
---- !u!1 &3573289751197487605 stripped
+--- !u!1 &2949547864335204383 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5262308135297519058, guid: cc60233b145ed49519861d3ea5991658, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5800494900622613560, guid: cc60233b145ed49519861d3ea5991658, type: 3}
   m_PrefabInstance: {fileID: 8687893684326571047}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4241599974260591439 stripped

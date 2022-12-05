@@ -76,9 +76,10 @@ namespace View
             //GetAnimator().SetLookAtWeight(1);
            // GetAnimator().SetLookAtPosition(GetLeftArmRoot().gameObject.transform.position);
            
-
+            
            GetAnimator().SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
            GetAnimator().SetIKPosition(AvatarIKGoal.LeftHand, GetLeftArmRoot().gameObject.transform.position);
+
            GetAnimator().SetIKRotation(AvatarIKGoal.LeftHand, GetLeftArmRoot().gameObject.transform.rotation);
        
 
@@ -87,6 +88,7 @@ namespace View
            GetAnimator().SetIKPositionWeight(AvatarIKGoal.RightHand, 1f);
            GetAnimator().SetIKPosition(AvatarIKGoal.RightHand, GetRightArmRoot().gameObject.transform.position);
            GetAnimator().SetIKRotation(AvatarIKGoal.RightHand, GetRightArmRoot().gameObject.transform.rotation);
+
         }
     }
 }

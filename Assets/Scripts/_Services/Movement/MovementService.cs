@@ -91,6 +91,14 @@ namespace Services.Movement
                  baseView.GetGameObject().transform.parent = null;
         }
 
+        public void Parent(IView baseView, GameObject targetView, bool resetParent = false)
+        {
+            if (!resetParent)
+                baseView.GetGameObject().transform.parent = targetView.transform;
+            else
+                baseView.GetGameObject().transform.parent = null;
+        }
+
         public bool IsGrounded(IView view, Rigidbody viewRigidbody) 
         {
             if (viewRigidbody != null)

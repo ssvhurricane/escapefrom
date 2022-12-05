@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attack2",
-                    "type": "Button",
-                    "id": "4207d5d1-81a2-475c-924a-39065a69af39",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "6f3fb6c0-83bb-4243-b58f-73047d2c5588",
@@ -60,27 +51,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SelectWeapon",
-                    "type": "Button",
-                    "id": "6bd898b6-7f1a-4404-a947-610535734b1b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "21343cde-a46e-41b1-b5a5-295bc8da5622",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Interaction",
-                    "type": "Button",
-                    "id": "8f0e3df6-6f5b-49a4-b003-6eaf528f0d1f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -297,28 +270,6 @@
                 },
                 {
                     "name": "",
-                    "id": "105f23d8-d60c-4265-af23-117d70d7fc4b",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse and Keyboard",
-                    "action": "Interaction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d71e7e91-f821-4155-b557-c3174a512d1a",
-                    "path": "<XInputController>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Interaction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c3140f0c-ffc5-448d-85e6-376f32d504e2",
                     "path": "<Keyboard>/c",
                     "interactions": "",
@@ -336,28 +287,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5f0cce8c-f5d7-4c66-9832-dba4f7511ade",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse and Keyboard",
-                    "action": "Attack2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ae2fda55-e089-44c3-bfdc-6e05d8446504",
-                    "path": "<XInputController>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Attack2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -391,50 +320,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "eff0808e-d09e-4d3e-9117-571cba5ac517",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse and Keyboard",
-                    "action": "SelectWeapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "163a6048-4cbc-4586-b1b8-df36b6132231",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse and Keyboard",
-                    "action": "SelectWeapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cf5a31a5-d8f3-4bc4-bb82-a03640a6a1a3",
-                    "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "SelectWeapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "435414aa-7428-4994-a85c-c90cee411b34",
-                    "path": "<Gamepad>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "SelectWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

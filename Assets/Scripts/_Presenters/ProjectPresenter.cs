@@ -23,7 +23,6 @@ namespace Presenters
 
         private MainHUDPresenter _mainHUDPresenter;
         private PlayerPresenter _playerPresenter;
-        private PlayerArmsPresenter _playerArmsPresenter;
 
         private  InputService _inputService;
 
@@ -32,7 +31,6 @@ namespace Presenters
             MainMenuPresenter mainMenuPresenter,
             MainHUDPresenter mainHUDPresenter,
             PlayerPresenter playerPresenter,
-            PlayerArmsPresenter playerArmsPresenter,
             ProjectModel projectModel,
             ProjectService projectService,
             InputService inputService
@@ -43,8 +41,7 @@ namespace Presenters
             _mainMenuPresenter = mainMenuPresenter;
             _mainHUDPresenter = mainHUDPresenter;
             _playerPresenter = playerPresenter;
-            _playerArmsPresenter = playerArmsPresenter;
-
+          
             _projectModel = projectModel;
             _projectService = projectService;
         
@@ -120,8 +117,6 @@ namespace Presenters
                 _mainHUDPresenter.ShowView();
                
                 _playerPresenter.ShowView();
-
-                _playerArmsPresenter.ShowView();
                 
                 _inputService.TakePossessionOfObject(_playerPresenter);
 

@@ -20,7 +20,6 @@ namespace Model
         private PlayerMoveAbility _playerMoveAbility;
         private PlayerRotateAbility _playerRotateAbility;
         private PlayerHeadRotateAbility _playerHeadRotateAbility;
-        private PlayerArmsRotateAbility _playerArmsRotateAbility;
         private PlayerJumpAbility _playerJumpAbility;
         
         private PlayerBaseAttackAbility _playerAttackAbility;
@@ -42,7 +41,6 @@ namespace Model
                 PlayerMoveAbility playerMoveAbility,
                 PlayerRotateAbility playerRotateAbility,
                 PlayerHeadRotateAbility playerHeadRotateAbility,
-                PlayerArmsRotateAbility playerArmsRotateAbility,
                 PlayerJumpAbility playerJumpAbility,
                
                 PlayerBaseAttackAbility playerAttackAbility,
@@ -66,7 +64,6 @@ namespace Model
             _playerMoveAbility = playerMoveAbility;
             _playerRotateAbility = playerRotateAbility;
             _playerHeadRotateAbility = playerHeadRotateAbility;
-            _playerArmsRotateAbility = playerArmsRotateAbility;
             _playerJumpAbility = playerJumpAbility;
            
             _playerAttackAbility = playerAttackAbility;
@@ -89,7 +86,6 @@ namespace Model
             _playerAbilityContainer.abilities.Add(_playerMoveAbility);
             _playerAbilityContainer.abilities.Add(_playerRotateAbility);
             _playerAbilityContainer.abilities.Add(_playerHeadRotateAbility);
-            _playerAbilityContainer.abilities.Add(_playerArmsRotateAbility);
             _playerAbilityContainer.abilities.Add(_playerJumpAbility);
             
             _playerAbilityContainer.abilities.Add(_playerAttackAbility);

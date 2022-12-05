@@ -78,6 +78,7 @@ namespace Services.Ability
             if (_playerView == null) _playerView = _playerPresenter.GetView() as PlayerView;
 
             _playerView.GetHead().transform.rotation = _cameraView.transform.rotation;
+           
         }
     }
 }

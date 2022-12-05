@@ -40,7 +40,7 @@ namespace Services.Input
         private readonly PauseMenuPresenter _pauseMenuPresenter;
         private readonly MainHUDPresenter _mainHUDPresenter;
         private readonly CameraPresenter _cameraPresenter;
-        private readonly PlayerArmsPresenter  _playerArmsPresenter;
+       
 
         private IPresenter _playerPresenter;
        
@@ -51,7 +51,6 @@ namespace Services.Input
                                      _playerMoveAbility,
                                          _playerRotateAbility,
                                             _playerHeadRotateAbility,
-                                                    _playerArmsRotateAbility,
                                                               _cameraRotateAbility,
                                                                        _playerJumpAbility;
                                                             
@@ -72,7 +71,6 @@ namespace Services.Input
             PauseMenuPresenter pauseMenuPresenter,
             MainHUDPresenter mainHUDPresenter,
             CameraPresenter cameraPresenter,
-            PlayerArmsPresenter playerArmsPresenter,
             PoolService poolService,
             ResourcesService resourcesService,
             LogService logService,
@@ -90,8 +88,6 @@ namespace Services.Input
             _mainHUDPresenter = mainHUDPresenter;
             _cameraPresenter = cameraPresenter;
 
-            _playerArmsPresenter = playerArmsPresenter;
-
             _poolService = poolService;
             _resourcesService = resourcesService;
             _logService = logService;
@@ -100,95 +96,6 @@ namespace Services.Input
             _settings = _inputServiceSettings?.FirstOrDefault(s => s.Id == InputServiceConstants.TopDownGameId);
 
             _topDownGameInput = new TopDownGameInput();
-
-            // Bind Select Ability(Weapon).
-            _topDownGameInput.Player.SelectWeapon.performed += value => 
-            {
-                if (_projectService.GetProjectState() == ProjectState.Start)
-                {
-                    var nameControl = value.control.name;
-
-                    if (nameControl == "upArrow" || nameControl == "up")
-                    {
-                        _logService.ShowLog(GetType().Name,
-                            Services.Log.LogType.Message,
-                            "Press Up(d-pad).",
-                            LogOutputLocationType.Console);
-
-                        if (!_mainHudView.GetVerticalAbilityPanel().gameObject.activeSelf)
-                            _mainHudView.GetVerticalAbilityPanel().gameObject.SetActive(true);
-
-                        if (_playerAbility.Value != null)
-                            _playerAbility.Value._image.color = Color.white;
-
-                        if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id == AbilityServiceConstants.PlayerNoneAbility
-                        || _playerAbility.Key <= 0)
-                        {
-                            _playerAbility = _playerAbilityItems.LastOrDefault();
-                        }
-                        else
-                        {
-                            _playerAbility = _playerAbilityItems.FirstOrDefault(item => item.Key == _playerAbility.Key - 1);
-                        }
-
-                        if (_playerAbility.Value != null)
-                            _playerAbility.Value._image.color = Color.red;
-
-                        ((ILiveModel)_playerPresenter.GetModel())
-                            .SetCurrentAbility(_playerAttackAbilities.FirstOrDefault(ability => ability.Id == _playerAbility.Value.Id));
-
-                        _mainHudView.GetPlayerAbilityContainer().GetComponent<Image>().sprite = ((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Icon;
-
-                    }
-                    else if (nameControl == "downArrow" || nameControl == "down")
-                    {
-                        _logService.ShowLog(GetType().Name,
-                           Services.Log.LogType.Message,
-                           "Press Down(d-pad).",
-                           LogOutputLocationType.Console);
-
-                        if (!_mainHudView.GetVerticalAbilityPanel().gameObject.activeSelf)
-                            _mainHudView.GetVerticalAbilityPanel().gameObject.SetActive(true);
-
-                        // ToDo move logic in View...
-                        if (_playerAbility.Value != null)
-                            _playerAbility.Value._image.color = Color.white;
-
-                        if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id == AbilityServiceConstants.PlayerNoneAbility
-                        || _playerAbility.Key >= _playerAbilityItems.Count() - 1)
-                        {
-                            _playerAbility = _playerAbilityItems.FirstOrDefault();
-                        }
-                        else
-                        {
-                            _playerAbility = _playerAbilityItems.FirstOrDefault(item => item.Key == _playerAbility.Key + 1);
-                        }
-                        // ToDo move logic in View...
-                        if (_playerAbility.Value != null)
-                            _playerAbility.Value._image.color = Color.red;
-
-                        ((ILiveModel)_playerPresenter.GetModel())
-                            .SetCurrentAbility(_playerAttackAbilities.FirstOrDefault(ability => ability.Id == _playerAbility.Value.Id));
-
-                        _mainHudView.GetPlayerAbilityContainer().GetComponent<Image>().sprite = ((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Icon;
-                    }
-                }
-            };
-
-            // Interaction Ability.
-            _topDownGameInput.Player.Interaction.performed += value =>
-            {
-                if (_projectService.GetProjectState() == ProjectState.Start) 
-                {  
-                    _logService.ShowLog(GetType().Name,
-                    Services.Log.LogType.Message,
-                    "Press E(X).",
-                    LogOutputLocationType.Console);
-
-                    // TODO:
-                }
-              
-            };
 
             // Crouch Ability.
             _topDownGameInput.Player.Crouch.performed += value =>
@@ -231,24 +138,6 @@ namespace Services.Input
                                 Services.Log.LogType.Message,
                                 "Press LeftMouseButton(LT).",
                                 LogOutputLocationType.Console);
-
-                    if (_mainHudView.GetVerticalAbilityPanel().gameObject.activeSelf)
-                        _mainHudView.GetVerticalAbilityPanel().gameObject.SetActive(false);
-
-                    if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id != AbilityServiceConstants.PlayerNoneAbility)
-                        _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility(), _playerPresenter, ActionModifier.None);
-                }
-            };
-
-             // Bind Player Aim Down Sights Ability.
-            _topDownGameInput.Player.Attack2.performed += value =>
-            { 
-                if (_projectService.GetProjectState() == ProjectState.Start)
-                {
-                  _logService.ShowLog(GetType().Name,
-                            Services.Log.LogType.Message,
-                            "Press RightMouseButton(RT).",
-                            LogOutputLocationType.Console);
 
                     if (_mainHudView.GetVerticalAbilityPanel().gameObject.activeSelf)
                         _mainHudView.GetVerticalAbilityPanel().gameObject.SetActive(false);
@@ -349,10 +238,6 @@ namespace Services.Input
                 // Set Player Head Follow Camera.
                 _abilityService.UseAbility((IAbilityWithAffectedPresenterParam)_playerHeadRotateAbility
                     , _cameraPresenter, _playerPresenter, ActionModifier.None);
-
-                // Set Player Arrms Follow Player.
-                _abilityService.UseAbility((IAbilityWithAffectedPresenterParam)_playerArmsRotateAbility
-                    , _playerArmsPresenter, _playerPresenter, ActionModifier.None);
             }  
         }
 
@@ -366,7 +251,7 @@ namespace Services.Input
 
             CachingAbilities();
 
-            InitializePlayerAbilityViews();
+          //  InitializePlayerAbilityViews();
 
             _topDownGameInput.Enable();
         }
@@ -417,9 +302,6 @@ namespace Services.Input
 
             _playerHeadRotateAbility = _abilityService.GetAbilityById(_playerPresenter,
                 AbilityServiceConstants.PlayerHeadRotateAbility);
-
-            _playerArmsRotateAbility = _abilityService.GetAbilityById(_playerArmsPresenter,
-                AbilityServiceConstants.PlayerArmsRotateAbility);
 
             // Caching Camera Rotate Ability.
             _cameraRotateAbility = _abilityService.GetAbilityById(_cameraPresenter,
