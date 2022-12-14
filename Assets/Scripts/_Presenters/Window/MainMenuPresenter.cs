@@ -125,7 +125,7 @@ namespace Presenters.Window
 
                 if (projectType == ProjectType.Offline)
                 {
-                    _sceneService.LoadLevelAdvanced(SceneServiceConstants.OfflineLevel1, SceneService.LoadMode.Unitask);
+                    _sceneService.LoadLevelAdvanced(SceneServiceConstants.Level_1_Room, SceneService.LoadMode.Unitask);
                 }
                 else if(projectType == ProjectType.Online)
                 {

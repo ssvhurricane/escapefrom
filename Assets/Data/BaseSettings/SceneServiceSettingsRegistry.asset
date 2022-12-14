@@ -23,3 +23,8 @@ MonoBehaviour:
       ScenePath: Scenes/Levels/Offline/OfflineLevel1
       IsSingleScene: 1
       Additive: 0
+  - Level:
+      Name: Level_1_Room
+      ScenePath: Scenes/Levels/Offline/Level_1_Room
+      IsSingleScene: 1
+      Additive: 0

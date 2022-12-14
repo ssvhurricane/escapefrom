@@ -8,6 +8,7 @@ using System.Linq;
 using System;
 using Services.Factory;
 using Services.Log;
+using System.Threading;
 
 namespace Presenters
 {
@@ -72,7 +73,7 @@ namespace Presenters
                 else
                     _playerView = _factoryService.Spawn<PlayerView>(hTransform, prefab);
             }
-
+           
             _logService.ShowLog(GetType().Name,
             Services.Log.LogType.Message,
             "_anchorService._anchors.Subscribe.",
@@ -88,7 +89,7 @@ namespace Presenters
                     _playerView.transform.rotation = anchorTransform.rotation;
 
                 }
-            }
+            } 
           
         }
 

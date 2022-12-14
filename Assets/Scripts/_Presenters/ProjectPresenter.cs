@@ -68,7 +68,7 @@ namespace Presenters
                 }
 
                 // Offline Levels.
-                if (data.Data == SceneServiceConstants.OfflineLevel1)
+                if (data.Data == SceneServiceConstants.Level_1_Room)
                 {
                     //_logService.ShowLog(GetType().Name,
                     //    Services.Log.LogType.Message,
