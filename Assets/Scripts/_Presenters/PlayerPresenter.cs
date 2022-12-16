@@ -9,6 +9,8 @@ using System;
 using Services.Factory;
 using Services.Log;
 using System.Threading;
+using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 
 namespace Presenters
 {
@@ -52,12 +54,19 @@ namespace Presenters
                 LogOutputLocationType.Console);
         }
 
-        public void ShowView(GameObject prefab = null, Transform hTransform = null) 
+        public async void ShowView(GameObject prefab = null, Transform hTransform = null) 
         {
+            await ShowViewStageOneAsync(prefab, hTransform);
+            await ShowViewStageTwoAsync();
+        }
+        
+        public async UniTask ShowViewStageOneAsync(GameObject prefab = null, Transform hTransform = null)
+        {
+           // Stage 1.
             if (_essenceService.IsEssenceShowing<PlayerView>())
                 return;
 
-            OnDispose();
+            OnDispose();  
 
             if (_essenceService.GetEssence<PlayerView>() != null)
                 _playerView = (PlayerView)_essenceService.ShowEssence<PlayerView>();
@@ -79,18 +88,24 @@ namespace Presenters
             "_anchorService._anchors.Subscribe.",
             LogOutputLocationType.Console);
 
+            await UniTask.Yield();
+        }
+
+        public async UniTask ShowViewStageTwoAsync()
+        {
+            // Stage 2.
             if (_playerView != null)
-            {
-                var anchorTransform = _anchorService._anchors.FirstOrDefault(anchor => anchor.AnchorType == AnchorType.Player)?.Transform;
-
-                if (anchorTransform != null)
                 {
-                    _playerView.transform.position = anchorTransform.position;
-                    _playerView.transform.rotation = anchorTransform.rotation;
+                    var anchorTransform = _anchorService._anchors.FirstOrDefault(anchor => anchor.AnchorType == AnchorType.Player)?.Transform;
 
-                }
-            } 
-          
+                    if (anchorTransform != null)
+                    {
+                        _playerView.transform.position = anchorTransform.position;
+                        _playerView.transform.rotation = anchorTransform.rotation;
+                    }
+            }
+
+            await UniTask.Yield();
         }
 
         public IView GetView()
