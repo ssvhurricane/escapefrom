@@ -25,7 +25,7 @@ MonoBehaviour:
       ForceMode: 1
       GroundLayers:
         serializedVersion: 2
-        m_Bits: 1
+        m_Bits: 64
       Dis2Ground: 0.8
     Rotate:
       Speed: 5

@@ -138,12 +138,13 @@ namespace Services.Input
                                 Services.Log.LogType.Message,
                                 "Press LeftMouseButton(LT).",
                                 LogOutputLocationType.Console);
-
+                    /*
                     if (_mainHudView.GetVerticalAbilityPanel().gameObject.activeSelf)
                         _mainHudView.GetVerticalAbilityPanel().gameObject.SetActive(false);
 
                     if (((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility().Id != AbilityServiceConstants.PlayerNoneAbility)
                         _abilityService.UseAbility((IAbilityWithOutParam)((ILiveModel)_playerPresenter.GetModel()).GetCurrentAbility(), _playerPresenter, ActionModifier.None);
+                    */
                 }
             };
 

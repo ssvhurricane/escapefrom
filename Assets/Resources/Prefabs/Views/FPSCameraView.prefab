@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1300214213393988079}
   - component: {fileID: 4854385270196347425}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: FPSCameraView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 5895690557060414533}
   - component: {fileID: 8881107686480854882}
   - component: {fileID: 6645587982230144793}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}

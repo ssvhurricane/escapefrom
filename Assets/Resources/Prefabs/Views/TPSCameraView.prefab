@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5658561915908066563}
   - component: {fileID: -6426834780214051423}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: TPSCameraView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 5990133489959939875}
   - component: {fileID: 2667061609312385186}
   - component: {fileID: 8325980816867731605}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}

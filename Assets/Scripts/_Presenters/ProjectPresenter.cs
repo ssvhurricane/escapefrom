@@ -1,5 +1,6 @@
 using Bootstrap;
 using Constants;
+using Cysharp.Threading.Tasks;
 using Model;
 using Presenters.Window;
 using Services.Input;
@@ -110,21 +111,48 @@ namespace Presenters
                            LogOutputLocationType.Console);
         }
 
-        private void CreateGame()
+        private async void CreateGame()
         {
             if (_projectService.GetProjectType() == ProjectType.Offline)
             {
-                _mainHUDPresenter.ShowView();
-               
-                _playerPresenter.ShowView();
-                
-                _inputService.TakePossessionOfObject(_playerPresenter);
+                await HUDPresenterAsync();
+
+                await PlayerPresenterAsync();
+            
+                await InputSystemAsync();
 
                 //5. Get Game Flow
 
                 //6. Start Game
-                StartGame();
+                await StartGameAsync();
             } 
+        }
+        public async UniTask HUDPresenterAsync()
+        {
+            _mainHUDPresenter.ShowView();
+
+            await UniTask.Yield();
+        }
+
+        public async UniTask PlayerPresenterAsync()
+        {
+            _playerPresenter.ShowView();
+
+            await UniTask.Yield();
+        }
+
+        public async UniTask InputSystemAsync()
+        {
+            _inputService.TakePossessionOfObject(_playerPresenter);
+
+            await UniTask.Yield();
+        }
+
+        public async UniTask StartGameAsync()
+        {
+            StartGame();
+
+            await UniTask.Yield();
         }
 
         public void StartGame()

@@ -54,13 +54,13 @@ namespace Presenters
                 LogOutputLocationType.Console);
         }
 
-        public async void ShowView(GameObject prefab = null, Transform hTransform = null) 
+        public /*async*/ void ShowView(GameObject prefab = null, Transform hTransform = null) 
         {
-            await ShowViewStageOneAsync(prefab, hTransform);
-            await ShowViewStageTwoAsync();
+           /* await */ShowViewStageOneAsync(prefab, hTransform);
+           /* await*/ ShowViewStageTwoAsync();
         }
         
-        public async UniTask ShowViewStageOneAsync(GameObject prefab = null, Transform hTransform = null)
+        public /*async UniTask*/ void ShowViewStageOneAsync(GameObject prefab = null, Transform hTransform = null)
         {
            // Stage 1.
             if (_essenceService.IsEssenceShowing<PlayerView>())
@@ -88,10 +88,10 @@ namespace Presenters
             "_anchorService._anchors.Subscribe.",
             LogOutputLocationType.Console);
 
-            await UniTask.Yield();
+           // await UniTask.Yield();
         }
 
-        public async UniTask ShowViewStageTwoAsync()
+        public /*async UniTask*/ void ShowViewStageTwoAsync()
         {
             // Stage 2.
             if (_playerView != null)
@@ -105,7 +105,7 @@ namespace Presenters
                     }
             }
 
-            await UniTask.Yield();
+          //  await UniTask.Yield();
         }
 
         public IView GetView()

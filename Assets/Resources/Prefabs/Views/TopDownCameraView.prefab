@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6701201785832977423}
   - component: {fileID: 1695091955898008758}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: TopDownCameraView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 5266384310831628426}
   - component: {fileID: 1794681751407936638}
   - component: {fileID: 3737295664527001466}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
