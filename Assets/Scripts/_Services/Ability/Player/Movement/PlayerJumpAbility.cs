@@ -78,7 +78,8 @@ namespace Services.Ability
 
                 if (_rigidbody == null) _rigidbody = _view.GetComponent<Rigidbody>();
 
-                if (!param) return;
+                //  if (!param) return;
+               
                 if (!_movementService.IsGrounded(_view, _rigidbody)) return;
 
                  _movementService.Jump(_view, _rigidbody);

@@ -13,6 +13,7 @@ using Services.Window;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.UI;
 using View;
 using View.Camera;
@@ -155,14 +156,29 @@ namespace Services.Input
                 {
                     _logService.ShowLog(GetType().Name,
                             Services.Log.LogType.Message,
-                            "Press Space(A).",
+                            "Press Space(A)." + value.ReadValueAsButton(),
                             LogOutputLocationType.Console);
-
-                    if(!_topDownGameInput.Player.Crouch.IsPressed())
+                
+                        if(!_topDownGameInput.Player.Crouch.IsPressed())
                                         _abilityService.UseAbility((IAbilityWithBoolParam)_playerJumpAbility,
-                                            _playerPresenter, value.performed, ActionModifier.None);
+                                            _playerPresenter, value.interaction is TapInteraction, ActionModifier.None);
                 }
             };
+            /*
+            _topDownGameInput.Player.Jump.canceled += value =>
+            {
+                if (_projectService.GetProjectState() == ProjectState.Start)
+                {
+                    _logService.ShowLog(GetType().Name,
+                            Services.Log.LogType.Message,
+                            "Press Space(A)." + value.ReadValueAsButton(),
+                            LogOutputLocationType.Console);
+
+                    if (!_topDownGameInput.Player.Crouch.IsPressed())
+                        _abilityService.UseAbility((IAbilityWithBoolParam)_playerJumpAbility,
+                            _playerPresenter, value.interaction is TapInteraction, ActionModifier.None);
+                }
+            };*/
 
             // Back Menu.
             _topDownGameInput.Player.Pause.performed += value =>
@@ -257,6 +273,7 @@ namespace Services.Input
             _topDownGameInput.Enable();
         }
 
+        //TODO:del,ref.
         private void InitializePlayerAbilityViews() 
         {
             PlayerAbilityItemView playerAbilityItemView;

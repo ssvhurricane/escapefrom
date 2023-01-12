@@ -80,6 +80,18 @@ namespace Presenters
 
                     _projectService.CursorLocked(false, CursorLockMode.Locked);
                 }
+
+                if (data.Data == SceneServiceConstants.OfflineLevel1)
+                {
+                    //_logService.ShowLog(GetType().Name,
+                    //    Services.Log.LogType.Message,
+                    //    $"Subscribe SceneServiceSignals.SceneLoadingCompleted, Data ={data.Data}",
+                    //    LogOutputLocationType.Console);
+
+                    CreateGame();
+
+                    _projectService.CursorLocked(false, CursorLockMode.Locked);
+                }
             });
 
 

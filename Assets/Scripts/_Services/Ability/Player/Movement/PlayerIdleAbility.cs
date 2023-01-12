@@ -31,9 +31,14 @@ namespace Services.Ability
         public ActionModifier ActionModifier { get; set; }
         public bool ActivateAbility { get; set; } = true;
         public Sprite Icon { get; set; }
-     
+
+        private int _xVelHash;
+        private int _yVelHash;
+        private int _zVelHash;
+
         private PlayerView _view;
         private MovementServiceSettings _movementServiceSettings;
+
         public PlayerIdleAbility(SignalBus signalBus,
              MovementService movementService,
              AnimationService animationService,
@@ -64,6 +69,10 @@ namespace Services.Ability
 
             Icon = _abilitySettings.Icon;
 
+            _xVelHash = Animator.StringToHash("X_Velocity");
+            _yVelHash = Animator.StringToHash("Y_Velocity");
+            _zVelHash = Animator.StringToHash("Z_Velocity");
+
         }
         public void StartAbility(IPresenter ownerPresenter, ActionModifier actionModifier)
         {
@@ -71,7 +80,13 @@ namespace Services.Ability
             {
                 if (_view == null) _view = (PlayerView) ownerPresenter.GetView();
 
-                // TODO:
+                _animationService.SetFloat(_view.GetAnimator(),
+                              _xVelHash, 0.0f);
+                _animationService.SetFloat(_view.GetAnimator(),
+                               _yVelHash, 0.0f);
+                _animationService.SetFloat(_view.GetAnimator(),
+                              _zVelHash, 0.0f);
+
             }
         }
     }
