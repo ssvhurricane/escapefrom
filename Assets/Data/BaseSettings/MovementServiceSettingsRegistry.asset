@@ -21,12 +21,12 @@ MonoBehaviour:
     Run:
       Speed: 6
     Jump:
-      Speed: 150
+      Speed: 300
       ForceMode: 1
       GroundLayers:
         serializedVersion: 2
         m_Bits: 64
-      Dis2Ground: 0.8
+      Dis2Ground: 2
     Rotate:
       Speed: 5
       UpperLimit: -40

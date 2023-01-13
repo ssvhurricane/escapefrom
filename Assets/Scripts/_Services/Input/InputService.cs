@@ -158,27 +158,27 @@ namespace Services.Input
                             Services.Log.LogType.Message,
                             "Press Space(A)." + value.ReadValueAsButton(),
                             LogOutputLocationType.Console);
-                
+                  
                         if(!_topDownGameInput.Player.Crouch.IsPressed())
                                         _abilityService.UseAbility((IAbilityWithBoolParam)_playerJumpAbility,
-                                            _playerPresenter, value.interaction is TapInteraction, ActionModifier.None);
+                                            _playerPresenter, !value.performed, ActionModifier.None);
                 }
             };
-            /*
-            _topDownGameInput.Player.Jump.canceled += value =>
-            {
-                if (_projectService.GetProjectState() == ProjectState.Start)
-                {
-                    _logService.ShowLog(GetType().Name,
-                            Services.Log.LogType.Message,
-                            "Press Space(A)." + value.ReadValueAsButton(),
-                            LogOutputLocationType.Console);
-
-                    if (!_topDownGameInput.Player.Crouch.IsPressed())
-                        _abilityService.UseAbility((IAbilityWithBoolParam)_playerJumpAbility,
-                            _playerPresenter, value.interaction is TapInteraction, ActionModifier.None);
-                }
-            };*/
+            
+            //_topDownGameInput.Player.Jump.canceled += value =>
+            //{
+            //    if (_projectService.GetProjectState() == ProjectState.Start)
+            //    {
+            //        _logService.ShowLog(GetType().Name,
+            //                Services.Log.LogType.Message,
+            //                "Press Space(A)." + value.ReadValueAsButton(),
+            //                LogOutputLocationType.Console);
+                    
+            //        if (!_topDownGameInput.Player.Crouch.IsPressed())
+            //            _abilityService.UseAbility((IAbilityWithBoolParam)_playerJumpAbility,
+            //                _playerPresenter, !value.canceled, ActionModifier.None);
+            //    }
+            //};
 
             // Back Menu.
             _topDownGameInput.Player.Pause.performed += value =>
@@ -223,11 +223,11 @@ namespace Services.Input
                                _topDownGameInput.Player.Move.ReadValue<Vector2>(), ActionModifier.Crouch);
                 }
                 else
-                {
+                {/*
                     _abilityService.UseAbility((IAbilityWithVector2Param)_playerMoveAbility
                              , _playerPresenter,
                              Vector2.zero, ActionModifier.None);
-
+                    */
                     _abilityService.UseAbility((IAbilityWithOutParam)_playerIdleAbility, _playerPresenter, ActionModifier.None);
                 }
             }
